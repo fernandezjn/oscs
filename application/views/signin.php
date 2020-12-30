@@ -23,7 +23,7 @@
   	<body>
   		<div class="signin text-center">
 	  		<div id="form-group">
-	    		<form class="form-signin">
+	    		<form class="form-signin" method="POST">
 	      			<img class="mb-4" src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="" width="72" height="72">
 	      			<h1 class="h3 mb-4 font-weight-normal">Online Student Clearance System</h1>
 
@@ -34,7 +34,7 @@
 	   		 			</div>
 			
 	   
-	     			 	<input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+	     			 	<input type="text" id="inputUsername" class="form-control" placeholder="Username" name="usernameInput" required autofocus>
 					</div>
 	      			
 	      			<label for="inputPassword" class="sr-only">Password</label>
@@ -43,16 +43,16 @@
 	      				<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon2"><i class="fa fa-key"></i></span>
 	   		 			</div>
-	      				<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+	      				<input type="password" id="inputPassword" class="form-control" placeholder="Password" name="passwordInput" required>
 	  				</div>
 
 	      			<div class="checkbox mb-3">
 	        			<label>
-	          				<input type="checkbox" value="remember-me"> Remember me
+	          				<input type="checkbox" name="rememberME"> Remember me
 	        			</label>
 	      			</div>
 	      			
-	      			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+	      			<input class="btn btn-lg btn-primary btn-block" type="submit" name="signin" value="Sign In">
 	      			<label class="font-weight-normal mt-4"><a href="#">Forgot Password</a></label>
 	    		</form>
 			</div>

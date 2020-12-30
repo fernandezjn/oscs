@@ -19,33 +19,43 @@ class Admin_control extends CI_Controller {
 
 	public function index($id=null)
 	{
-		// ===== Authenticate User permission to the pages =====
-		// if($id!=null)
-		// {
-		// 	$this->session->set_userdata("user_id",$id);
-		// 	$isAdmin = $this->user_model->confirm_user($id,"Admin");
-		// 	$this->session->set_userdata("permission",$isAdmin);
-		// 	if($isAdmin)
-		// 	{
-		// 		redirect("admin/mainPage");
-		// 	}
-		// 	else
-		// 	{
-		// 		redirect("main/mainPage");
-		// 	}
-		// }
-		// else
-		// {
-		// 		redirect("main/mainPage");
-		// }
-		echo "Welcome to Admin Page";
+		//===== Authenticate User permission to the pages =====
+		if($id!=null)
+		{
+			$this->session->set_userdata("user_id",$id);
+			$isAdmin = $this->oscs_model->confirmPermission($id, 1);
+			$this->session->set_userdata("permissionAdmin",$isAdmin);
+			if($isAdmin)
+			{
+				redirect("admin_control/mainPage");
+			}
+			else
+			{
+				redirect("main/index");
+			}
+		}
+		else
+		{
+				redirect("main/index");
+		}
 	}
 
 	public function mainPage()
 	{
-		echo "Welcome to Admin Page";
-		//$this->load->view('');
+		$isAdmin = $this->session->userdata("permissionAdmin");
+		if($isAdmin)
+		{
+			$this->load->view('admin_dashboard');
+		}
+		else
+		{
+				redirect("main/index");
+		}
+	}
 
+	public function logout()
+	{
+		redirect("main/index");
 	}
 
 }

@@ -20,33 +20,39 @@ class Registrar_control extends CI_Controller
 
 	public function index($id=null)
 	{
-		// ===== Authenticate User permission to the pages =====
-		// if($id!=null)
-		// {
-		// 	$this->session->set_userdata("user_id",$id);
-		// 	$isAdmin = $this->user_model->confirm_user($id,"Admin");
-		// 	$this->session->set_userdata("permission",$isAdmin);
-		// 	if($isAdmin)
-		// 	{
-		// 		redirect("registrar/mainPage");
-		// 	}
-		// 	else
-		// 	{
-		// 		redirect("main/mainPage");
-		// 	}
-		// }
-		// else
-		// {
-		// 		redirect("main/mainPage");
-		// }
-		echo "Welcome to Registrar Page";
+		//===== Authenticate User permission to the pages =====
+		if($id!=null)
+		{
+			$this->session->set_userdata("user_id",$id);
+			$isRegistrar = $this->oscs_model->confirmPermission($id,2);
+			$this->session->set_userdata("permissionRegistrar",$isRegistrar);
+			if($isRegistrar)
+			{
+				redirect("registrar_control/mainPage");
+			}
+			else
+			{
+				redirect("main/mainPage");
+			}
+		}
+		else
+		{
+				redirect("main/mainPage");
+		}
 	}
 
 	public function mainPage()
 	{
-		echo "Welcome to Registrar Page";
-		//$this->load->view('');
-
+		$isRegistrar = $this->session->userdata("permissionRegistrar");
+		if($isRegistrar)
+		{
+			echo "Welcome to Registrar Page";
+			//$this->load->view('');
+		}
+		else
+		{
+				redirect("main/mainPage");
+		}
 	}
 
 }

@@ -34,54 +34,75 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
+
 		redirect("main/mainPage");
 
 	}
 
 	public function mainPage()
 	{
-		$this->load->view('home_view');
-		// ===== Login Authentication =====
-		// if($this->input->post("login"))
-		// {
-		// 	$data_form = $this->input->post(NULL,TRUE);
-  //           if($data_form)
-  //           {
-  //               $e = $data_form["emailInput"];
-  //               $p = $data_form["passwordInput"];
-  //               $result = $this->user_model->login($e,$p);
+    $this->session->sess_destroy();
+		$this->load->view('signin');
+		//===== Login Authentication =====
+		if($this->input->post("signin"))
+		{
+			$data_form = $this->input->post(NULL,TRUE);
+            if($data_form)
+            {
+                $u = $data_form["usernameInput"];
+                $p = $data_form["passwordInput"];
+                $result = $this->oscs_model->login($u,$p);
               
-  //               if(!empty($result))
-  //               {
-  //                   foreach($result as $row)
-  //                   {
+                if(!empty($result))
+                {
+                    foreach($result as $row)
+                    {
                            
-  //                           $user_id = $row->id;
-  //                           $user_role = $row->usertype;
-  //                   }
-                  
-  //                 	if($user_role == "Admin")
-  //                 	{
-  //                 		$this->session->set_userdata('user_id', $user_id);
-  //                   	redirect("Admin/index/".$user_id);
-  //                 	}
-  //                 	else if($user_role == "Teacher")
-  //                 	{
-  //                 		$this->session->set_userdata('user_id', $user_id);
-  //                   	redirect("professor/index/".$user_id);
-  //                 	}
-  //                 	else if($user_role == "Student")
-  //                 	{
-  //                 		$this->session->set_userdata('user_id', $user_id);
-  //                   	redirect("student/index/".$user_id);
-  //                 	}                                       
-  //               }
-  //               else
-  //               {
-  //                   redirect("user/home? message=Incorrect Email/Password");
-  //               }
+                            $user_id = $row->id;
+                            $user_type = $row->type;
+                    }
+                  	
+                  	$identifyRole = $this->oscs_model->getRole($user_type);
+
+                  		foreach($identifyRole as $row)
+                    	{
+                           
+                            $user_role = $row->role;
+                    	}
+
+                    // if(!empty($this->input->post("remberMe")))
+                    // {
+                    //   $this->oscs_model->rememberUserLogin($u,$p);
+                    // }
+
+                  	if($user_role == "administrator")
+                  	{
+                  		$this->session->set_userdata('user_id', $user_id);
+                    	redirect("admin_control/index/".$user_id);
+                  	}
+                  	else if($user_role == "official")
+                  	{
+                  		$this->session->set_userdata('user_id', $user_id);
+                    	redirect("official_control/index/".$user_id);
+                  	}
+                  	else if($user_role == "student")
+                  	{
+                  		$this->session->set_userdata('user_id', $user_id);
+                    	redirect("student_control/index/".$user_id);
+                  	}
+                  	else if($user_role == "registrar")
+                  	{
+                  		$this->session->set_userdata('user_id', $user_id);
+                    	redirect("registrar_control/index/".$user_id);
+                  	}
+                }
+                else
+                {
+                    redirect("main/mainPage? message=Incorrect Email/Password");
+                }
                 
-  //           }
+            }
+        }
 	}
 
 	public function aboutUS()

@@ -20,33 +20,40 @@ class Official_control extends CI_Controller
 
 	public function index($id=null)
 	{
-		// ===== Authenticate User permission to the pages =====
-		// if($id!=null)
-		// {
-		// 	$this->session->set_userdata("user_id",$id);
-		// 	$isAdmin = $this->user_model->confirm_user($id,"Admin");
-		// 	$this->session->set_userdata("permission",$isAdmin);
-		// 	if($isAdmin)
-		// 	{
-		// 		redirect("official/mainPage");
-		// 	}
-		// 	else
-		// 	{
-		// 		redirect("main/mainPage");
-		// 	}
-		// }
-		// else
-		// {
-		// 		redirect("main/mainPage");
-		// }
-		echo "Welcome to Official Page";
+		//===== Authenticate User permission to the pages =====
+		if($id!=null)
+		{
+			$this->session->set_userdata("user_id",$id);
+			$isOfficial = $this->oscs_model->confirmPermission($id, 4);
+			$this->session->set_userdata("permissionOfficial",$isOfficial);
+			if($isOfficial)
+			{
+				redirect("official_control/mainPage");
+			}
+			else
+			{
+				redirect("main/index");
+			}
+		}
+		else
+		{
+				redirect("main/index");
+		}
 
 	}
 
 	public function mainPage()
 	{
-		echo "Welcome to Official Page";
-		//$this->load->view('');
+		$isOfficial = $this->session->userdata("permissionOfficial");
+		if($isOfficial)
+		{
+			echo "Welcome to Official Page";
+			//$this->load->view('');
+		}
+		else
+		{
+			redirect("main/index");
+		}		
 
 	}
 

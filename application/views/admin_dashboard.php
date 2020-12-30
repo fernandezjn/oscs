@@ -27,7 +27,7 @@
       <header class="header">
         <nav class="navbar">
         	<a class="navbar-brand inline-block pl-4" href="#">Online Student Clearance System</a>
-        	<a class="inline-block text-right pr-5" href="#">Logout <i class="fa fa-sign-out"></i></a>
+        	<a class="inline-block text-right pr-5" href="logout">Logout <i class="fa fa-sign-out"></i></a>
         </nav>
       </header>
       
@@ -43,7 +43,7 @@
           </div>
           <!-- Sidebar Navidation Menus-->
           <ul class="list-unstyled">
-            <li class="active"><a href="index.html"><i class="fa fa-bars fa-fw"></i>Dashboard </a></li>
+            <li class="active"><a href="mainPage"><i class="fa fa-bars fa-fw"></i>Dashboard </a></li>
             <li><a href="#"> <i class="fa fa-users fa-fw"></i>Users </a></li>
             <li><a href="#"> List </a></li>
             <li><a href="#"> List </a></li>
