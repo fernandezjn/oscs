@@ -53,9 +53,33 @@ class Admin_control extends CI_Controller {
 		}
 	}
 
+	public function users()
+	{
+		$isAdmin = $this->session->userdata("permissionAdmin");
+		if($isAdmin)
+		{
+			$this->load->view('users');
+		}
+
+		
+	}
+
+	public function roles()
+	{
+		$isAdmin = $this->session->userdata("permissionAdmin");
+		if($isAdmin)
+		{
+			$this->load->view('roles');
+		}
+		
+		
+	}
+
 	public function logout()
 	{
 		redirect("main/index");
 	}
+
+
 
 }

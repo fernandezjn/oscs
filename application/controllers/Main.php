@@ -105,9 +105,9 @@ class Main extends CI_Controller {
         }
 	}
 
-	public function aboutUS()
+	public function forgot_password()
 	{
-		$this->load->view('aboutUs_view');
+		$this->load->view('forgot_password');
 	}
 
 }
