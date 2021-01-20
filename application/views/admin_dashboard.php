@@ -34,7 +34,7 @@
 
         <div class="sidebar-brand d-flex align-items-center" href="#">
           <img src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="..." class="img-fluid rounded-circle sidebar-profile-img">
-          <span class="align-middle mt-4 ml-3">
+          <span class="align-middle mt-3 ml-3">
             Admin Name 
             
             <h6 class="mt-2 font-weight-light small">Registrar's Office</h6>

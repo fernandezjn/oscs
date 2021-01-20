@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>User Management</title>
+    <title>Add User</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -72,7 +72,7 @@
           </li>
           
          <li class=""> 
-      <a href="<?php echo base_url(); ?>index.php/admin_control/users" class="nav-link text-left active"  role="button" >
+      <a href="<?php echo base_url(); ?>index.php/admin_control/users" class="nav-link text-left"  role="button" >
        <i class="fas fa-users"></i> Users
          </a>
       </li>
@@ -212,85 +212,200 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid px-lg-4">
+        <div class="container-fluid px-lg-4 pb-lg-5 pb-md-5 pb-5 pb-sm-5">
 <div class="row">
 <div class="col-md-12 mt-lg-4 mt-4">
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">User Management</h1>
+            <h1 class="h3 mb-0 text-gray-800">Add User</h1>
           </div>
       </div>
-<div class="col-md-12">
-  <div class="card"> 
-    <div class="card-header"> 
-           <div class="d-md-flex align-items-center">
-                                
-                                 <div class="mr-auto">
-                                    <div class="dl">
-                                        <h5 class="mb-0">List of Users</h5>
-                                    </div>
-                                </div>
-                                <div class="ml-auto">
-                                    <div class="dl">
-                                        <button type="button" class="btn btn-light" onclick="window.location.href='<?php echo base_url(); ?>index.php/admin_control/add_user'";><i class="far fa-plus-square mr-2"></i>Add User</button>
-                                    </div>
-                                </div>
-                            </div>
-    
+  <div class="col-md-12">
+      <form>  
+          <div class="form-row">
+    <div class="col-md-12">
+      <label for="UserRole">User Role</label>
+  <select class="custom-select my-1 mr-sm-2" id="UserRole" onchange="addUserForm()" >
+    <option selected>Choose...</option>
+    <option>Student</option>
+    <option>Clearing Official</option>
+    </select>
     </div>
-    <div class="card-body"> 
-  <div class="table-responsive">
-       <table class="table table-striped" id="tableUsers" cellspacing="0" width="100%">
-                            <thead>
-                              <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Role</th>
-                                <th scope="col">Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>2018-00198-TG-0</td>
-                                <td>Rafael Senados</td>
-                                <td>Student</td>
-                                <td> 
-                                      <button type="button" class="btn btn-success btn-sm">View</button>
-                                      <button type="button" class="btn btn-warning btn-sm">Edit</button>
-                                      <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>2018-00163-TG-0</td>
-                                <td>Jillian Noreen Fernandez</td>
-                                <td>Student</td>
-                                <td>
-                                      <button type="button" class="btn btn-success btn-sm">View</button>
-                                      <button type="button" class="btn btn-warning btn-sm">Edit</button>
-                                      <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td>2018-00161-TG-0</td>
-                                <td>Angelia Rose Picart</td>
-                                <td>Student</td>
-                                <td>
-                                      <button type="button" class="btn btn-success btn-sm">View</button>
-                                      <button type="button" class="btn btn-warning btn-sm">Edit</button>
-                                      <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-            </div>
-          </div>
-        </div>
+    
+  </div>
 
-</div>
+
+        <div class="form-row mt-3">
+    <div class="col-md-6 mb-3">
+      <label for="Username">Username</label>
+      <input type="text" class="form-control" id="Username" placeholder="Username" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="Password">Password</label>
+      <input type="text" class="form-control" id="Password" placeholder="Username" required>
+    </div>
+  </div>
+
+  <button class="btn btn-success">Generate Username & Password</button>
+
+
+    <div class="form-row mt-5">
+    <div class="col-md-3 mb-3">
+      <label for="LastName">Last Name</label>
+      <input type="text" class="form-control" id="LastName" placeholder="Last Name" required>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="FirstName">First Name</label>
+      <input type="text" class="form-control" id="FirstName" placeholder="First Name" required>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="MiddleName">Middle Name</label>
+      <input type="text" class="form-control" id="nMiddleName" placeholder="Middle Name" required>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="Suffix">Suffix</label>
+      <input type="text" class="form-control" id="Suffix" placeholder="Suffix" required>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="EmailAddress">Email Address</label>
+      <input type="email" class="form-control" id="EmailAddress" placeholder="Email Address" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="ContactNumber">Contact Number</label>
+      <input type="tel" class="form-control" id="ContactNumber" placeholder="Contact Number" required>
+    </div>
+    
+  </div>
+
+
+ <div class="form-row" id="officeField">
+    <div class="col-md-12">
+      <div class="form-group">
+      <label for="Office">Office</label>
+      <select id="Office" class="form-control" onchange="forStudentOrg()">
+        <option selected>Choose...</option>
+        <option>Accounting Office</option>
+        <option>The Chronicler</option>
+        <option>Central Student Council </option>
+        <option>Administrative Office</option>
+        <option>Student Organization</option>
+        <option>Office of Student Services</option>
+        <option>PUPTFEA</option>
+        <option>Office of Academic Programs</option>
+        <option>Non-academic Student Organization</option>
+        <option>Branch Director's Office</option>
+        <option>Registrar’s Office</option>
+      </select>
+    </div>
+    </div>
+  </div>
+
+<fieldset id="StudentOrg">
+  <div class="form-row" >
+    <div class="col-md-6 mb-3">
+     <div class="form-group">
+      <label for="StudentOrganization">Student Organization</label>
+      <select id="StudentOrganization" class="form-control">
+        <option selected>Choose...</option>
+        <option>Computer Society</option>
+        <option>Junior Marketing Association</option>
+        <option>Mechanical Engineering</option>
+        <option>Junior People Management Association of the Philippines</option>
+        <option>Junior Philippine Institute of Accountants</option>
+        <option>Association of Electronics Engineering Students</option>
+        <option>Mentors Society</option>
+        <option>Philippine Association of Students in Office Administration</option>
+      </select>
+    </div>
+
+    </div>
+    <div class="col-md-6 mb-3">
+     <div class="form-group">
+      <label for="Position">Position</label>
+      <select id="Position" class="form-control">
+        <option selected>Choose...</option>
+        <option>Accounting Office</option>
+        <option>Treasurer</option>
+        <option>President</option>
+        <option>Adviser</option>
+      </select>
+    </div>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset id="forStudentfields">
+  <div class="form-row">
+    <div class="col-md-6">
+      <label for="StudentNumber">Student Number</label>
+      <input type="text" class="form-control" id="StudentNumber" placeholder="Student Number" required>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+      <label for="Year">Year</label>
+      <select id="Year" class="form-control">
+        <option selected>Choose...</option>
+        <option>1st Year</option>
+        <option>2nd Year</option>
+        <option>3rd Year</option>
+        <option>4th Year</option>
+        <option>5th Year</option>
+      </select>
+    </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+      <label for="Year">Section</label>
+      <select id="Year" class="form-control">
+        <option selected>Choose...</option>
+        <option>1</option>
+      </select>
+    </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-9">
+      <div class="form-group">
+      <label for="Course">Course</label>
+      <select id="Course" class="form-control">
+        <option selected>Choose...</option>
+        <option>Bachelor of Science in Electronics Engineering (BSECE)</option>
+        <option>Bachelor of Science in Mechanical Engineering (BSME)</option>
+        <option>Bachelor of Science in Accountancy (BSA)</option>
+        <option>Bachelor of Science in Business Administration (BSBA) Major in Human Resource Development Management</option>
+        <option>Bachelor of Science in Business Administration (BSBA) Major in Marketing Management</option>
+        <option>Bachelor of Science in Information Technology (BSIT)</option>
+        <option>Bachelor in Secondary Education (BSED) Major in English</option>
+        <option>Bachelor in Secondary Education (BSED) Major in Mathematics</option>
+        <option>Bachelor of Science in Office Administration (BSOA)</option>
+      </select>
+    </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+      <label for="StudentType">Student Type</label>
+      <select id="StudentType" class="form-control">
+        <option selected>Choose...</option>
+        <option>Regular</option>
+        <option>Irregular</option>
+      </select>
+    </div>
+    </div>
+  </div>
+
+  </fieldset>
+
+  <button class="btn btn-danger" href="#">Cancel</button>
+  <button class="btn btn-success" type="submit">Add User</button>
+
+
+
+      </form>
+
+  </div>
 
 
      
@@ -347,6 +462,37 @@ $('#bar').click(function(){
   </script>
 
   
+<script>
+  function addUserForm(){
+    
+   
+    var userRole = document.getElementById("UserRole");
+
+    if (userRole.value == "Student"){
+      document.getElementById("officeField").style.display="none";
+      document.getElementById("StudentOrg").style.display="none";
+       document.getElementById("forStudentfields").style.display="block";
+    }
+    else if (userRole.value == "Clearing Official"){
+      document.getElementById("forStudentfields").style.display="none";
+      document.getElementById("officeField").style.display="block";
+    }
+  }
+
+</script>
+
+<script>
+  function forStudentOrg(){
+    var officeVal = document.getElementById("Office");
+    if (officeVal.value == "Student Organization"){
+       document.getElementById("StudentOrg").style.display="block";
+    }
+    
+  }
+
+</script>
+
+
   </body>
 
 </html>

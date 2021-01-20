@@ -145,9 +145,9 @@
 
         public function deleteUser($id)
         {
-            $query = "DELETE FROM users WHERE id = '".$id."'"
+            $query = "DELETE FROM users WHERE id = '".$id."'";
             $this->db->query($query);
-            $query = "DELETE FROM user_info WHERE id = '".$id."'"
+            $query = "DELETE FROM user_info WHERE id = '".$id."'";
             $this->db->query($query);
         }
 

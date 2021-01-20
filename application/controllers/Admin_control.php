@@ -64,16 +64,16 @@ class Admin_control extends CI_Controller {
 		
 	}
 
-	public function roles()
+	public function add_user()
 	{
 		$isAdmin = $this->session->userdata("permissionAdmin");
 		if($isAdmin)
 		{
-			$this->load->view('roles');
+			$this->load->view('add_user');
 		}
-		
-		
 	}
+
+
 
 	public function logout()
 	{
