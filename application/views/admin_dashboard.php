@@ -10,62 +10,348 @@
     <!-- Bootstrap CSS-->
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>assets/css/bootstrap.min.css"> 
     <!-- Font Awesome CSS-->
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" 
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- theme stylesheet-->
     <!-- Favicon-->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/PUPLogo.png">
      <!-- CSS -->
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>assets/css/style.css"> 
-
+    <!-- Flaticon-->
+    <link rel="stylesheet" href="font/font/flaticon.css">
 
   </head>
 
 
   <body>
-    <div class="page">
-      <!-- Main Navbar-->
-      <header class="header">
-        <nav class="navbar">
-        	<a class="navbar-brand inline-block pl-4" href="#">Online Student Clearance System</a>
-        	<a class="inline-block text-right pr-5" href="logout">Logout <i class="fa fa-sign-out"></i></a>
-        </nav>
-      </header>
-      
-        <!-- Side Navbar -->
-        <nav class="side-navbar">
-          <!-- Sidebar Header-->
-          <div class="sidebar-header d-flex align-items-center">
-            <div class="avatar"><img src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="..." class="img-fluid rounded-circle"></div>
-            <div class="title">
-              <h1 class="h3 mb-1">Super Admin</h1>
-              <p>PUP Taguig</p>
-            </div>
-          </div>
-          <!-- Sidebar Navidation Menus-->
-          <ul class="list-unstyled">
-            <li class="active"><a href="mainPage"><i class="fa fa-bars fa-fw"></i>Dashboard </a></li>
-            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"><i class="fa fa-users fa-fw"></i>User Management<span class="fa fa-caret-down first"></a>
-              <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                <li><a href="<?php echo base_url(); ?>index.php/admin_control/users">Users</a></li>
-                <li><a href="<?php echo base_url(); ?>index.php/admin_control/users">Roles</a></li>
-              </ul>
-            </li>
-           
-          </ul>
-          
-        </nav>
-       
-          <div class="content-inner">
+  
+  
+  <div id="wrapper">
+   <div class="overlay"></div>
+    
+        <!-- Sidebar -->
+    <nav class="fixed-top align-top" id="sidebar-wrapper" role="navigation">
+       <div class="simplebar-content" style="padding: 0px;">
+        <a class="sidebar-brand" href="index.html">
+          <span class="align-middle">Admin Name</span>
+        </a>
 
+         <ul class="navbar-nav align-self-stretch">
+   
+        <li class="sidebar-header">
+            Pages
+          </li>
+    <li class=""> 
+      <a href="#" class="nav-link text-left active"  role="button" 
+      aria-haspopup="true" aria-expanded="false">
+       <i class="fas fa-chart-line"></i> Dashboard 
+         </a>
+      </li>
+   
+       <li class=""> 
+      <a href="#" class="nav-link text-left"  role="button" >
+        <i class="far fa-address-card"></i> Profile 
+         </a>
+      </li>
+      <li class=""> 
+      <a href="#" class="nav-link text-left"  role="button" >
+       <i class="far fa-bell"></i> Notifications 
+         </a>
+      </li>
+      <li class=""> 
+      <a href="#" class="nav-link text-left"  role="button" >
+       <i class="fas fa-user-cog"></i> Setting 
+         </a>
+      </li>
+     
+    
+       <li class="sidebar-header">
+            User Management
+          </li>
+          
+         <li class=""> 
+      <a href="#" class="nav-link text-left"  role="button" >
+       <i class="fas fa-users"></i> Users
+         </a>
+      </li>
+
+     
+      
+        <li class="sidebar-header">
+           Clearance
+          </li>
+         <li class=""> 
+      <a href="#" class="nav-link text-left"  role="button" >
+       <i class="fa fa-clipboard"></i> Clearance Records 
+         </a>
+      </li>
+      <li class=""> 
+      <a href="#" class="nav-link text-left"  role="button" >
+       <i class="fas fa-file-signature"></i>   Clearance Form
+         </a>
+      </li>
+      
+      </ul>
+
+        
+      </div>
+     
+     
+    </nav>
+        <!-- /#sidebar-wrapper -->
+
+
+
+
+
+
+
+
+
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+         
+      
+      <div id="content">
+
+       <div class="container-fluid p-0 px-lg-0 px-md-0">
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light my-navbar">
+
+          <!-- Sidebar Toggle (Topbar) -->
+            <div type="button"  id="bar" class="nav-icon1 hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+               <span></span>
+          <span></span>
+         <span></span>
+            </div>
+      
+
+          <!-- Topbar Search -->
+          <form class="d-none d-sm-inline-block form-inline navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light " placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-light" type="button">
+                  <i class="fa fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown  d-sm-none">
+         
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small"
+          placeholder="Search for..." >
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fa fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+
+            <!-- Nav Item - Alerts -->
+           <li class="nav-item dropdown">
+              <a class="nav-icon dropdown mt-1" href="#" id="alertsDropdown" data-toggle="dropdown" aria-expanded="false">
+                <div class="position-relative">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell align-middle"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                  <span class="badge badge-danger badge-counter">99</span>
+                </div>
+              </a>
+              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right py-0" aria-labelledby="alertsDropdown">
+                <div class="dropdown-menu-header p-2">
+                  99 New Notifications
+                </div>
+                <div class="list-group list-group-flush">
+                  <a href="#" class="list-group-item list-group-item-action">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle text-danger"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                      </div>
+                      <div class="col-10">
+                        <div class="text-dark">Clearance Request</div>
+                        <div class="text-muted small mt-1">Angelia Rose Picart</div>
+                        <div class="text-muted small mt-1">BSIT 3-1</div>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="#" class="list-group-item list-group-item-action">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle text-danger"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                      </div>
+                      <div class="col-10">
+                        <div class="text-dark">Clearance Request</div>
+                        <div class="text-muted small mt-1">Jillian Noreen Fernandez</div>
+                        <div class="text-muted small mt-1">BSIT 3-1</div>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="#" class="list-group-item list-group-item-action">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle text-danger"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                      </div>
+                      <div class="col-10">
+                        <div class="text-dark">Clearance Request</div>
+                        <div class="text-muted small mt-1">Rafael Senados</div>
+                        <div class="text-muted small mt-1">BSIT 3-1</div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div class="dropdown-menu-footer p-2">
+                  <a href="#" class="text-muted text-center">View All Notifications</a>
+                </div>
+              </div>
+            </li>
+          
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle mr-3" href="#" id="userDropdown" role="button" data-toggle="dropdown">
+                <span class="mr-2 d-none d-lg-inline">Admin Name</span>
+                <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>assets/img/PUPLogo.png">
+              </a>
+               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">View Profile</a></li>
+                      <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="logout">Logout</a></li>
+                </ul>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid px-lg-4">
+<div class="row">
+<div class="col-md-12 mt-lg-4 mt-4">
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-light shadow-sm"><i class="fa fa-download fa-sm text-white-50"></i> 
+      Generate Report</a>
           </div>
+      </div>
+<div class="col-md-12">
+       <div class="row">
+
+                  <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title mb-4">Cleared Students</h5>
+                        <h1 class="display-5 mt-1 mb-3">100</h1>
+                        <a href="#" class="mb-1 view-details">
+                          <span class="text-success view-details"> <i class="fas fa-info-circle"></i> View Details </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title mb-4">Uncleared Students</h5>
+                        <h1 class="display-5 mt-1 mb-3">400</h1>
+                        <a href="#" class="mb-1">
+                          <span class="text-danger view-details"> <i class="fas fa-info-circle"></i> View Details </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title mb-4">Clearance Request</h5>
+                        <h1 class="display-5 mt-1 mb-3">50</h1>
+                        <a href="#" class="mb-1">
+                          <span class="text-danger view-details"> <i class="fas fa-info-circle"></i> View Details</span>
+                        </a>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title mb-4">Total Students</h5>
+                        <h1 class="display-5 mt-1 mb-3">800</h1>
+                        <a href="#" class="mb-1">
+                          <span class="text-success view-details"> <i class="fas fa-info-circle"></i> View Details </span>
+                        </a>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  
+                  
+                </div>
+</div>
+
+
+     
+                    <!-- column -->
+                   
+                   
+
+        </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      
+      
+      
+      
+        
+        </div>
+    </div>
+        <!-- /#page-content-wrapper -->
 
     </div>
+    <!-- /#wrapper -->
+  
   
 
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    
+  
+ <script>
+ 
+$('#bar').click(function(){
+  $(this).toggleClass('open');
+  $('#page-content-wrapper ,#sidebar-wrapper').toggleClass('toggled' );
+
+});
+  </script>
+
+  
   </body>
+
 </html>

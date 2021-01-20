@@ -38,7 +38,7 @@
 	     			 	<input type="email" id="inputEmail" class="form-control" placeholder="Email" name="emailInput" required autofocus>
 					</div>
 		      			<button type="button" class="btn btn-outline-danger mr-3">Cancel</button>
-	  					<button type="button" class="btn btn-primary ml-3">Submit</button>
+	  					<button type="button" class="btn btn-primary ml-3">Send Link</button>
 	 
 	    		</form>
 			</div>
