@@ -112,12 +112,13 @@ sidebar
 
 
 .sidebar-brand {
-    font-weight: 300;
+    font-weight: 400;
     font-size: 1.125rem;
     padding: 1.15rem 1.5rem;
     display: block;
     color: #404040;
     margin-top:30px;
+    line-height: 20px;
 }
 
 .sidebar-brand img {
@@ -531,7 +532,7 @@ main-table
 
 .table td, .table th {
     padding: 1rem;
-  font-size:14px;
+  font-size:16px;
   color:#333;
     vertical-align: top;
     border-top: 1px solid #dee2e6;

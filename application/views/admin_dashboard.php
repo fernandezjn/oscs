@@ -32,10 +32,16 @@
     <nav class="fixed-top align-top" id="sidebar-wrapper" role="navigation">
        <div class="simplebar-content" style="padding: 0px;">
 
-        <a class="sidebar-brand d-flex align-items-center" href="#">
+        <div class="sidebar-brand d-flex align-items-center" href="#">
           <img src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="..." class="img-fluid rounded-circle sidebar-profile-img">
-          <span class="align-middle ml-3">Admin Name</span>
-        </a>
+          <span class="align-middle mt-4 ml-3">
+            Admin Name 
+            
+            <h6 class="mt-2 font-weight-light small">Registrar's Office</h6>
+
+          </span>
+
+        </div>
 
          <ul class="navbar-nav align-self-stretch">
    
@@ -43,7 +49,7 @@
             Pages
           </li>
     <li class="sidebar-link"> 
-      <a href="#" class="nav-link text-left active"  role="button" 
+      <a href="mainPage" class="nav-link text-left active"  role="button" 
       aria-haspopup="true" aria-expanded="false">
        <i class="fas fa-chart-line"></i> Dashboard 
          </a>
@@ -67,7 +73,7 @@
           </li>
           
          <li class=""> 
-      <a href="#" class="nav-link text-left"  role="button" >
+      <a href="<?php echo base_url(); ?>index.php/admin_control/users" class="nav-link text-left"  role="button" >
        <i class="fas fa-users"></i> Users
          </a>
       </li>
@@ -124,39 +130,10 @@
             </div>
       
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light " placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-light" type="button">
-                  <i class="fa fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown  d-sm-none">
-         
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small"
-          placeholder="Search for..." >
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fa fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
 
             <!-- Nav Item - Alerts -->
            <li class="nav-item dropdown">
