@@ -235,14 +235,14 @@
   </div>
 
 
-        <div class="form-row mt-3">
+        <div class="form-row mt-2">
     <div class="col-md-6 mb-3">
       <label for="Username">Username</label>
       <input type="text" class="form-control" id="Username" placeholder="Username" required>
     </div>
     <div class="col-md-6 mb-3">
       <label for="Password">Password</label>
-      <input type="text" class="form-control" id="Password" placeholder="Username" required>
+      <input type="password" class="form-control" id="Password" placeholder="Password" required>
     </div>
   </div>
 
@@ -326,7 +326,6 @@
       <label for="Position">Position</label>
       <select id="Position" class="form-control">
         <option selected>Choose...</option>
-        <option>Accounting Office</option>
         <option>Treasurer</option>
         <option>President</option>
         <option>Adviser</option>
