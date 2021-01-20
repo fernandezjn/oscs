@@ -18,9 +18,7 @@
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/PUPLogo.png">
      <!-- CSS -->
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>assets/css/style.css"> 
-    <!-- Flaticon-->
-    <link rel="stylesheet" href="font/font/flaticon.css">
-
+   
   </head>
 
 
@@ -33,8 +31,10 @@
         <!-- Sidebar -->
     <nav class="fixed-top align-top" id="sidebar-wrapper" role="navigation">
        <div class="simplebar-content" style="padding: 0px;">
-        <a class="sidebar-brand" href="index.html">
-          <span class="align-middle">Admin Name</span>
+
+        <a class="sidebar-brand d-flex align-items-center" href="#">
+          <img src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="..." class="img-fluid rounded-circle sidebar-profile-img">
+          <span class="align-middle ml-3">Admin Name</span>
         </a>
 
          <ul class="navbar-nav align-self-stretch">
@@ -42,28 +42,24 @@
         <li class="sidebar-header">
             Pages
           </li>
-    <li class=""> 
+    <li class="sidebar-link"> 
       <a href="#" class="nav-link text-left active"  role="button" 
       aria-haspopup="true" aria-expanded="false">
        <i class="fas fa-chart-line"></i> Dashboard 
          </a>
       </li>
    
-       <li class=""> 
+       <li class="sidebar-link"> 
       <a href="#" class="nav-link text-left"  role="button" >
         <i class="far fa-address-card"></i> Profile 
          </a>
       </li>
-      <li class=""> 
+      <li class="sidebar-link"> 
       <a href="#" class="nav-link text-left"  role="button" >
        <i class="far fa-bell"></i> Notifications 
          </a>
       </li>
-      <li class=""> 
-      <a href="#" class="nav-link text-left"  role="button" >
-       <i class="fas fa-user-cog"></i> Setting 
-         </a>
-      </li>
+      
      
     
        <li class="sidebar-header">
@@ -221,13 +217,13 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown">
+             
               <a class="nav-link dropdown-toggle mr-3" href="#" id="userDropdown" role="button" data-toggle="dropdown">
-                <span class="mr-2 d-none d-lg-inline">Admin Name</span>
+                 <span class="mr-2 d-none d-lg-inline">Admin Name</span>
                 <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>assets/img/PUPLogo.png">
               </a>
-               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+               <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                     <li><a class="dropdown-item" href="#">View Profile</a></li>
-                      <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li><a class="dropdown-item" href="logout">Logout</a></li>
                 </ul>
             </li>
@@ -252,48 +248,57 @@
        <div class="row">
 
                   <div class="col-sm-3">
-                    <div class="card">
+                    <div class="card text-center ">
                       <div class="card-body">
-                        <h5 class="card-title mb-4">Cleared Students</h5>
-                        <h1 class="display-5 mt-1 mb-3">100</h1>
-                        <a href="#" class="mb-1 view-details">
-                          <span class="text-success view-details"> <i class="fas fa-info-circle"></i> View Details </span>
+                        <h5 class="card-title mb-3">Cleared Students</h5>
+                        <h1 class="display-5">100</h1>
+                        
+                      </div>
+                      <div class="card-footer">
+                            <a href="#" class="mb-1 view-details">
+                          <span class="text-success view-details card-text">View Details <i class="fas fa-angle-double-right"></i> </span>
                         </a>
                       </div>
                     </div>
                   </div>
 
                   <div class="col-sm-3">
-                    <div class="card">
+                    <div class="card text-center ">
                       <div class="card-body">
-                        <h5 class="card-title mb-4">Uncleared Students</h5>
-                        <h1 class="display-5 mt-1 mb-3">400</h1>
-                        <a href="#" class="mb-1">
-                          <span class="text-danger view-details"> <i class="fas fa-info-circle"></i> View Details </span>
+                        <h5 class="card-title mb-3">Uncleared Students</h5>
+                        <h1 class="display-5">400</h1>
+                      </div>
+                      <div class="card-footer">
+                            <a href="#" class="mb-1">
+                          <span class="text-danger view-details card-text"> View Details <i class="fas fa-angle-double-right"></i></span>
                         </a>
                       </div>
                     </div>
                   </div>
 
                   <div class="col-sm-3">
-                    <div class="card">
+                    <div class="card text-center">
                       <div class="card-body">
-                        <h5 class="card-title mb-4">Clearance Request</h5>
-                        <h1 class="display-5 mt-1 mb-3">50</h1>
-                        <a href="#" class="mb-1">
-                          <span class="text-danger view-details"> <i class="fas fa-info-circle"></i> View Details</span>
+                        <h5 class="card-title mb-3">Clearance Request</h5>
+                        <h1 class="display-5">50</h1>
+                      </div>
+                       <div class="card-footer">
+                            <a href="#" class="mb-1">
+                          <span class="text-info view-details card-text"> View Details <i class="fas fa-angle-double-right"></i></span>
                         </a>
                       </div>
                     </div>
-                    
                   </div>
+
                   <div class="col-sm-3">
-                    <div class="card">
+                    <div class="card text-center">
                       <div class="card-body">
-                        <h5 class="card-title mb-4">Total Students</h5>
-                        <h1 class="display-5 mt-1 mb-3">800</h1>
-                        <a href="#" class="mb-1">
-                          <span class="text-success view-details"> <i class="fas fa-info-circle"></i> View Details </span>
+                        <h5 class="card-title mb-3">Total Students</h5>
+                        <h1 class="display-5">800</h1>
+                      </div>
+                       <div class="card-footer">
+                            <a href="#" class="mb-1">
+                          <span class="text-success view-details card-text"> View Details <i class="fas fa-angle-double-right"></i></span>
                         </a>
                       </div>
                     </div>

@@ -116,7 +116,13 @@ sidebar
     font-size: 1.125rem;
     padding: 1.15rem 1.5rem;
     display: block;
-    color: #404040
+    color: #404040;
+    margin-top:30px;
+}
+
+.sidebar-brand img {
+    width:60px;
+    height:60px;
 }
 
 .sidebar-brand:hover{
@@ -129,10 +135,11 @@ sidebar
   color: #404040;
 }
 
-.navbar-nav > li > a ,.submenu-box ul li a{
+
+.navbar-nav > li > a {
     color:gray!important;
     text-transform: capitalize;
-    font-size: 14px;
+    font-size: 15px;
     padding:10px 10px 10px 20px!important;
     display: block;
     font-weight: 400;
@@ -142,19 +149,22 @@ sidebar
     letter-spacing: .2px;
 }
 
-.submenu-box ul li a{
- padding:4px 10px 4px 20px!important;
-  color:#c1c1c1!important;
+
+
+.navbar-nav > li > a:hover{
+    background-color:#800000!important;
+    color:#fff!important;
 }
-
-
 
 .navbar-nav > li > a.active{
     color: #000!important;
-    border-left:4px solid #800000;
+    border-right:4px solid #800000;
 }
 
-
+.navbar-nav > li > a.active:hover{
+    color: #fff!important;
+    
+}
 
 
 
@@ -316,6 +326,8 @@ header navbar design
   box-shadow: 0 1px 1px 0 rgba(0,0,0,.16);
 }
 
+
+
 .text-gray-600 {
     color: #858796!important;
 }
@@ -402,7 +414,6 @@ main-top card
 
 .card {
     margin-bottom: 24px;
-  border:none;
     box-shadow: 0 0 0.875rem 0 rgba(33,37,41,.05);
 }
 
@@ -417,13 +428,20 @@ main-top card
 }
 
 .card-body h1{
-font-size: 1.75rem;
+font-size: 45px;
 font-weight: 400;
     line-height: 1.2;
     color: #000;
 }
 
-.card-body a:hover{
+.card-body h5{
+font-size: 18px;
+font-weight: 200;
+    line-height: 1.2;
+    color: #000;
+}
+
+.card-footer a:hover{
   text-decoration: none;
 }
 .text-gray-800 {
@@ -531,38 +549,6 @@ main-table
 main-table
 ----------------------*/
 
-
-
-
-/*---------------------------------
- footer
-----------------------*/
-
-footer.footer {
-    padding: 1rem .875rem;
-    direction: ltr;
-    
-}
-
-footer.footer ul {
-    margin:0px;
-  list-style:none;
-}
-
-.footer ul  li{
- display:inline-block;
- margin:0px 7px;
-}
-
-.text-muted {
-    color: #6c757d!important;
-  font-size:14px;
-}
- 
-
-/*---------------------------------
-footer
-----------------------*/
 
 
 
