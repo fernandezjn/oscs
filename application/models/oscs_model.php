@@ -43,6 +43,30 @@
             return false;
         }
 
+        public function forgotPass($email)
+        {
+            $this->db->where('email',$email);
+            $query = $this->db->get('user_info');
+            if ($query->row())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public function resetPass($id, $pass)
+        {
+            $query = "UPDATE `users` SET `password`='".$pass."' WHERE `id`='".$id."'";
+            $this->db->query($query);
+        }
+
+        public function countAllClearedStudents()
+        {
+            $query = "SELECT COUNT(`id`) 
+                    FROM users WHERE";
+            $this->db->query($query);
+        }
+
         // For Remembering Username and Password Login
         // function rememberUserLogin($user,$password) 
         // {

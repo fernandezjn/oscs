@@ -108,6 +108,55 @@ class Main extends CI_Controller {
 	public function forgot_password()
 	{
 		$this->load->view('forgot_password');
+    if($this->input->post("sendlink"))
+    {
+      $data_form = $this->input->post(NULL,TRUE);
+        if($data_form)
+        {
+          $e = $data_form["emailInput"];
+          $result = $this->oscs_model->forgotPass($e);
+          if(!empty($result))
+          {
+            foreach($result as $row)
+            {
+              $user_id = $row->id;
+              $user_name = $row->first_name." ".$row->middle_name." ".$row->last_name." ".$row->suffix_name;
+            }
+            redirect("main/mainPage?message=Email Successfully Sent");
+          }
+          else
+          {
+            redirect("main/forgot_password?message=Email Unsuccessfully Sent | Email doesn't exist");
+          }
+        }
+    }
 	}
+
+  public function reset_password($id)
+  {
+    $this->load->view('resetpassword');
+    if($this->input->post("changePass"))
+    {
+      $data_form = $this->input->post(NULL,TRUE);
+        if($data_form)
+        {
+          $p1 = $data_form["newPassInput"];
+          $p2 = $data_form["retypePassInput"];
+
+          if(strcmp($p1,$p2) == 0)
+          {
+              $this->oscs_model->resetPass($id, $p1);
+              redirect("main/mainPage/?message=Password Reset Successfully");
+          }
+          else
+          {
+            redirect("main/reset_password/".$id."?message=Passwords doesn't match");
+          }
+         
+          
+        }
+    }
+
+  }
 
 }

@@ -23,7 +23,7 @@
   	<body>
   		<div class="reset-pass text-center">
 	  		<div id="form-group">
-	    		<form class="form-reset-pass">
+	    		<form class="form-reset-pass" method="POST">
 	      			<img class="mb-4" src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="" width="72" height="72">
 	      			<h1 class="h3 mb-5 font-weight-normal">Online Student Clearance System</h1>
 
@@ -39,8 +39,8 @@
 	     			 	<input type="password" id="inputConfirmPassword" class="form-control" placeholder="Confirm Password" name="retypePassInput" required autofocus>
 					</div>
 
-		      			<button type="button" class="btn btn-outline-danger mr-3">Cancel</button>
-	  					<button type="button" class="btn btn-primary ml-3">Submit</button>
+		      			<button type="button" class="btn btn-outline-danger mr-3" onclick="window.location='<?php echo site_url("main/mainPage")?>'">Cancel</button>
+	  					<input type="submit" class="btn btn-primary ml-3" value="Sumbit" name="changePass">
 	 
 	    		</form>
 			</div>
