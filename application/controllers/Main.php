@@ -26,8 +26,9 @@ class Main extends CI_Controller {
 		$this->load->database();
 		$this->load->helper('form');
 		$this->load->helper('url');
-    	$this->load->library('form_validation');
+    $this->load->library('form_validation');
 		$this->load->library('session');
+    $this->load->library('email');
 		//load Model
 		$this->load->model('oscs_model');		
 	}
@@ -122,7 +123,7 @@ class Main extends CI_Controller {
               $user_id = $row->id;
               $user_name = $row->first_name." ".$row->middle_name." ".$row->last_name." ".$row->suffix_name;
             }
-            redirect("main/mainPage?message=Email Successfully Sent");
+            $this->sendResetMail($user_id, $e, $user_name);
           }
           else
           {
@@ -131,6 +132,19 @@ class Main extends CI_Controller {
         }
     }
 	}
+
+  public function sendResetMail($id, $email, $name) //not tested yet
+  {
+      
+      $this->email->from('your@example.com', 'OSCS');
+      $this->email->to($email);
+
+      $this->email->subject('OSCS Password Reset');
+      $this->email->message("Good Day ".$name." \n Here is the link to reset your password ".site_url('main/reset_password/'.$id.''));
+
+      $this->email->send();
+      redirect("main/mainPage?message=Email Successfully Sent");
+  }
 
   public function reset_password($id)
   {

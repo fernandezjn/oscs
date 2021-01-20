@@ -62,9 +62,27 @@
 
         public function countAllClearedStudents()
         {
-            $query = "SELECT COUNT(`id`) 
-                    FROM users WHERE";
+            $query = "SELECT u.id, COUNT(c.id) as 'number_of_cleared_departments', CONCAT(i.firstname,' ',i.middlename,' ',i.lastname)
+                        FROM clerance_entries c
+                        INNER JOIN user_info i on i.student_number = c.student_number
+                        INNER JOIN users u on u.id = i.id
+                        WHERE c.deficiencies = 'Clear' AND u.type = '3'
+                        GROUP BY u.id
+                        ORDER BY number_of_cleared_departments DESC";
             $this->db->query($query);
+
+            $count = 0;
+            foreach($query->result() as $row)
+            {
+                if($row->number_of_cleared_departments == 11)
+                {
+                    $count =+ 1;
+                }
+            }
+
+            return $count;
+
+
         }
 
         // For Remembering Username and Password Login
