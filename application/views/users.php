@@ -35,7 +35,7 @@
         <a class="sidebar-brand d-flex align-items-center" href="#">
           <img src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="..." class="img-fluid rounded-circle sidebar-profile-img">
           <span class="align-middle mt-3 ml-3">
-            Admin Name 
+            <?php echo $user_name ?>
             
             <h6 class="mt-2 font-weight-light small">Registrar's Office</h6>
 
@@ -197,11 +197,11 @@
             <li class="nav-item dropdown">
              
               <a class="nav-link dropdown-toggle mr-3" href="#" id="userDropdown" role="button" data-toggle="dropdown">
-                 <span class="mr-2 d-none d-lg-inline">Admin Name</span>
+                 <span class="mr-2 d-none d-lg-inline"><?php echo $user_name ?></span>
                 <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>assets/img/PUPLogo.png">
               </a>
                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="#">View Profile</a></li>
+                    <li><a class="dropdown-item" href="viewProfile">View Profile</a></li>
                     <li><a class="dropdown-item" href="logout">Logout</a></li>
                 </ul>
             </li>
@@ -251,39 +251,25 @@
                               </tr>
                             </thead>
                             <tbody>
+                              <?php 
+                              $row_num = 1;
+                              foreach($users as $row)
+                              {
+                                ?>
                               <tr>
-                                <th scope="row">1</th>
-                                <td>2018-00198-TG-0</td>
-                                <td>Rafael Senados</td>
-                                <td>Student</td>
+                                <th scope="row"><?php echo $row_num?></th>
+                                <td><?php echo $row->username ?></td>
+                                <td><?php echo $row->name ?></td>
+                                <td><?php echo $row->role ?></td>
                                 <td> 
-                                      <button type="button" class="btn btn-success btn-sm">View</button>
-                                      <button type="button" class="btn btn-warning btn-sm">Edit</button>
-                                      <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                      <button type="button" class="btn btn-success btn-sm" onclick="window.location='<?php echo site_url("admin_control/viewUserInfo/".$row->id."")?>'">View</button>
+                                      <button type="button" class="btn btn-warning btn-sm" onclick="window.location='<?php echo site_url("admin_control/editUserInfo/".$row->id."")?>'">Edit</button>
+                                      <button type="button" class="btn btn-danger btn-sm" onclick="window.location='<?php echo site_url("admin_control/deleteUser/".$row->id."")?>'">Delete</button>
                                 </td>
                               </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>2018-00163-TG-0</td>
-                                <td>Jillian Noreen Fernandez</td>
-                                <td>Student</td>
-                                <td>
-                                      <button type="button" class="btn btn-success btn-sm">View</button>
-                                      <button type="button" class="btn btn-warning btn-sm">Edit</button>
-                                      <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td>2018-00161-TG-0</td>
-                                <td>Angelia Rose Picart</td>
-                                <td>Student</td>
-                                <td>
-                                      <button type="button" class="btn btn-success btn-sm">View</button>
-                                      <button type="button" class="btn btn-warning btn-sm">Edit</button>
-                                      <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                </td>
-                              </tr>
+                              <?php 
+                              $row_num += 1;
+                            } ?>
                             </tbody>
                           </table>
             </div>

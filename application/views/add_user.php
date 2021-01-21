@@ -35,7 +35,7 @@
         <a class="sidebar-brand d-flex align-items-center" href="#">
           <img src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="..." class="img-fluid rounded-circle sidebar-profile-img">
           <span class="align-middle mt-3 ml-3">
-            Admin Name 
+            <?php echo $user_name ?> 
             
             <h6 class="mt-2 font-weight-light small">Registrar's Office</h6>
 
@@ -197,7 +197,7 @@
             <li class="nav-item dropdown">
              
               <a class="nav-link dropdown-toggle mr-3" href="#" id="userDropdown" role="button" data-toggle="dropdown">
-                 <span class="mr-2 d-none d-lg-inline">Admin Name</span>
+                 <span class="mr-2 d-none d-lg-inline"><?php echo $user_name ?></span>
                 <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>assets/img/PUPLogo.png">
               </a>
                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
@@ -221,14 +221,17 @@
           </div>
       </div>
   <div class="col-md-12">
-      <form>  
+      <form method="POST">  
           <div class="form-row">
     <div class="col-md-12">
       <label for="UserRole">User Role</label>
-  <select class="custom-select my-1 mr-sm-2" id="UserRole" onchange="addUserForm()" >
-    <option selected>Choose...</option>
-    <option>Student</option>
-    <option>Clearing Official</option>
+  <select class="custom-select my-1 mr-sm-2" id="UserRole" onchange="addUserForm()" name="userRole" required>
+    <option value="" selected>Choose...</option>
+    <?php foreach($roles as $row)
+    {
+      ?>
+      <option value="<?php echo $row->id ?>"><?php echo $row->role ?></option>
+    <?php } ?>
     </select>
     </div>
     
@@ -238,11 +241,11 @@
         <div class="form-row mt-2">
     <div class="col-md-6 mb-3">
       <label for="Username">Username</label>
-      <input type="text" class="form-control" id="Username" placeholder="Username" required>
+      <input type="text" class="form-control" id="Username" placeholder="Username" name="userName" required>
     </div>
     <div class="col-md-6 mb-3">
       <label for="Password">Password</label>
-      <input type="password" class="form-control" id="Password" placeholder="Password" required>
+      <input type="password" class="form-control" id="Password" placeholder="Password" name="pass" required>
     </div>
   </div>
 
@@ -252,29 +255,29 @@
     <div class="form-row mt-5">
     <div class="col-md-3 mb-3">
       <label for="LastName">Last Name</label>
-      <input type="text" class="form-control" id="LastName" placeholder="Last Name" required>
+      <input type="text" class="form-control" id="LastName" placeholder="Last Name" name="lastName" required>
     </div>
     <div class="col-md-3 mb-3">
       <label for="FirstName">First Name</label>
-      <input type="text" class="form-control" id="FirstName" placeholder="First Name" required>
+      <input type="text" class="form-control" id="FirstName" placeholder="First Name" name="firstName" required>
     </div>
     <div class="col-md-3 mb-3">
       <label for="MiddleName">Middle Name</label>
-      <input type="text" class="form-control" id="nMiddleName" placeholder="Middle Name" required>
+      <input type="text" class="form-control" id="nMiddleName" placeholder="Middle Name" name="middleName" required>
     </div>
     <div class="col-md-3 mb-3">
       <label for="Suffix">Suffix</label>
-      <input type="text" class="form-control" id="Suffix" placeholder="Suffix" required>
+      <input type="text" class="form-control" id="Suffix" placeholder="Suffix" name="suffixName">
     </div>
   </div>
   <div class="form-row">
     <div class="col-md-6 mb-3">
       <label for="EmailAddress">Email Address</label>
-      <input type="email" class="form-control" id="EmailAddress" placeholder="Email Address" required>
+      <input type="email" class="form-control" id="EmailAddress" placeholder="Email Address" name="email" required>
     </div>
     <div class="col-md-6 mb-3">
       <label for="ContactNumber">Contact Number</label>
-      <input type="tel" class="form-control" id="ContactNumber" placeholder="Contact Number" required>
+      <input type="tel" class="form-control" id="ContactNumber" placeholder="Contact Number" name="contact" required>
     </div>
     
   </div>
@@ -284,19 +287,13 @@
     <div class="col-md-12">
       <div class="form-group">
       <label for="Office">Office</label>
-      <select id="Office" class="form-control" onchange="forStudentOrg()">
-        <option selected>Choose...</option>
-        <option>Accounting Office</option>
-        <option>The Chronicler</option>
-        <option>Central Student Council </option>
-        <option>Administrative Office</option>
-        <option>Student Organization</option>
-        <option>Office of Student Services</option>
-        <option>PUPTFEA</option>
-        <option>Office of Academic Programs</option>
-        <option>Non-academic Student Organization</option>
-        <option>Branch Director's Office</option>
-        <option>Registrar’s Office</option>
+      <select id="Office" class="form-control" onchange="forStudentOrg()" name="office">
+        <option value="" selected>Choose...</option>
+        <?php foreach($offices as $row)
+        {
+          ?>
+            <option value="<?php echo $row->id ?>"><?php echo $row->department_name ?></option>
+        <?php } ?>        
       </select>
     </div>
     </div>
@@ -307,16 +304,13 @@
     <div class="col-md-6 mb-3">
      <div class="form-group">
       <label for="StudentOrganization">Student Organization</label>
-      <select id="StudentOrganization" class="form-control">
-        <option selected>Choose...</option>
-        <option>Computer Society</option>
-        <option>Junior Marketing Association</option>
-        <option>Mechanical Engineering</option>
-        <option>Junior People Management Association of the Philippines</option>
-        <option>Junior Philippine Institute of Accountants</option>
-        <option>Association of Electronics Engineering Students</option>
-        <option>Mentors Society</option>
-        <option>Philippine Association of Students in Office Administration</option>
+      <select id="StudentOrganization" class="form-control" name="org">
+        <option value="" selected>Choose...</option>
+        <?php foreach($org as $row)
+        {
+          ?>
+            <option value="<?php echo $row->id ?>"><?php echo $row->org_name ?></option>
+        <?php } ?> 
       </select>
     </div>
 
@@ -324,11 +318,13 @@
     <div class="col-md-6 mb-3">
      <div class="form-group">
       <label for="Position">Position</label>
-      <select id="Position" class="form-control">
-        <option selected>Choose...</option>
-        <option>Treasurer</option>
-        <option>President</option>
-        <option>Adviser</option>
+      <select id="Position" class="form-control" name="position">
+        <option value="" selected>Choose...</option>
+        <?php foreach($positions as $row)
+        {
+          ?>
+            <option value="<?php echo $row->id ?>"><?php echo $row->position_name ?></option>
+        <?php } ?> 
       </select>
     </div>
     </div>
@@ -339,26 +335,25 @@
   <div class="form-row">
     <div class="col-md-6">
       <label for="StudentNumber">Student Number</label>
-      <input type="text" class="form-control" id="StudentNumber" placeholder="Student Number" required>
+      <input type="text" class="form-control" id="StudentNumber" placeholder="Student Number" name="studentNo">
     </div>
     <div class="col-md-3">
       <div class="form-group">
       <label for="Year">Year</label>
-      <select id="Year" class="form-control">
-        <option selected>Choose...</option>
-        <option>1st Year</option>
-        <option>2nd Year</option>
-        <option>3rd Year</option>
-        <option>4th Year</option>
-        <option>5th Year</option>
-      </select>
+      <select id="Year" class="form-control" name="year">
+        <option value="" selected>Choose...</option>
+        <?php foreach($year as $row)
+        {
+          ?>
+            <option value="<?php echo $row->id ?>"><?php echo $row->level ?></option>
+        <?php } ?> 
     </div>
     </div>
     <div class="col-md-3">
       <div class="form-group">
       <label for="Year">Section</label>
       <select id="Year" class="form-control">
-        <option selected>Choose...</option>
+        <option value="" selected>Choose...</option>
         <option>1</option>
       </select>
     </div>
@@ -368,17 +363,13 @@
     <div class="col-md-9">
       <div class="form-group">
       <label for="Course">Course</label>
-      <select id="Course" class="form-control">
-        <option selected>Choose...</option>
-        <option>Bachelor of Science in Electronics Engineering (BSECE)</option>
-        <option>Bachelor of Science in Mechanical Engineering (BSME)</option>
-        <option>Bachelor of Science in Accountancy (BSA)</option>
-        <option>Bachelor of Science in Business Administration (BSBA) Major in Human Resource Development Management</option>
-        <option>Bachelor of Science in Business Administration (BSBA) Major in Marketing Management</option>
-        <option>Bachelor of Science in Information Technology (BSIT)</option>
-        <option>Bachelor in Secondary Education (BSED) Major in English</option>
-        <option>Bachelor in Secondary Education (BSED) Major in Mathematics</option>
-        <option>Bachelor of Science in Office Administration (BSOA)</option>
+      <select id="Course" class="form-control" name="course">
+        <option value="" selected>Choose...</option>
+        <?php foreach($courses as $row)
+        {
+          ?>
+            <option value="<?php echo $row->id ?>"><?php echo $row->course_name ?></option>
+        <?php } ?> 
       </select>
     </div>
     </div>
@@ -386,10 +377,13 @@
     <div class="col-md-3">
       <div class="form-group">
       <label for="StudentType">Student Type</label>
-      <select id="StudentType" class="form-control">
-        <option selected>Choose...</option>
-        <option>Regular</option>
-        <option>Irregular</option>
+      <select id="StudentType" class="form-control" name="studentType">
+        <option value="" selected>Choose...</option>
+        <?php foreach($student_types as $row)
+        {
+          ?>
+            <option value="<?php echo $row->id ?>"><?php echo $row->type ?></option>
+        <?php } ?> 
       </select>
     </div>
     </div>
@@ -397,8 +391,8 @@
 
   </fieldset>
 
-  <button class="btn btn-danger" href="#">Cancel</button>
-  <button class="btn btn-success" type="submit">Add User</button>
+  <button class="btn btn-danger" onclick="window.location='<?php echo site_url("admin_control/users")?>'">Cancel</button>
+  <input class="btn btn-success" type="submit" name="addUser" value="Add User">
 
 
 
@@ -467,12 +461,12 @@ $('#bar').click(function(){
    
     var userRole = document.getElementById("UserRole");
 
-    if (userRole.value == "Student"){
+    if (userRole.value == "3"){
       document.getElementById("officeField").style.display="none";
       document.getElementById("StudentOrg").style.display="none";
        document.getElementById("forStudentfields").style.display="block";
     }
-    else if (userRole.value == "Clearing Official"){
+    else if (userRole.value == "4"){
       document.getElementById("forStudentfields").style.display="none";
       document.getElementById("officeField").style.display="block";
     }
@@ -483,7 +477,7 @@ $('#bar').click(function(){
 <script>
   function forStudentOrg(){
     var officeVal = document.getElementById("Office");
-    if (officeVal.value == "Student Organization"){
+    if (officeVal.value == "5"){
        document.getElementById("StudentOrg").style.display="block";
     }
     

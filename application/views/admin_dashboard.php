@@ -35,7 +35,7 @@
         <div class="sidebar-brand d-flex align-items-center" href="#">
           <img src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="..." class="img-fluid rounded-circle sidebar-profile-img">
           <span class="align-middle mt-3 ml-3">
-            Admin Name 
+            <?php echo $user_name ?>
             
             <h6 class="mt-2 font-weight-light small">Registrar's Office</h6>
 
@@ -196,7 +196,7 @@
             <li class="nav-item dropdown">
              
               <a class="nav-link dropdown-toggle mr-3" href="#" id="userDropdown" role="button" data-toggle="dropdown">
-                 <span class="mr-2 d-none d-lg-inline">Admin Name</span>
+                 <span class="mr-2 d-none d-lg-inline"><?php echo $user_name?></span>
                 <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>assets/img/PUPLogo.png">
               </a>
                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">

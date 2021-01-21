@@ -95,21 +95,33 @@
             $this->db->query($query);
         }
 
-        public function viewUsers($role="")
+        public function getUsers($role="")
         {
-            $query = $this->db->query("SELECT u.id, u.username,CONCAT(i.last_name, i.first_name, i.middle_name, i.suffix_name) as 'name', u.type as 'role'
-                FROM user u
-                INNER JOIN user_information i on i.id = u.id
-                WHERE u.type = '".$role."'");
+            if($role !=  "")
+            {
+                $query = $this->db->query("SELECT u.id, u.username,CONCAT(i.last_name,', ', i.first_name,' ', i.middle_name,' ', i.suffix_name) as 'name', r.role as 'role'
+                FROM users u
+                INNER JOIN user_info i on i.id = u.id
+                INNER JOIN roles r on r.id = u.type
+                WHERE u.type = '".$role."%'");
+            }
+            else
+            {
+                $query = $this->db->query("SELECT u.id, u.username,CONCAT(i.last_name,', ', i.first_name,' ', i.middle_name,' ', i.suffix_name)  as 'name', r.role as 'role'
+                FROM users u
+                INNER JOIN user_info i on i.id = u.id
+                INNER JOIN roles r on r.id = u.type");
+            }
+            
 
             return $query->result();
         }
 
-        public function viewUserInfo($id)
+        public function getUserInfo($id)
         {
             $query = $this->db->query("SELECT *
-                FROM user u
-                INNER JOIN user_information i on i.id = u.id
+                FROM users u
+                INNER JOIN user_info i on i.id = u.id
                 WHERE u.id = '".$id."'");
 
             return $query->result();
@@ -149,6 +161,55 @@
             $this->db->query($query);
             $query = "DELETE FROM user_info WHERE id = '".$id."'";
             $this->db->query($query);
+        }
+
+        public function getRoles()
+        {
+            $query = $this->db->query("SELECT * FROM roles");
+
+            return $query->result();
+        }
+
+        public function getOffices() // Departments
+        {
+             $query = $this->db->query("SELECT * FROM departments");
+
+            return $query->result();
+        }
+
+        public function getOrganizations() 
+        {
+             $query = $this->db->query("SELECT * FROM students_organizations");
+
+            return $query->result();
+        }
+
+        public function getPositions() 
+        {
+             $query = $this->db->query("SELECT * FROM positions");
+
+            return $query->result();
+        }
+
+        public function getYear() 
+        {
+             $query = $this->db->query("SELECT * FROM year_levels");
+
+            return $query->result();
+        }
+
+        public function getCourses() 
+        {
+             $query = $this->db->query("SELECT * FROM courses");
+
+            return $query->result();
+        }
+
+        public function getStudent_types()
+        {
+             $query = $this->db->query("SELECT * FROM student_types");
+
+            return $query->result();
         }
 
 
