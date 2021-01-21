@@ -119,22 +119,23 @@
 
         public function getUserInfo($id)
         {
-            $query = $this->db->query("SELECT *
+            $query = $this->db->query("SELECT * , u.id as userID
                 FROM users u
                 INNER JOIN user_info i on i.id = u.id
+                INNER JOIN roles r on r.id = u.type
                 WHERE u.id = '".$id."'");
 
             return $query->result();
         }
 
-        public function editUserInfo($id,$password="",$lastname="",$firstname="",$middlename="",$suffixname="",$email="",$contactnumber="",$studentno="",$yearid="",$courseid="",$studenttypeid="",$orgid="",$departmentid="", $positionid="")
+        public function editUserInfo($id,$username,$type,$lastname="",$firstname="",$middlename="",$suffixname="",$email="",$contactnumber="",$studentno="",$yearid="",$courseid="",$studenttypeid="",$orgid="",$departmentid="", $positionid="")
         {
-            if($password!="")
-            {
-                 $query = "UPDATE `users` SET `password`='".$password."' WHERE `id`='".$id."'";
+            $query = "UPDATE `users` 
+                    SET `username`='".$username."',
+                    `type`='".$type."'
+                    WHERE id = '".$id."'";
 
-                $this->db->query($query);
-            }
+            $this->db->query($query);
 
             $query = "UPDATE `user_info` 
                     SET `last_name`='".$lastname."',

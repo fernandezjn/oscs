@@ -266,22 +266,9 @@
                                       <button type="button" class="btn btn-success btn-sm" onclick="window.location='<?php echo site_url("admin_control/viewUserInfo/".$row->id."")?>'">View</button>
                                       <button type="button" class="btn btn-warning btn-sm" onclick="window.location='<?php echo site_url("admin_control/editUserInfo/".$row->id."")?>'">Edit</button>
                                       <button type="button" class="btn btn-danger btn-sm" onclick="window.location='<?php echo site_url("admin_control/deleteUser/".$row->id."")?>'">Delete</button>
-                                </td>
-                              </tr>
-                              <?php 
-                              $row_num += 1;
-                            } ?>
 
-                                <th scope="row">1</th>
-                                <td>2018-00161-TG-0</td>
-                                <td>Angelia Rose Picart</td>
-                                <td>Student</td>
-                                <td> 
-                                      <button type="button" class="btn btn-success btn-sm">View</button>
-                                      <button type="button" class="btn btn-warning btn-sm">Edit</button>
-                                      <button type="button" class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#DeleteUser">Delete</button>
-
-                                      <!-- Modal -->
+                                      <!-- <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteUser">Delete</button>
+                                      Modal
                                       <div class="modal fade" id="DeleteUser" tabindex="-1" role="dialog" aria-labelledby="ModalDelete" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                           <div class="modal-content">
@@ -296,13 +283,16 @@
                                             </div>
                                             <div class="modal-footer">
                                               <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-                                              <button type="button" class="btn btn-danger">Yes, delete</button>
+                                              <button type="button" class="btn btn-danger" >Yes, delete</button>
                                             </div>
                                           </div>
                                         </div>
-                                      </div>
+                                      </div> -->
                                 </td>
                               </tr>
+                              <?php 
+                              $row_num += 1;
+                            } ?>
                             
 
                             </tbody>

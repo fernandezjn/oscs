@@ -80,7 +80,96 @@ class Admin_control extends CI_Controller {
 		$isAdmin = $this->session->userdata("permissionAdmin");
 		if($isAdmin)
 		{
-			$this->load->view('view_user');
+			$data["user_name"] = $this->session->userdata("user_name");
+			$data["user_info"] = $this->oscs_model->getUserInfo($id);
+			$userInfo = $this->oscs_model->getUserInfo($id);
+			foreach($userInfo as $row)
+			{
+				$offices = $this->oscs_model->getOffices();
+				foreach($offices as $row1)
+				{
+					if($row->department_id == $row1->id)
+					{
+						$data["office"] = $row1->department_name;
+						break;
+					}
+					else
+					{
+						$data["office"] = "";
+					}
+				}
+
+				$organization = $this->oscs_model->getOrganizations();
+				foreach($organization as $row2)
+				{
+					if($row->org_id == $row2->id)
+					{
+						$data["org"] = $row2->org_name;
+						break;
+					}
+					else
+					{
+						$data["org"] = "";
+					}
+				}
+	
+				$position = $this->oscs_model->getPositions();
+				foreach($position as $row3)
+				{
+					if($row->position_id == $row3->id)
+					{
+						$data["position"] = $row3->position_name;
+						break;
+					}
+					else
+					{
+						$data["position"] = "";
+					}
+				}
+
+				$year = $this->oscs_model->getYear();
+				foreach($year as $row4)
+				{
+					if($row->year_id == $row4->id)
+					{
+						$data["year"] = $row4->level;
+						break;
+					}
+					else
+					{
+						$data["year"] = "";
+					}
+				}
+
+				$course = $this->oscs_model->getCourses();
+				foreach($course as $row5)
+				{
+					if($row->course_id == $row5->id)
+					{
+						$data["course"] = $row5->course_name;
+						break;
+					}
+					else
+					{
+						$data["course"] = "";
+					}
+				}
+
+				$studType = $this->oscs_model->getStudent_types();
+				foreach($studType as $row6)
+				{
+					if($row->student_type_id == $row6->id)
+					{
+						$data["studType"] = $row6->type;
+						break;
+					}
+					else
+					{
+						$data["studType"] = "";
+					}
+				}
+			}
+			$this->load->view('view_user',$data);
 		}
 	}
 	public function editUserInfo($id)
@@ -88,7 +177,194 @@ class Admin_control extends CI_Controller {
 		$isAdmin = $this->session->userdata("permissionAdmin");
 		if($isAdmin)
 		{
-			$this->load->view('edit_user');
+			$data["user_name"] = $this->session->userdata("user_name");	
+			$data["user_info"] = $this->oscs_model->getUserInfo($id);
+			$userInfo = $this->oscs_model->getUserInfo($id);
+			foreach($userInfo as $row)
+			{
+				$offices = $this->oscs_model->getOffices();
+				foreach($offices as $row1)
+				{
+					if($row->department_id == $row1->id)
+					{
+						$data["office"] = $row1->department_name;
+						break;
+					}
+					else
+					{
+						$data["office"] = "";
+					}
+				}
+
+				$organization = $this->oscs_model->getOrganizations();
+				foreach($organization as $row2)
+				{
+					if($row->org_id == $row2->id)
+					{
+						$data["org"] = $row2->org_name;
+						break;
+					}
+					else
+					{
+						$data["org"] = "";
+					}
+				}
+	
+				$position = $this->oscs_model->getPositions();
+				foreach($position as $row3)
+				{
+					if($row->position_id == $row3->id)
+					{
+						$data["position"] = $row3->position_name;
+						break;
+					}
+					else
+					{
+						$data["position"] = "";
+					}
+				}
+
+				$year = $this->oscs_model->getYear();
+				foreach($year as $row4)
+				{
+					if($row->year_id == $row4->id)
+					{
+						$data["year"] = $row4->level;
+						break;
+					}
+					else
+					{
+						$data["year"] = "";
+					}
+				}
+
+				$course = $this->oscs_model->getCourses();
+				foreach($course as $row5)
+				{
+					if($row->course_id == $row5->id)
+					{
+						$data["course"] = $row5->course_name;
+						break;
+					}
+					else
+					{
+						$data["course"] = "";
+					}
+				}
+
+				$studType = $this->oscs_model->getStudent_types();
+				foreach($studType as $row6)
+				{
+					if($row->student_type_id == $row6->id)
+					{
+						$data["studType"] = $row6->type;
+						break;
+					}
+					else
+					{
+						$data["studType"] = "";
+					}
+				}
+			}
+			$data["role_list"] = $this->oscs_model->getRoles();
+			$data["office_list"] = $this->oscs_model->getOffices();
+			$data["org_list"] = $this->oscs_model->getOrganizations();
+			$data["position_list"] = $this->oscs_model->getPositions();
+			$data["year_list"] = $this->oscs_model->getYear();
+			$data["course_list"] = $this->oscs_model->getCourses();
+			$data["student_type_list"] = $this->oscs_model->getStudent_types();
+			$this->load->view('edit_user', $data);
+
+			if($this->input->post("save"))
+			{
+				$data_form = $this->input->post(NULL,TRUE);
+	            if($data_form)
+	            {
+	                $role = $data_form["userRole"];
+	                $uName = $data_form["userName"];
+	                // $pass = $data_form["pass"];
+	                $lName = $data_form["lastName"];
+	                $fName = $data_form["firstName"];
+	                $mName = $data_form["middleName"];
+	                if(!empty($data_form["suffixName"]))
+	                {
+	                	$sName = $data_form["suffixName"];
+	                }
+	                else
+	                {
+	                	$sName = "";
+	                }	                
+	                $email = $data_form["email"];
+	                $contact = $data_form["contact"];
+
+	                if(!empty($data_form["office"]))
+	                {
+	                	$office = $data_form["office"]; //Department
+	                }
+	                else
+	                {
+	                	$office = "";
+	                }
+
+	                if(!empty($data_form["org"]))
+	                {
+	                	$org = $data_form["org"];
+	                }
+	                else
+	                {
+	                	$org = "";
+	                }
+	                
+	                if(!empty($data_form["position"]))
+	                {
+	                	$pos = $data_form["position"];
+	                }
+	                else
+	                {
+	                	$pos = "";
+	                }
+	                
+	                if(!empty($data_form["studentNo"]))
+	                {
+	                	$studNo = $data_form["studentNo"];
+	                }
+	                else
+	                {
+	                	$studNo = "";
+	                }
+
+	                if(!empty($data_form["year"]))
+	                {
+	                	$year = $data_form["year"];
+	                }
+	                else
+	                {
+	                	$year = "";
+	                }
+
+	                if(!empty($data_form["course"]))
+	                {
+	                	$course = $data_form["course"];
+	                }
+	                else
+	                {
+	                	$course = "";
+	                }
+
+	                if(!empty($studType = $data_form["studentType"]))
+	                {
+	                	$studType = $data_form["studentType"];  
+	                }
+	                else
+	                {
+	                	$studType = "";  
+	                }
+	                
+	                $this->oscs_model->editUserInfo($id,$uName,$role,$lName,$fName,$mName,$sName,$email,$contact, $studNo, $year, $course, $studType, $org, $office, $pos);
+	                redirect("admin_control/viewUserInfo/".$id);
+
+	            }
+	        }
 		}
 	}
 	public function deleteUser($id)
@@ -214,6 +490,10 @@ class Admin_control extends CI_Controller {
 		redirect("main/index");
 	}
 
+	public function yeet()
+	{
+
+	}
 
 
 }

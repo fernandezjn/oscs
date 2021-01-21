@@ -35,13 +35,13 @@
           <a class="sidebar-brand d-flex align-items-center" href="#">
             <img src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="..." class="img-fluid rounded-circle sidebar-profile-img">
             <span class="align-middle mt-3 ml-3">
-              Admin Name 
+              <?php echo $user_name ?>
               <h6 class="mt-2 font-weight-light small">Registrar's Office</h6>
             </span>
           </a>
           <ul class="navbar-nav align-self-stretch">
             <li class="sidebar-header">Pages</li>
-            <li class="sidebar-link"><a href="mainPage" class="nav-link text-left"  role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chart-line"></i>Dashboard</a></li>
+            <li class="sidebar-link"><a href="<?php echo site_url('admin_control/mainPage')?>" class="nav-link text-left"  role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chart-line"></i>Dashboard</a></li>
             <li class="sidebar-link"><a href="#" class="nav-link text-left" role="button"><i class="far fa-address-card"></i> Profile</a></li>
             <li class="sidebar-link"><a href="#" class="nav-link text-left"  role="button" ><i class="far fa-bell"></i> Notifications</a></li>
             <li class="sidebar-header">User Management</li>
@@ -129,12 +129,12 @@
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle mr-3" href="#" id="userDropdown" role="button" data-toggle="dropdown">
-                    <span class="mr-2 d-none d-lg-inline">Admin Name</span>
+                    <span class="mr-2 d-none d-lg-inline"><?php echo $user_name ?></span>
                     <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>assets/img/PUPLogo.png">
                   </a>
                   <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                     <li><a class="dropdown-item" href="#">View Profile</a></li>
-                    <li><a class="dropdown-item" href="logout">Logout</a></li>
+                    <li><a class="dropdown-item" href="<?php echo site_url('admin_control/logout') ?>">Logout</a></li>
                   </ul>
                 </li>
               </ul>
@@ -156,7 +156,10 @@
                   <div class="card p-3">
                     <div class="card-body">
                       <div class="col-sm-12">
-                        <form>  
+                        <?php foreach($user_info as $data)
+                        {
+                          ?>
+                        <form method="POST">  
                           <div class="text-center mb-5 ">
                                 <div class="image-container">
                                   <img src="http://placehold.it/150x150" id="imgProfile" style="width: 150px; height: 150px" class="rounded-circle img-thumbnail" />
@@ -175,14 +178,19 @@
                           <div class="form-row mt-5">
                             <div class="col-md-6">
                               <label for="UserRole">User Role</label>
-                              <select class="form-control" id="UserRole">
-                                <option selected>Student</option>
+                              <select class="form-control" id="UserRole" name="userRole">
+                                <option value="<?php echo $data->type ?>" selected><?php echo $data->role ?></option>
+                                <?php foreach($role_list as $row)
+                                {
+                                  ?>
+                                  <option value="<?php echo $row->id ?>"><?php echo $row->role ?></option>
+                                <?php } ?>
                               </select>
                             </div>
 
                             <div class="col-md-6">
                               <label for="Username">Username</label>
-                              <input type="text" class="form-control" id="Username" value="2018-00161-TG-0">
+                              <input type="text" name="userName" class="form-control" id="Username" value="<?php echo $data->username ?>">
                             </div>
                           </div>
 
@@ -190,34 +198,34 @@
                           <div class="form-row mt-3">
                             <div class="col-md-3 mb-3">
                               <label for="LastName">Last Name</label>
-                              <input type="text" class="form-control" id="LastName" value="Picart">
+                              <input type="text" name="lastName" class="form-control" id="LastName" value="<?php echo $data->last_name ?>">
                             </div>
 
                             <div class="col-md-3 mb-3">
                               <label for="FirstName">First Name</label>
-                              <input type="text" class="form-control" id="FirstName" value="Angelia">
+                              <input type="text" name="firstName" class="form-control" id="FirstName" value="<?php echo $data->first_name ?>">
                             </div>
 
                             <div class="col-md-3 mb-3">
                               <label for="MiddleName">Middle Name</label>
-                              <input type="text" class="form-control" id="nMiddleName" value="Lim">
+                              <input type="text" name="middleName" class="form-control" id="nMiddleName" value="<?php echo $data->middle_name ?>">
                             </div>
 
                             <div class="col-md-3 mb-3">
                               <label for="Suffix">Suffix</label>
-                              <input type="text" class="form-control" id="Suffix" value="N/A">
+                              <input type="text" name="suffixName" class="form-control" id="Suffix" value="<?php echo $data->suffix_name ?>">
                             </div>
                           </div>
 
                           <div class="form-row">
                             <div class="col-md-6 mb-3">
                               <label for="EmailAddress">Email Address</label>
-                              <input type="email" class="form-control" id="EmailAddress" value="picartangelia1@gmail.com">
+                              <input type="email" name="email" class="form-control" id="EmailAddress" value="<?php echo $data->email ?>">
                             </div>
 
                             <div class="col-md-6 mb-3">
                               <label for="ContactNumber">Contact Number</label>
-                              <input type="tel" class="form-control" id="ContactNumber" value="09123456789">
+                              <input type="tel" name="contact" class="form-control" id="ContactNumber" value="<?php echo $data->contact_number ?>">
                             </div>
                           </div>
 
@@ -225,8 +233,13 @@
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label for="Office">Office</label>
-                                <select id="Office" class="form-control">
-                                  <option selected>Choose...</option>
+                                <select id="Office" class="form-control" name="office">
+                                  <option value="<?php echo $data->department_id ?>" selected><?php echo $office ?></option>
+                                  <?php foreach($office_list as $row) 
+                                  {
+                                    ?>
+                                    <option value="<?php echo $row->id ?>"><?php echo $row->department_name ?></option>
+                                  <?php } ?>
                                 </select>
                               </div>
                             </div>
@@ -238,8 +251,13 @@
                               <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                   <label for="StudentOrganization">Student Organization</label>
-                                  <select id="StudentOrganization" class="form-control">
-                                    <option selected>Choose...</option>
+                                  <select id="StudentOrganization" class="form-control" name="org">
+                                    <option value="<?php echo $data->org_id ?>" selected><?php echo $org ?></option>
+                                    <?php foreach($org_list as $row) 
+                                    {
+                                      ?>
+                                      <option value="<?php echo $row->id ?>"><?php echo $row->org_name ?></option>
+                                    <?php } ?>
                                   </select>
                                 </div>
                               </div>
@@ -247,11 +265,13 @@
                               <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                   <label for="Position">Position</label>
-                                  <select id="Position" class="form-control">
-                                    <option selected>Choose...</option>
-                                    <option>Treasurer</option>
-                                    <option>President</option>
-                                    <option>Adviser</option>
+                                  <select id="Position" class="form-control" name="position">
+                                    <option value="<?php echo $data->position_id ?>" selected><?php echo $position ?></option>
+                                    <?php foreach($position_list as $row)
+                                    {
+                                     ?>
+                                      <option value="<?php echo $row->id ?>"><?php echo $row->position_name ?></option>
+                                    <?php } ?>                                    
                                   </select>
                                 </div>
                               </div>
@@ -262,16 +282,19 @@
                             <div class="form-row">
                               <div class="col-md-6">
                                 <label for="StudentNumber">Student Number</label>
-                                <input type="text" class="form-control" id="StudentNumber" value="2019-00161-TG-0">
+                                <input type="text" name="studentNo" class="form-control" id="StudentNumber" value="<?php echo $data->student_number ?>">
                               </div>
 
                               <div class="col-md-3">
                                 <div class="form-group">
                                   <label for="Year">Year</label>
-                                  <select id="Year" class="form-control">
-                                    <option selected>3rd Year</option>
-                                    <option>4th Year</option>
-                                    <option>5th Year</option>
+                                  <select id="Year" class="form-control" name="year">
+                                    <option value="<?php echo $data->year_id?>" selected><?php echo $year ?></option>
+                                    <?php foreach($year_list as $row)
+                                    {
+                                      ?>
+                                      <option value="<?php echo $row->id?>"><?php echo $row->level ?></option>
+                                    <?php } ?>
                                   </select>
                                 </div>
                               </div>
@@ -290,8 +313,13 @@
                               <div class="col-md-9">
                                 <div class="form-group">
                                   <label for="Course">Course</label>
-                                  <select id="Course" class="form-control">
-                                    <option selected>Bachelor of Science in Information Technology (BSIT)</option>
+                                  <select id="Course" class="form-control" name="course">
+                                    <option value="<?php echo $data->course_id?>" selected><?php echo $course ?></option>
+                                    <?php foreach($course_list as $row)
+                                    {
+                                     ?>
+                                     <option value="<?php echo $row->id ?>"><?php echo $row->course_name ?></option>
+                                   <?php } ?>
                                   </select>
                                 </div>
                               </div>
@@ -299,8 +327,13 @@
                               <div class="col-md-3">
                                 <div class="form-group">
                                   <label for="StudentType">Student Type</label>
-                                  <select id="StudentType" class="form-control">
-                                    <option selected>Regular</option>
+                                  <select id="StudentType" class="form-control" name="studentType">
+                                    <option value="<?php echo $data->student_type_id ?>" selected><?php echo $studType ?></option>
+                                    <?php foreach($student_type_list as $row)
+                                    {
+                                     ?>
+                                     <option value="<?php echo $row->id ?>"><?php echo $row->type ?></option>
+                                   <?php } ?>
                                   </select>
                                 </div>
                               </div>
@@ -308,10 +341,11 @@
                           </fieldset>
                           <div class="text-center mt-5 mb-5">
                             <a class="btn btn-danger mr-1 buttonColor" href="<?php echo site_url("admin_control/users")?>"><i class="far fa-window-close mr-1"></i> Cancel</a>
-                            <button class="btn btn-success ml-1 buttonColor"><i class="fas fa-save mr-1"></i> Save</a>
+                            <input type="submit" class="btn btn-success ml-1 buttonColor" name="save" value="Save"><!-- <i class='fas fa-save ml-1'></i> -->
                             
                           </div>
                         </form>
+                      <?php } ?>
                       </div>
                     </div>
                   </div>
@@ -355,12 +389,12 @@
     <script>
       function addUserForm(){
         var userRole = document.getElementById("UserRole");
-          if (userRole.value == "Student"){
+          if (userRole.value == "3"){
             document.getElementById("officeField").style.display="none";
             document.getElementById("StudentOrg").style.display="none";
             document.getElementById("forStudentfields").style.display="block";
           }
-          else if (userRole.value == "Clearing Official"){
+          else if (userRole.value == "4"){
             document.getElementById("forStudentfields").style.display="none";
             document.getElementById("officeField").style.display="block";
           }

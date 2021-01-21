@@ -82,7 +82,7 @@ class Main extends CI_Controller {
                   		$this->session->set_userdata('user_id', $user_id);
                     	redirect("admin_control/index/".$user_id);
                   	}
-                  	else if($user_role == "Official")
+                  	else if($user_role == "Clearing Official")
                   	{
                   		$this->session->set_userdata('user_id', $user_id);
                     	redirect("official_control/index/".$user_id);

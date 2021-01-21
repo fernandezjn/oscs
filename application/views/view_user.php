@@ -35,13 +35,13 @@
           <a class="sidebar-brand d-flex align-items-center" href="#">
             <img src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="..." class="img-fluid rounded-circle sidebar-profile-img">
             <span class="align-middle mt-3 ml-3">
-              Admin Name 
+              <?php echo $user_name ?>
               <h6 class="mt-2 font-weight-light small">Registrar's Office</h6>
             </span>
           </a>
           <ul class="navbar-nav align-self-stretch">
             <li class="sidebar-header">Pages</li>
-            <li class="sidebar-link"><a href="mainPage" class="nav-link text-left"  role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chart-line"></i>Dashboard</a></li>
+            <li class="sidebar-link"><a href="<?php echo site_url('admin_control/mainPage')?>" class="nav-link text-left"  role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chart-line"></i>Dashboard</a></li>
             <li class="sidebar-link"><a href="#" class="nav-link text-left" role="button"><i class="far fa-address-card"></i> Profile</a></li>
             <li class="sidebar-link"><a href="#" class="nav-link text-left"  role="button" ><i class="far fa-bell"></i> Notifications</a></li>
             <li class="sidebar-header">User Management</li>
@@ -129,12 +129,12 @@
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle mr-3" href="#" id="userDropdown" role="button" data-toggle="dropdown">
-                    <span class="mr-2 d-none d-lg-inline">Admin Name</span>
+                    <span class="mr-2 d-none d-lg-inline"><?php echo $user_name ?></span>
                     <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>assets/img/PUPLogo.png">
                   </a>
                   <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                     <li><a class="dropdown-item" href="#">View Profile</a></li>
-                    <li><a class="dropdown-item" href="logout">Logout</a></li>
+                    <li><a class="dropdown-item" href="<?php echo site_url('admin_control/logout')?>">Logout</a></li>
                   </ul>
                 </li>
               </ul>
@@ -162,16 +162,19 @@
                           </div>
                           <hr>
                           <div class="form-row mt-5">
+                            <?php foreach($user_info as $data)
+                            {
+                              ?>
                             <div class="col-md-6">
                               <label for="UserRole">User Role</label>
                               <select class="form-control" id="UserRole" readonly="true" disabled>
-                                <option selected>Student</option>
+                                <option selected><?php echo $data->role ?></option>
                               </select>
                             </div>
 
                             <div class="col-md-6">
                               <label for="Username">Username</label>
-                              <input type="text" class="form-control" id="Username" value="2018-00161-TG-0" readonly="true">
+                              <input type="text" class="form-control" id="Username" value="<?php echo $data->username ?>" readonly="true">
                             </div>
                           </div>
 
@@ -179,34 +182,34 @@
                           <div class="form-row mt-3">
                             <div class="col-md-3 mb-3">
                               <label for="LastName">Last Name</label>
-                              <input type="text" class="form-control" id="LastName" value="Picart" readonly="true">
+                              <input type="text" class="form-control" id="LastName" value="<?php echo $data->last_name ?>" readonly="true">
                             </div>
 
                             <div class="col-md-3 mb-3">
                               <label for="FirstName">First Name</label>
-                              <input type="text" class="form-control" id="FirstName" value="Angelia" readonly="true">
+                              <input type="text" class="form-control" id="FirstName" value="<?php echo $data->first_name ?>" readonly="true">
                             </div>
 
                             <div class="col-md-3 mb-3">
                               <label for="MiddleName">Middle Name</label>
-                              <input type="text" class="form-control" id="nMiddleName" value="Lim" readonly="true">
+                              <input type="text" class="form-control" id="nMiddleName" value="<?php echo $data->middle_name ?>" readonly="true">
                             </div>
 
                             <div class="col-md-3 mb-3">
                               <label for="Suffix">Suffix</label>
-                              <input type="text" class="form-control" id="Suffix" value="N/A" readonly="true">
+                              <input type="text" class="form-control" id="Suffix" value="<?php echo $data->suffix_name ?>" readonly="true">
                             </div>
                           </div>
 
                           <div class="form-row">
                             <div class="col-md-6 mb-3">
                               <label for="EmailAddress">Email Address</label>
-                              <input type="email" class="form-control" id="EmailAddress" value="picartangelia1@gmail.com" readonly="true">
+                              <input type="email" class="form-control" id="EmailAddress" value="<?php echo $data->email ?>" readonly="true">
                             </div>
 
                             <div class="col-md-6 mb-3">
                               <label for="ContactNumber">Contact Number</label>
-                              <input type="tel" class="form-control" id="ContactNumber" value="09123456789" readonly="true">
+                              <input type="tel" class="form-control" id="ContactNumber" value="<?php echo $data->contact_number ?>" readonly="true">
                             </div>
                           </div>
 
@@ -214,8 +217,8 @@
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label for="Office">Office</label>
-                                <select id="Office" class="form-control">
-                                  <option selected></option>
+                                <select id="Office" class="form-control" readonly="true" disabled>
+                                  <option selected><?php echo $office ?></option>
                                 </select>
                               </div>
                             </div>
@@ -227,8 +230,8 @@
                               <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                   <label for="StudentOrganization">Student Organization</label>
-                                  <select id="StudentOrganization" class="form-control">
-                                    <option selected>Computer Society</option>
+                                  <select id="StudentOrganization" class="form-control" readonly="true" disabled>
+                                    <option selected><?php echo $org ?></option>
                                   </select>
                                 </div>
                               </div>
@@ -236,8 +239,8 @@
                               <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                   <label for="Position">Position</label>
-                                  <select id="Position" class="form-control">
-                                    <option selected>Choose...</option>
+                                  <select id="Position" class="form-control" readonly="true" disabled>
+                                    <option selected><?php echo $position ?></option>
                                     <option>Treasurer</option>
                                     <option>President</option>
                                     <option>Adviser</option>
@@ -251,14 +254,14 @@
                             <div class="form-row">
                               <div class="col-md-6">
                                 <label for="StudentNumber">Student Number</label>
-                                <input type="text" class="form-control" id="StudentNumber" value="2019-00161-TG-0" readonly="true">
+                                <input type="text" class="form-control" id="StudentNumber" value="<?php echo $data->student_number ?>" readonly="true">
                               </div>
 
                               <div class="col-md-3">
                                 <div class="form-group">
                                   <label for="Year">Year</label>
-                                  <select id="Year" class="form-control" disabled>
-                                    <option selected>3rd Year</option>
+                                  <select id="Year" class="form-control" readonly="true" disabled>
+                                    <option selected><?php echo $year ?></option>
                                     <option>4th Year</option>
                                     <option>5th Year</option>
                                   </select>
@@ -279,8 +282,8 @@
                               <div class="col-md-9">
                                 <div class="form-group">
                                   <label for="Course">Course</label>
-                                  <select id="Course" class="form-control" disabled>
-                                    <option selected>Bachelor of Science in Information Technology (BSIT)</option>
+                                  <select id="Course" class="form-control" readonly="true" disabled>
+                                    <option selected><?php echo $course ?></option>
                                   </select>
                                 </div>
                               </div>
@@ -288,8 +291,8 @@
                               <div class="col-md-3">
                                 <div class="form-group">
                                   <label for="StudentType">Student Type</label>
-                                  <select id="StudentType" class="form-control" disabled>
-                                    <option selected>Regular</option>
+                                  <select id="StudentType" class="form-control" readonly="true" disabled>
+                                    <option selected><?php echo $studType ?></option>
                                   </select>
                                 </div>
                               </div>
@@ -297,9 +300,10 @@
                           </fieldset>
                           <div class="text-center mt-5 mb-5">
                             <a class="btn btn-danger mr-1" href="<?php echo site_url("admin_control/users")?>"><i class="far fa-caret-square-left mr-1"></i>  Go Back</a>
-                            <a class="btn btn-success ml-1" href="<?php echo site_url("admin_control/editUserInfo")?>"><i class="far fa-edit mr-1"></i> Edit User</a>
+                            <a class="btn btn-success ml-1" href="<?php echo site_url("admin_control/editUserInfo/".$data->userID)?>"><i class="far fa-edit mr-1"></i> Edit User</a>
                           </div>
                         </form>
+                      <?php } ?>
                       </div>
                     </div>
                   </div>
