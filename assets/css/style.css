@@ -80,7 +80,9 @@ body{
 }
 
 
-
+.text-black{
+  color:black!important;
+}
 
 
 /* admin dashboard */
@@ -684,4 +686,5 @@ main-table
 #officeField, #forStudentfields, #StudentOrg{
   display:none;
 }
+
 

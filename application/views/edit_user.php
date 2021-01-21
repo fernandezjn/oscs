@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Add User</title>
+    <title>Edit User</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -35,7 +35,7 @@
         <a class="sidebar-brand d-flex align-items-center" href="#">
           <img src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="..." class="img-fluid rounded-circle sidebar-profile-img">
           <span class="align-middle mt-3 ml-3">
-            <?php echo $user_name ?> 
+            Admin Name 
             
             <h6 class="mt-2 font-weight-light small">Registrar's Office</h6>
 
@@ -197,7 +197,7 @@
             <li class="nav-item dropdown">
              
               <a class="nav-link dropdown-toggle mr-3" href="#" id="userDropdown" role="button" data-toggle="dropdown">
-                 <span class="mr-2 d-none d-lg-inline"><?php echo $user_name ?></span>
+                 <span class="mr-2 d-none d-lg-inline">Admin Name</span>
                 <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>assets/img/PUPLogo.png">
               </a>
                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
@@ -212,210 +212,119 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid px-lg-4 pb-lg-5 pb-md-5 pb-5 pb-sm-5">
 
-<div class="row">
-<div class="col-md-12 mt-lg-4 mt-4">
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Add User</h1>
-          </div>
-      </div>
-  <div class="col-md-12">
+        <div class="container-fluid px-lg-4">
 
-      <form method="POST">  
+          <div class="row">
+            <div class="col-12">
+                <div class="card mt-5 p-5">
 
-     <div class="card p-3">
+                    <div class="card-body">
+                        <div class="card-title mb-4">
 
-  <div class="card-body">
-      <form>  
+                            <div class="d-flex justify-content-start">
+                                <div class="image-container mt-1">
+                                    <img src="http://placehold.it/150x150" id="imgProfile" style="width: 150px; height: 150px" class="rounded-circle img-thumbnail"/>
+                                     <input type="button" class="btn btn-secondary" id="btnChangePicture" value="Change" />
+                                </div>
+                                <div class="userData ml-3 mt-5">
+                                    <h2 class="d-block">Angelia Rose Picart</h2> <!--name of user-->
+                                    <h4 class="d-block font-weight-light">Student</h4> <!--role-->
+                                   
+                                </div>
+                                <div class="ml-auto">
+                                    <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
+                                </div>
+                            </div>
 
-          <div class="form-row">
-    <div class="col-md-12">
-      <label for="UserRole">User Role</label>
-  <select class="custom-select my-1 mr-sm-2" id="UserRole" onchange="addUserForm()" name="userRole" required>
-    <option value="" selected>Choose...</option>
-    <?php foreach($roles as $row)
-    {
-      ?>
-      <option value="<?php echo $row->id ?>"><?php echo $row->role ?></option>
-    <?php } ?>
-    </select>
-    </div>
-    
-  </div>
+                        </div>
 
 
-        <div class="form-row mt-2">
-    <div class="col-md-6 mb-3">
-      <label for="Username">Username</label>
-      <input type="text" class="form-control" id="Username" placeholder="Username" name="userName" required>
-    </div>
-    <div class="col-md-6 mb-3">
-      <label for="Password">Password</label>
-      <input type="password" class="form-control" id="Password" placeholder="Password" name="pass" required>
-    </div>
-  </div>
 
-  <button class="btn btn-success">Generate Username & Password</button>
+                        <div class="row">
+                            <div class="col-12">
+       
+                                        <div class="row mt-5">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Student Number</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                2018-00161-TG-0
+                                            </div>
+                                        </div>
+                                        <hr />
 
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Course</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                Bachelor of Science in Information Technology
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Year</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                3rd Year
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Section</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                1
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Student Type</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                Regular
+                                            </div>
+                                        </div>
+                                        <hr />
+                                         <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Email</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                picartangelia1@gmail.com
+                                            </div>
+                                        </div>
+                                        <hr />
+                                         <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Contact Number</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                09123456789
+                                            </div>
+                                        </div>
+                                        <hr />
 
-    <div class="form-row mt-5">
-    <div class="col-md-3 mb-3">
-      <label for="LastName">Last Name</label>
-      <input type="text" class="form-control" id="LastName" placeholder="Last Name" name="lastName" required>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="FirstName">First Name</label>
-      <input type="text" class="form-control" id="FirstName" placeholder="First Name" name="firstName" required>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="MiddleName">Middle Name</label>
-      <input type="text" class="form-control" id="nMiddleName" placeholder="Middle Name" name="middleName" required>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="Suffix">Suffix</label>
-      <input type="text" class="form-control" id="Suffix" placeholder="Suffix" name="suffixName">
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="col-md-6 mb-3">
-      <label for="EmailAddress">Email Address</label>
-      <input type="email" class="form-control" id="EmailAddress" placeholder="Email Address" name="email" required>
-    </div>
-    <div class="col-md-6 mb-3">
-      <label for="ContactNumber">Contact Number</label>
-      <input type="tel" class="form-control" id="ContactNumber" placeholder="Contact Number" name="contact" required>
-    </div>
-    
-  </div>
+                                      <button class="btn btn-danger mr-2" onclick="window.location='<?php echo site_url("Admin_control/users")?>'"><i class="far fa-caret-square-left"></i> Back</button>
+                                        <button class="btn btn-success" type="submit"><i class="far fa-edit"></i> Edit User</button>  
+                                    </div>
 
+                                </div>
+                       
+                                   
 
- <div class="form-row" id="officeField">
-    <div class="col-md-12">
-      <div class="form-group">
-      <label for="Office">Office</label>
-      <select id="Office" class="form-control" onchange="forStudentOrg()" name="office">
-        <option value="" selected>Choose...</option>
-        <?php foreach($offices as $row)
-        {
-          ?>
-            <option value="<?php echo $row->id ?>"><?php echo $row->department_name ?></option>
-        <?php } ?>        
-      </select>
-    </div>
-    </div>
-  </div>
+                    </div>
 
-<fieldset id="StudentOrg">
-  <div class="form-row" >
-    <div class="col-md-6 mb-3">
-     <div class="form-group">
-      <label for="StudentOrganization">Student Organization</label>
-      <select id="StudentOrganization" class="form-control" name="org">
-        <option value="" selected>Choose...</option>
-        <?php foreach($org as $row)
-        {
-          ?>
-            <option value="<?php echo $row->id ?>"><?php echo $row->org_name ?></option>
-        <?php } ?> 
-      </select>
-    </div>
-
-    </div>
-    <div class="col-md-6 mb-3">
-     <div class="form-group">
-      <label for="Position">Position</label>
-      <select id="Position" class="form-control" name="position">
-        <option value="" selected>Choose...</option>
-        <?php foreach($positions as $row)
-        {
-          ?>
-            <option value="<?php echo $row->id ?>"><?php echo $row->position_name ?></option>
-        <?php } ?> 
-      </select>
-    </div>
-    </div>
-  </div>
-</fieldset>
-
-<fieldset id="forStudentfields">
-  <div class="form-row">
-    <div class="col-md-6">
-      <label for="StudentNumber">Student Number</label>
-      <input type="text" class="form-control" id="StudentNumber" placeholder="Student Number" name="studentNo">
-    </div>
-    <div class="col-md-3">
-      <div class="form-group">
-      <label for="Year">Year</label>
-      <select id="Year" class="form-control" name="year">
-        <option value="" selected>Choose...</option>
-        <?php foreach($year as $row)
-        {
-          ?>
-            <option value="<?php echo $row->id ?>"><?php echo $row->level ?></option>
-        <?php } ?> 
-    </div>
-    </div>
-    <div class="col-md-3">
-      <div class="form-group">
-      <label for="Year">Section</label>
-      <select id="Year" class="form-control">
-        <option value="" selected>Choose...</option>
-        <option>1</option>
-      </select>
-    </div>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="col-md-9">
-      <div class="form-group">
-      <label for="Course">Course</label>
-      <select id="Course" class="form-control" name="course">
-        <option value="" selected>Choose...</option>
-        <?php foreach($courses as $row)
-        {
-          ?>
-            <option value="<?php echo $row->id ?>"><?php echo $row->course_name ?></option>
-        <?php } ?> 
-      </select>
-    </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="form-group">
-      <label for="StudentType">Student Type</label>
-      <select id="StudentType" class="form-control" name="studentType">
-        <option value="" selected>Choose...</option>
-        <?php foreach($student_types as $row)
-        {
-          ?>
-            <option value="<?php echo $row->id ?>"><?php echo $row->type ?></option>
-        <?php } ?> 
-      </select>
-    </div>
-    </div>
-  </div>
-
-  </fieldset>
-
-
-  <button class="btn btn-danger" onclick="window.location='<?php echo site_url("admin_control/users")?>'">Cancel</button>
-  <input class="btn btn-success" type="submit" name="addUser" value="Add User">
-
-
-      </form>
-
-  </div>
-
-</div>
-</div>
-     
-                    <!-- column -->
-                   
-                   
-
+                </div>
+            </div>
         </div>
+
 
         </div>
         <!-- /.container-fluid -->
@@ -463,38 +372,51 @@ $('#bar').click(function(){
 });
   </script>
 
-  
-<script>
-  function addUserForm(){
-    
-   
-    var userRole = document.getElementById("UserRole");
+  <script>
+    $(document).ready(function () {
+            $imgSrc = $('#imgProfile').attr('src');
+            function readURL(input) {
 
-    if (userRole.value == "3"){
-      document.getElementById("officeField").style.display="none";
-      document.getElementById("StudentOrg").style.display="none";
-       document.getElementById("forStudentfields").style.display="block";
-    }
-    else if (userRole.value == "4"){
-      document.getElementById("forStudentfields").style.display="none";
-      document.getElementById("officeField").style.display="block";
-    }
-  }
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
 
-</script>
+                    reader.onload = function (e) {
+                        $('#imgProfile').attr('src', e.target.result);
+                    };
 
-<script>
-  function forStudentOrg(){
-    var officeVal = document.getElementById("Office");
-    if (officeVal.value == "5"){
-       document.getElementById("StudentOrg").style.display="block";
-    }
-    
-  }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $('#btnChangePicture').on('click', function () {
+                // document.getElementById('profilePicture').click();
+                if (!$('#btnChangePicture').hasClass('changing')) {
+                    $('#profilePicture').click();
+                }
+                else {
+                    // change
+                }
+            });
+            $('#profilePicture').on('change', function () {
+                readURL(this);
+                $('#btnChangePicture').addClass('changing');
+                $('#btnChangePicture').attr('value', 'Confirm');
+                $('#btnDiscard').removeClass('d-none');
+                // $('#imgProfile').attr('src', '');
+            });
+            $('#btnDiscard').on('click', function () {
+                // if ($('#btnDiscard').hasClass('d-none')) {
+                $('#btnChangePicture').removeClass('changing');
+                $('#btnChangePicture').attr('value', 'Change');
+                $('#btnDiscard').addClass('d-none');
+                $('#imgProfile').attr('src', $imgSrc);
+                $('#profilePicture').val('');
+                // }
+            });
+        });
 
-</script>
 
 
+  </script>
   </body>
 
 </html>
