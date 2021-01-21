@@ -2,7 +2,7 @@
 
     class oscs_model extends CI_Model
     {
-        function login($user,$password)
+        public function login($user,$password)
         {
             $this->db->where('username',$user);
             $this->db->where('password',$password);
@@ -17,7 +17,7 @@
             }
         }
 
-        function getRole($typeID)
+        public function getUserRole($typeID)
         {
             $this->db->where('id',$typeID);
             $query = $this->db->get('roles');

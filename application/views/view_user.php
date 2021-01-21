@@ -296,7 +296,7 @@
                             </div>
                           </fieldset>
                           <div class="text-center mt-5 mb-5">
-                            <button class="btn btn-danger mr-1" onclick="window.location='<?php echo site_url("admin_control/users") ?>'"><i class="far fa-caret-square-left mr-1"></i>  Go Back</button>
+                            <button class="btn btn-danger mr-1" onclick="window.location='<?php echo site_url("admin_control/users")?>'"><i class="far fa-caret-square-left mr-1"></i>  Go Back</button>
                             <button class="btn btn-success ml-1" onclick="window.location='<?php echo site_url("admin_control/edit_user") ?>'"><i class="far fa-edit mr-1"></i> Edit User</button>
                           </div>
                         </form>

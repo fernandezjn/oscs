@@ -80,7 +80,7 @@ class Admin_control extends CI_Controller {
 		$isAdmin = $this->session->userdata("permissionAdmin");
 		if($isAdmin)
 		{
-			
+			$this->load->view('view_user');
 		}
 	}
 	public function editUserInfo($id)
@@ -88,7 +88,7 @@ class Admin_control extends CI_Controller {
 		$isAdmin = $this->session->userdata("permissionAdmin");
 		if($isAdmin)
 		{
-			
+			$this->load->view('edit_user');
 		}
 	}
 	public function deleteUser($id)
@@ -206,24 +206,6 @@ class Admin_control extends CI_Controller {
 	                
 				}
 			}
-		}
-	}
-
-	public function view_user()
-	{
-		$isAdmin = $this->session->userdata("permissionAdmin");
-		if($isAdmin)
-		{
-			$this->load->view('view_user');
-		}
-	}
-
-	public function edit_user()
-	{
-		$isAdmin = $this->session->userdata("permissionAdmin");
-		if($isAdmin)
-		{
-			$this->load->view('edit_user');
 		}
 	}
 

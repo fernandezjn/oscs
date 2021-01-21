@@ -56,6 +56,7 @@ class Main extends CI_Controller {
               
                 if(!empty($result))
                 {
+
                     foreach($result as $row)
                     {
                            
@@ -63,7 +64,7 @@ class Main extends CI_Controller {
                             $user_type = $row->type;
                     }
                   	
-                  	$identifyRole = $this->oscs_model->getRole($user_type);
+                  	$identifyRole = $this->oscs_model->getUserRole($user_type);
 
                   		foreach($identifyRole as $row)
                     	{
@@ -76,22 +77,22 @@ class Main extends CI_Controller {
                     //   $this->oscs_model->rememberUserLogin($u,$p);
                     // }
 
-                  	if($user_role == "administrator")
+                  	if($user_role == "Administrator")
                   	{
                   		$this->session->set_userdata('user_id', $user_id);
                     	redirect("admin_control/index/".$user_id);
                   	}
-                  	else if($user_role == "official")
+                  	else if($user_role == "Official")
                   	{
                   		$this->session->set_userdata('user_id', $user_id);
                     	redirect("official_control/index/".$user_id);
                   	}
-                  	else if($user_role == "student")
+                  	else if($user_role == "Student")
                   	{
                   		$this->session->set_userdata('user_id', $user_id);
                     	redirect("student_control/index/".$user_id);
                   	}
-                  	else if($user_role == "registrar")
+                  	else if($user_role == "Registrar")
                   	{
                   		$this->session->set_userdata('user_id', $user_id);
                     	redirect("registrar_control/index/".$user_id);
@@ -172,5 +173,6 @@ class Main extends CI_Controller {
     }
 
   }
+
 
 }
