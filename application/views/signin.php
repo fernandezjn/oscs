@@ -10,14 +10,15 @@
 
 		<!-- Font Awesome CSS-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	    
 	    <!-- Bootstrap core CSS -->
 	  	<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>assets/css/bootstrap.min.css"> 
-		 <!-- CSS -->
+		
+		<!-- CSS -->
 		<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>assets/css/style.css"> 
-		 <!-- Favicon -->
+		
+		<!-- Favicon -->
 		<link rel="icon" href="<?php echo base_url(); ?>assets/img/PUPLogo.png">
-	   
-    
   	</head>
 
   	<body>
@@ -26,14 +27,11 @@
 	    		<form class="form-signin" method="POST">
 	      			<img class="mb-4" src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="" width="72" height="72">
 	      			<h1 class="h3 mb-4 font-weight-normal">Online Student Clearance System</h1>
-
 	      			<label for="inputUsername" class="sr-only">Username</label>
 	      			<div class="input-group">
 	      				<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
 	   		 			</div>
-			
-	   
 	     			 	<input type="text" id="inputUsername" class="form-control" placeholder="Username" name="usernameInput" required autofocus>
 					</div>
 	      			
@@ -58,12 +56,9 @@
 			</div>
 			<p class="mt-5 mb-3 text-muted fixed-bottom">&copy; Online Student Clearance System 2021</p>
   		</div>
-
-
-
-
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  		
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
   	</body>
 </html>

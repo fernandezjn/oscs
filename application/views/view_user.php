@@ -162,9 +162,7 @@
                           </div>
                           <hr>
                           <div class="form-row mt-5">
-                            <?php foreach($user_info as $data)
-                            {
-                              ?>
+                            <?php foreach($user_info as $data) {?>
                             <div class="col-md-6">
                               <label for="UserRole">User Role</label>
                               <select class="form-control" id="UserRole" readonly="true" disabled>
@@ -299,24 +297,25 @@
                             </div>
                           </fieldset>
                           <div class="text-center mt-5 mb-5">
-                            <a class="btn btn-danger mr-1" href="<?php echo site_url("admin_control/users")?>"><i class="far fa-caret-square-left mr-1"></i>  Go Back</a>
-                            <a class="btn btn-success ml-1" href="<?php echo site_url("admin_control/editUserInfo/".$data->userID)?>"><i class="far fa-edit mr-1"></i> Edit User</a>
+                            <a class="btn btn-danger mr-1" href="<?php echo site_url("admin_control/users")?>">
+                              <i class="far fa-caret-square-left mr-1"></i>  Go Back
+                            </a>
+                            <a class="btn btn-success ml-1" href="<?php echo site_url("admin_control/editUserInfo/".$data->userID)?>">
+                              <i class="far fa-edit mr-1"></i> Edit User
+                            </a>
                           </div>
                         </form>
-                      <?php } ?>
+                        <?php } ?>
                       </div>
                     </div>
                   </div>
                 </div> 
               </div>
-            </div>
-            <!-- /.container-fluid -->
+            </div> <!-- /.container-fluid -->
           </div>
         </div>
-      </div>
-        <!-- /#page-content-wrapper -->
-    </div>
-    <!-- /#wrapper -->
+      </div> <!-- /#page-content-wrapper -->
+    </div><!-- /#wrapper -->
   
   
 
@@ -334,7 +333,7 @@
     <script>
       $(document).ready( function () {
         $('#tableUsers').DataTable();
-      } );
+      });
     </script>
 
     <script>
@@ -347,28 +346,28 @@
     <script>
       function addUserForm(){
         var userRole = document.getElementById("UserRole");
-          if (userRole.value == "Student"){
-            document.getElementById("officeField").style.display="none";
-            document.getElementById("StudentOrg").style.display="none";
-            document.getElementById("forStudentfields").style.display="block";
-          }
-          else if (userRole.value == "Clearing Official"){
-            document.getElementById("forStudentfields").style.display="none";
-            document.getElementById("officeField").style.display="block";
-          }
+        if (userRole.value == "Student"){
+          document.getElementById("officeField").style.display="none";
+          document.getElementById("StudentOrg").style.display="none";
+          document.getElementById("forStudentfields").style.display="block";
         }
+        else if (userRole.value == "Clearing Official"){
+          document.getElementById("forStudentfields").style.display="none";
+          document.getElementById("officeField").style.display="block";
+        }
+      }
     </script>
 
     <script>
       function forStudentOrg(){
         var officeVal = document.getElementById("Office");
-          if (officeVal.value == ""){
-            document.getElementById("Office").style.display="none";
-          }
-          else if (officeVal.value == "Student Organization"){
-            document.getElementById("StudentOrg").style.display="block";
-          }
+        if (officeVal.value == ""){
+          document.getElementById("Office").style.display="none";
         }
+        else if (officeVal.value == "Student Organization"){
+          document.getElementById("StudentOrg").style.display="block";
+        }
+      }
     </script>
   </body>
 </html>
