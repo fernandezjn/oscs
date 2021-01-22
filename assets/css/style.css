@@ -140,7 +140,7 @@ sidebar
 
 
 .navbar-nav > li > a {
-    color:gray!important;
+    color:black!important;
     text-transform: capitalize;
     font-size: 15px;
     padding:10px 10px 10px 20px!important;
@@ -152,7 +152,26 @@ sidebar
     letter-spacing: .2px;
 }
 
-
+.submenu-box{
+  background-color: #ececec;
+}
+.submenu-box ul li a{
+  color:black!important;
+  text-transform: capitalize;
+  font-size: 15px;
+  padding:20px 10px 15px 53px!important;
+  display: block;
+  font-weight: 400;
+  position: relative;
+  z-index: 2;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: .2px;
+}
+.submenu-box ul li a:hover{
+text-decoration: none;
+background-color: #800000;
+ color:#fff!important;
+}
 
 .navbar-nav > li > a:hover{
     background-color:#800000!important;
@@ -161,7 +180,7 @@ sidebar
 
 .navbar-nav > li > a.active{
     color: #000!important;
-    border-right:4px solid #800000;
+    border-left:4px solid #800000;
 }
 
 .navbar-nav > li > a.active:hover{
@@ -170,6 +189,36 @@ sidebar
 }
 
 
+
+.navbar-nav .has-sub > a.collapsed::after {
+    transition: 0.4s ease;
+}
+
+.navbar-nav .has-sub > a.collapsed::after {
+    color:gray;
+    font-size: 10px;
+    content: "\f078";
+}
+.navbar-nav .has-sub > a.collapsed::after {
+   color:gray;
+}
+
+.navbar-nav .has-sub > a::after {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    color:gray;
+    display: block;
+    content: "\f077";
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+    font-size: 13px;
+    line-height: 30px;
+    margin-top: -15px;
+}
 
 #wrapper.toggled {
     padding-left: 270px;
@@ -180,7 +229,7 @@ sidebar
 .toggled#sidebar-wrapper {
     width:270px!important;
     height: 100%;
-     left: 0px;
+    left: 0px;
     overflow-y:auto;
     overflow-x:hidden;
     transition: all 0.5s ease;
@@ -197,7 +246,7 @@ sidebar
     color:white!important;
   text-transform:capitalize;
     text-decoration: none;
-    padding:6px 10px; 
+    padding:6px 10px;
     transition:0.4s ease; 
 }
 
@@ -205,6 +254,7 @@ sidebar
   margin:0px 5px 0px 0px;
   font-size:14px;
 }
+
 
 
 /*---------------------------------

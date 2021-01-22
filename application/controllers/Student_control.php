@@ -24,20 +24,26 @@ class Student_control extends CI_Controller
 		if($id!=null)
 		{
 			$this->session->set_userdata("user_id",$id);
-			$isAdmin = $this->oscs_model->confirmPermission($id,3);
+			$isStudent = $this->oscs_model->confirmPermission($id,3);
 			$this->session->set_userdata("permissionStudent",$isStudent);
-			if($isStudnet)
+			if($isStudent)
 			{
+				$result = $this->oscs_model->getUserInfo($id);
+				foreach($result as $row)
+				{
+					$name = $row->first_name." ".$row->middle_name." ".$row->last_name." ".$row->suffix_name; 
+					$this->session->set_userdata("user_name",$name);
+				}
 				redirect("student_control/mainPage");
 			}
 			else
 			{
-				redirect("main/mainPage");
+				redirect("main/index");
 			}
 		}
 		else
 		{
-			redirect("main/mainPage");
+			redirect("main/index");
 		}
 	}
 
@@ -46,15 +52,21 @@ class Student_control extends CI_Controller
 		$isStudent = $this->session->userdata("permissionStudent");
 		if($isStudent)
 		{
-			echo "Welcome to Student Page";
-			//$this->load->view('');
+			$data["user_name"] = $this->session->userdata("user_name");
+			$this->load->view('student_dashboard',$data);
 		}
 		else
 		{
-			redirect("main/mainPage");
+			redirect("main/index");
 		}
 		
 
 	}
+
+	public function logout()
+	{
+		redirect("main/index");
+	}
+
 
 }
