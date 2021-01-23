@@ -100,7 +100,7 @@ class Main extends CI_Controller {
                 }
                 else
                 {
-                    redirect("main/mainPage? message=Incorrect Email/Password");
+                    redirect("main/mainPage? message=Incorrect Username/Password");
                 }
                 
             }
