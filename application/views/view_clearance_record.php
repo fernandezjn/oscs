@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Clearance Records</title>
+    <title>Clearance Record</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -167,7 +167,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                     <li><a class="dropdown-item" href="#">View Profile</a></li>
-                    <li><a class="dropdown-item" href="logout">Logout</a></li>
+                    <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/admin_control/logout">Logout</a></li>
                   </ul>
                 </li>
               </ul>
@@ -180,7 +180,7 @@
                 <div class="col-md-12 mt-lg-4 mt-4">
                   <!-- Page Heading -->
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Clearance Records</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Clearance Record</h1>
                   </div>
                 </div>
 
@@ -201,85 +201,141 @@
 
                         <div class="form-row mb-3">
                           <div class="col-md-12">
-                            <label for="courseFilter">Course</label>
-                            <select class="custom-select  mr-sm-2" id="courseFilter" name="Course" required>
-                              <option value="#" selected>All Course</option>
-                              <?php foreach($course_list as $row) { ?>
-                                <option value="<?php echo $row->id ?>"><?php echo $row->course_name ?></option>
-                              <?php } ?>
+                            <label for="courseFilter">School Year</label>
+                            <select class="custom-select  mr-sm-2" id="sc_yearFilter" name="Course" required>
+                              <option selected>Choose...</option>
                             </select>
                           </div>
                         </div>
 
                         <div class="form-row">
                           <div class="col-md-12">
-                            <label for="yearLevelFilter">Year Level</label>
-                            <select class="custom-select mr-sm-2" id="yearLevelFilter" name="Year" required>
-                              <option value="#" selected>All Year Level</option>
-                              <?php foreach($year_list as $row) { ?>
-                                <option value="<?php echo $row->id ?>"><?php echo $row->level ?></option>
-                              <?php } ?>
+                            <label for="yearLevelFilter">Semester</label>
+                            <select class="custom-select mr-sm-2" id="semesterFilter" name="Year" required>
+                              <option selected>Choose...</option>
                             </select>
                           </div>
                         </div>   
 
-                        <input class="btn btn-success mt-4" type="submit" name="filter" value="Apply">
+                        <input class="btn btn-success mt-4" type="submit" name="" value="Apply">
                       </form>
                     </div>
                   </div>
-                </div> <!-- column -->
+                </div> <!-- /col-->
 
                 <div class="col-md-9">
                   <div class="card"> 
-                    <div class="card-header"> 
-                      <div class="d-md-flex align-items-center">
-                        <div class="mr-auto">
-                          <div class="dl">
-                              <h6 class="mb-0">List of Students</h6>
+                    <div class="card-body">
+                      <div class="col-md-12">
+                        <div class="row mb-2">
+                          <div class="col-md-4"> 
+                            <label for="studentName" class="col-form-label font-weight-bold">Name:</label>
+                            <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentName" placeholder="Picart, Angelia Rose Lim" readonly> 
+                          </div>  
+
+                              <div class="col-md-4"> 
+                                <label for="studentNumber" class="col-form-label font-weight-bold">Student Number:</label>
+                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentNumber" placeholder="2018-00161-TG-0" readonly> 
+                              </div> 
+
+                              <div class="col-md-4"> 
+                                <label for="studentType" class="col-form-label font-weight-bold">Student Type:</label>
+                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentType" placeholder="Regular" readonly> 
+                              </div> 
                           </div>
-                        </div>                      
+
+                          <div class="row mb-2">
+                          <div class="col-md-4"> 
+                            <label for="studentCourse" class="col-form-label font-weight-bold">Course:</label>
+                            <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentCourse" placeholder="BSIT" readonly> 
+                          </div>  
+
+                              <div class="col-md-4"> 
+                                <label for="studentYearSec" class="col-form-label font-weight-bold">Year & Section:</label>
+                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentYearSec" placeholder="3-1" readonly> 
+                              </div> 
+
+                              <div class="col-md-4"> 
+                                <label for="studentContactNo" class="col-form-label font-weight-bold">Contact Number:</label>
+                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentContactNo" placeholder="09123456789" readonly> 
+                              </div> 
+                          </div>
                       </div>
-                    </div>
-                    
-                    <div class="card-body"> 
+                          </div>
+                        </div>
+                      <div class="card"> 
+                    <div class="card-header"> 
+                      <h6 class="m-2 float-left font-weight-bold" id="clearanceSYLabel">School Year: </h6>
+                      <h6 class="m-2 float-left" id="clearanceSchoolYear">2020-2021</h6>
+                      <h6 class="m-2 float-right" id="clearanceSemester">2nd Semester</h6>
+                       </div>
+                      <div class="card-body">
                       <div class="table-responsive">
-                        <table class="table table-striped" id="tableStudents" cellspacing="0" width="100%">
+                        <table class="table mb-0" id="tableStudents" cellspacing="0" width="100%">
                           <thead>
                             <tr>
-                              <th scope="col">Student Number</th>
-                              <th scope="col">Name</th>
-                              <th scope="col">Course</th>
-                              <th scope="col">Year & Section</th>
-                              <th scope="col">Student Type</th>
-                              <th scope="col">Email</th>
-                              <th scope="col">Contact Number</th>
-                              <th scope="col">Records</th>
+                              <th scope="col">Department</th>
+                              <th scope="col">Clearing Official</th>
+                              <th scope="col">Status</th>
+                              <th scope="col"></th>
                             </tr>
                           </thead>
-                          
-                          <?php foreach($students_list as $row) { ?>  
+                            
                           <tbody>
-                                <tr>
-                                  <th scope="row"><?php echo $row->student_number ?></th>
-                                  <td><?php echo $row->name ?></td>
-                                  <td><?php echo $row->studCourse ?></td>
-                                  <td><?php echo $row->studLevel ?>-1</td>
-                                  <td><?php echo $row->studType ?></td>
-                                  <td><?php echo $row->email ?></td>
-                                  <td><?php echo $row->contact_number ?></td>
-                                  <td> 
-                                    <button type="button" class="btn btn-success btn-sm" onclick="window.location='<?php echo site_url("admin_control/view_clearance_record/".$row->userID ) ?>'">View</button>
-                                  </td>
-                                </tr>
-                            <?php } ?>
                                 
+
+                                <tr class="cell-1" data-toggle="collapse" data-target="#deficiency">
+                                  <th scope="row">The Chronicler</th>
+                                  <td>Eren Jaeger</td>
+                                  <td><span class="badge badge-danger">Pending</span></td>
+                                  <td class="table-elipse" data-toggle="collapse" data-target="#deficiency"><i class="fa fa-ellipsis-h text-black-50"></i></td>
+                                </tr>
+
+                                <tr id="deficiency" class="collapse row-child">
+                                  <td colspan="2">Deficiency #1</td>
+                                  <td colspan="1"><span class="badge badge-danger"><i class="fas fa-times-circle fa-fw text-center"></i></span></td>
+                                  <td></td>
+                                </tr>
+
+                                <tr class="cell-1">
+                                  <th scope="row">Office of Student Affairs</th>
+                                  <td>Levi Ackerman</td>
+                                  <td><span class="badge badge-success">Cleared</span></td>
+                                  <td></td>
+                                </tr>
+
+                                 <tr class="cell-1">
+                                  <th scope="row">Office of Academic Programs</th>
+                                  <td>Armin Arlert</td>
+                                  <td><span class="badge badge-success">Cleared</span></td>
+                                  <td></td>
+                                </tr>
+
+                                <tr class="mt-3 mb-3">
+                                  <td colspan="4"></td>
+                                  
+                                </tr>
+
+                                <tr class="cell-1">
+                                  <th scope="row">Registrar's Office</th>
+                                  <td>Bernadette I. Canlas</td>
+                                  <td>
+                                   
+                                      <div class="form-check">
+                                       <input class="form-check-input" type="checkbox" value="Received" id="Received"/> 
+                                      <label class="form-check-label" for="Received"> Received </label>
+                                       </div>
+                                  </td>
+                                  <td></td>
+                                </tr>
                           </tbody>
                         </table>
                       </div>
                     </div>
-                  </div>
                 </div>
-              </div>
+                </div>
+              </div> <!-- /row-->
+
             </div> <!-- /.container-fluid -->
           </div>
         </div>
@@ -292,16 +348,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  
-
-    <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> 
-    <script src="http://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script> 
-
-    <script>
-      $(document).ready( function () {
-        $('#tableStudents').DataTable();
-      });
-    </script>
 
     <script>
       $('#bar').click(function(){
@@ -310,8 +356,6 @@
 
       });
     </script>
-
-    
     
   </body>
 </html>

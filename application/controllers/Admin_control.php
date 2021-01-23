@@ -576,13 +576,13 @@ class Admin_control extends CI_Controller {
 		
 	}
 
-	public function student_clearance_record()
+	public function view_clearance_record()
 	{
 		$isAdmin = $this->session->userdata("permissionAdmin");
 		if($isAdmin)
 		{
 			$data["user_name"] = $this->session->userdata("user_name");
-			$this->load->view('student_clearance_record',$data);
+			$this->load->view('view_clearance_record',$data);
 		}
 		
 	}

@@ -234,7 +234,7 @@
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="MiddleName">Middle Name</label>
-                            <input type="text" class="form-control" id="nMiddleName" placeholder="Middle Name" name="middleName" required>
+                            <input type="text" class="form-control" id="MiddleName" placeholder="Middle Name" name="middleName" required>
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="Suffix">Suffix</label>
