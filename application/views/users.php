@@ -186,7 +186,6 @@
                     <h1 class="h3 mb-0 text-gray-800">User Management</h1>
                   </div>
                 </div>
-
                 <div class="col-md-12">
                   <div class="card"> 
                     <div class="card-header"> 
@@ -231,10 +230,10 @@
                                   <td> 
                                     <button type="button" class="btn btn-success btn-sm" onclick="window.location='<?php echo site_url("admin_control/viewUserInfo/".$row->id."")?>'">View</button>
                                     <button type="button" class="btn btn-warning btn-sm" onclick="window.location='<?php echo site_url("admin_control/editUserInfo/".$row->id."")?>'">Edit</button>
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="window.location='<?php echo site_url("admin_control/deleteUser/".$row->id."")?>'">Delete</button>
+                                    <!-- <button type="button" class="btn btn-danger btn-sm" onclick="window.location='<?php echo site_url("admin_control/deleteUser/".$row->id."")?>'">Delete</button> -->
 
-                                    <!--<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteUser">Delete</button>
-
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteUser" data-href="<?php echo site_url('admin_control/deleteUser/'.$row->id)?>" data-deleteName="<?php echo $row->name ?>">Delete</button>
+                   
                                     <div class="modal fade" id="DeleteUser" tabindex="-1" role="dialog" aria-labelledby="ModalDelete" aria-hidden="true">
                                       <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -245,15 +244,17 @@
                                             </button>
                                           </div>
                                           <div class="modal-body">
-                                            Are you sure to delete [name]?
+                                            <p class="message"></p>
                                           </div>
+                                          <input type="hidden" name="deleteID" id="dID" value="">
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-                                            <button type="button" class="btn btn-danger" >Yes, delete</button>
+                                            <a type="button" class="btn btn-danger btn-ok"> Yes, Delete</a>
                                           </div>
                                         </div>
                                       </div>
-                                    </div> -->
+                                    </div> 
+              
                                   </td>
                                 </tr>
                             <?php 
@@ -297,6 +298,19 @@
       $('#bar').click(function(){
         $(this).toggleClass('open');
         $('#page-content-wrapper ,#sidebar-wrapper').toggleClass('toggled' );
+      });
+    </script>
+
+    <script>
+
+      $('#DeleteUser').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+
+        //  var name = $(this).data("deleteName");
+
+        // $('.message').html('Are you sure to delete <strong>' + name + '</strong>?');
+
+        $('.message').html('Are you sure to delete user ?');
       });
     </script>
 
