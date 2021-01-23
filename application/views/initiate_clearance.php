@@ -42,7 +42,7 @@
             </li>
 
             <li class="sidebar-link"> 
-              <a href="mainPage" class="nav-link text-left active"  role="button" aria-haspopup="true" aria-expanded="false">
+              <a href="mainPage" class="nav-link text-left"  role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-chart-line"></i> Dashboard 
               </a>
             </li>
@@ -71,7 +71,7 @@
 
             <li class="sidebar-header"> Clearance</li>
             <li class=""> 
-              <a href="<?php echo base_url(); ?>index.php/admin_control/initiate_clearance" class="nav-link text-left"  role="button" >
+              <a href="<?php echo base_url(); ?>index.php/admin_control/initiate_clearance" class="nav-link text-left active"  role="button" >
                 <i class="fas fa-edit"></i> Initiate Clearance
               </a>
             </li>
@@ -191,8 +191,11 @@
                         <div class="form-row">
                           <div class="col-md-12">
                             <label for="UserRole">School Year</label>
-                            <select class="custom-select my-1 mr-sm-2" id="UserRole" onchange="addUserForm()" name="userRole" required>
-                              <option value="" selected>Choose...</option>
+                            <select class="custom-select my-1 mr-sm-2" id="schoolYear" name="scYear" required>
+                              <option value="#" selected>Choose...</option>
+                              <?php foreach($sc_year_list as $row) { ?>
+                                <option value="<?php echo $row->id ?>"><?php echo $row->school_years ?></option>
+                              <?php } ?>
                             </select>
                           </div>
                         </div>
@@ -200,10 +203,10 @@
                         <div class="form-row mt-2">
                           <div class="col-md-12">
                             <label for="UserRole">Semester</label>
-                            <select class="custom-select my-1 mr-sm-2" id="UserRole" onchange="addUserForm()" name="userRole" required>
-                              <option selected>Choose...</option>
-                              <option>1st Semester</option>
-                              <option>2nd Semester</option>
+                            <select class="custom-select my-1 mr-sm-2" id="semester" name="sem" required>
+                              <option value="#" selected>Choose...</option>
+                              <option value="1" >1st Semester</option>
+                              <option value="2" >2nd Semester</option>
                               
                             </select>
                           </div>
@@ -215,7 +218,7 @@
                             <input type="date" class="form-control" id="dueDate" name="clearanceDueDate" required>
                           </div>
                         </div>
-                        <input class="btn btn-success" type="submit" name="addUser" value="Initiate">
+                        <input class="btn btn-success" type="submit" name="initiateClearance" value="Initiate">
                       </form>
                     </div>
                   </div>

@@ -203,7 +203,10 @@
                           <div class="col-md-12">
                             <label for="courseFilter">Course</label>
                             <select class="custom-select  mr-sm-2" id="courseFilter" name="Course" required>
-                              <option selected>All Course</option>
+                              <option value="#" selected>All Course</option>
+                              <?php foreach($course_list as $row) { ?>
+                                <option value="<?php echo $row->id ?>"><?php echo $row->course_name ?></option>
+                              <?php } ?>
                             </select>
                           </div>
                         </div>
@@ -212,12 +215,15 @@
                           <div class="col-md-12">
                             <label for="yearLevelFilter">Year Level</label>
                             <select class="custom-select mr-sm-2" id="yearLevelFilter" name="Year" required>
-                              <option selected>All Year Level</option>
+                              <option value="#" selected>All Year Level</option>
+                              <?php foreach($year_list as $row) { ?>
+                                <option value="<?php echo $row->id ?>"><?php echo $row->level ?></option>
+                              <?php } ?>
                             </select>
                           </div>
                         </div>   
 
-                        <input class="btn btn-success mt-4" type="submit" name="" value="Apply">
+                        <input class="btn btn-success mt-4" type="submit" name="filter" value="Apply">
                       </form>
                     </div>
                   </div>
@@ -250,21 +256,22 @@
                               <th scope="col">Records</th>
                             </tr>
                           </thead>
-                            
+                          
+                          <?php foreach($students_list as $row) { ?>  
                           <tbody>
                                 <tr>
-                                  <th scope="row">2018-00161-TG-0</th>
-                                  <td>Picart, Angelia Rose Lim</td>
-                                  <td>BSIT</td>
-                                  <td>3-1</td>
-                                  <td>Regular</td>
-                                  <td>picartangelia1@gmail.com</td>
-                                  <td>09123456789</td>
+                                  <th scope="row"><?php echo $row->student_number ?></th>
+                                  <td><?php echo $row->name ?></td>
+                                  <td><?php echo $row->studCourse ?></td>
+                                  <td><?php echo $row->studLevel ?>-1</td>
+                                  <td><?php echo $row->studType ?></td>
+                                  <td><?php echo $row->email ?></td>
+                                  <td><?php echo $row->contact_number ?></td>
                                   <td> 
-                                    <button type="button" class="btn btn-success btn-sm" onclick="window.location='<?php echo base_url(); ?>index.php/admin_control/student_clearance_record'">View</button>
+                                    <button type="button" class="btn btn-success btn-sm" onclick="window.location='<?php echo site_url("admin_control/student_clearance_record/".$row->userID ) ?>'">View</button>
                                   </td>
                                 </tr>
-
+                            <?php } ?>
                                 
                           </tbody>
                         </table>

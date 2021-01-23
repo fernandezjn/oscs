@@ -496,18 +496,82 @@ class Admin_control extends CI_Controller {
 		if($isAdmin)
 		{
 			$data["user_name"] = $this->session->userdata("user_name");
+			$data["sc_year_list"] = $this->oscs_model->getScYears();
 			$this->load->view('initiate_clearance',$data);
+
+			if($this->input->post("initiateClearance"))
+			{
+				$data_form = $this->input->post(NULL,TRUE);
+				if($data_form)
+				{
+					$sc_year = $data_form["scYear"];
+					$sem = $data_form["sem"];
+					$dueDate = $data_form["clearanceDueDate"];
+
+					$this->oscs_model->newClearanceData($sc_year,$sem,$dueDate);
+
+					$students_list = $this->oscs_model->getStudents();
+					$departments_list = $this->oscs_model->getOffices();
+
+					
+
+					foreach($students_list as $row)
+					{
+
+						$studeNum = $row->student_number;
+						foreach($departments_list as $row1)
+						{
+							$dep = $row1->id ;
+							if($row1->id == '5')
+							{
+								for($pos = 0; $pos < 3; $pos++)
+								{
+									$this->oscs_model->createClearanceEntry($studeNum, $sc_year, $sem, $dep);
+								}
+							}
+							else
+							{
+								$this->oscs_model->createClearanceEntry($studeNum, $sc_year, $sem, $dep);
+							}
+						}
+					}
+
+					redirect("admin_control/clearance_records");
+				}
+			}
 		}
 		
 	}
 
-	public function clearance_records()
+	public function clearance_records($course=null,$year=null)
 	{
 		$isAdmin = $this->session->userdata("permissionAdmin");
 		if($isAdmin)
 		{
 			$data["user_name"] = $this->session->userdata("user_name");
+			$data["course_list"] = $this->oscs_model->getCourses();
+			$data["year_list"] = $this->oscs_model->getYear();
+			$data["students_list"] = $this->oscs_model->getStudents($year,$course);
 			$this->load->view('clearance_records',$data);
+
+			if($this->input->post("filter"))
+			{
+				$data_form = $this->input->post(NULL,TRUE);
+				if($data_form)
+				{
+					$c = $data_form["Course"];
+					$y = $data_form["Year"];
+
+					if($c == "#" && $y == "#")
+					{
+						redirect("admin_control/clearance_records");
+					}
+					else
+					{
+						redirect("admin_control/clearance_records/".$c."/".$y);
+					}
+				}
+			}
 		}
 		
 	}
@@ -521,6 +585,11 @@ class Admin_control extends CI_Controller {
 			$this->load->view('student_clearance_record',$data);
 		}
 		
+	}
+
+	public function yeet()
+	{
+
 	}
 
 

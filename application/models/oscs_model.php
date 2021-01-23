@@ -173,8 +173,8 @@
 
         public function getOffices() // Departments
         {
-             $query = $this->db->query("SELECT * FROM departments");
-
+            $query = $this->db->query("SELECT * FROM departments");
+            
             return $query->result();
         }
 
@@ -192,7 +192,7 @@
             return $query->result();
         }
 
-        public function getYear() 
+        public function getYear() //Year Levels
         {
              $query = $this->db->query("SELECT * FROM year_levels");
 
@@ -209,6 +209,49 @@
         public function getStudent_types()
         {
              $query = $this->db->query("SELECT * FROM student_types");
+
+            return $query->result();
+        }
+
+        public function getScYears() //School Years
+        {
+            $query = $this->db->query("SELECT * FROM sc_years");
+
+            return $query->result();
+        }
+
+        public function newClearanceData($year,$sem,$due)
+        {
+            $query = "UPDATE current_clearance_data SET sc_year_id ='".$year."',semester='".$sem."', dueDate='".$due."' WHERE id=1";
+
+            $this->db->query($query);
+        }
+
+        public function createClearanceEntry($studeNum, $scyear, $sem, $dep)
+        {
+            $query = "INSERT INTO `clearance_entries`( `student_number`, `sc_year_id`, `semester`, `department_id`, `deficiencies`, `user_id`, `review_status`, `req_review_status`) 
+            VALUES ('".$studeNum."', '".$scyear."', '".$sem."', '".$dep."','', '0','0','0')";
+
+            $this->db->query($query);
+        }
+
+        public function getStudents($year=null,$course=null)
+        {
+            if($year == null && $course == null)
+            {    $query = $this->db->query("SELECT * , CONCAT(last_name,', ',first_name,' ',middle_name,' ', suffix_name) as 'name', c.course_name as 'studCourse', d.type as 'studType', e.level as 'studLevel', a.id as 'userID' FROM user_info a INNER JOIN users b on b.id = a.id 
+                    INNER JOIN courses c on c.id = a.course_id
+                    INNER JOIN student_types d on d.id = a.student_type_id
+                    INNER JOIN year_levels e on e.id = a.year_id
+                     WHERE b.type='3' ");
+            }
+            else
+            {
+                $query = $this->db->query("SELECT * , CONCAT(last_name,', ',first_name,' ',middle_name,' ', suffix_name) as 'name', c.course_name as 'studCourse', d.type as 'studType', e.level as 'studLevel', a.id as 'userID' FROM user_info a INNER JOIN users b on b.id = a.id 
+                    INNER JOIN courses c on c.id = a.course_id
+                    INNER JOIN student_types d on d.id = a.student_type_id
+                    INNER JOIN year_levels e on e.id = a.year_id
+                    WHERE b.type='3' AND a.course_id='".$course."' AND a.year_id='".$year."'");
+            }
 
             return $query->result();
         }
