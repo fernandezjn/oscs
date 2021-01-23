@@ -202,7 +202,7 @@
                         <div class="form-row mb-3">
                           <div class="col-md-12">
                             <label for="courseFilter">School Year</label>
-                            <select class="custom-select  mr-sm-2" id="sc_yearFilter" name="Course" required>
+                            <select class="custom-select  mr-sm-2" id="sc_yearFilter" name="SchoolYear" required>
                               <option selected>Choose...</option>
                             </select>
                           </div>
@@ -211,7 +211,7 @@
                         <div class="form-row">
                           <div class="col-md-12">
                             <label for="yearLevelFilter">Semester</label>
-                            <select class="custom-select mr-sm-2" id="semesterFilter" name="Year" required>
+                            <select class="custom-select mr-sm-2" id="semesterFilter" name="Semester" required>
                               <option selected>Choose...</option>
                             </select>
                           </div>
@@ -271,7 +271,7 @@
                        </div>
                       <div class="card-body">
                       <div class="table-responsive">
-                        <table class="table mb-0" id="tableStudents" cellspacing="0" width="100%">
+                        <table class="table mb-0" id="tableStudentClearanceRecord" cellspacing="0" width="100%">
                           <thead>
                             <tr>
                               <th scope="col">Department</th>
