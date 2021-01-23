@@ -490,9 +490,37 @@ class Admin_control extends CI_Controller {
 		redirect("main/index");
 	}
 
-	public function yeet()
+	public function initiate_clearance()
 	{
+		$isAdmin = $this->session->userdata("permissionAdmin");
+		if($isAdmin)
+		{
+			$data["user_name"] = $this->session->userdata("user_name");
+			$this->load->view('initiate_clearance',$data);
+		}
+		
+	}
 
+	public function clearance_records()
+	{
+		$isAdmin = $this->session->userdata("permissionAdmin");
+		if($isAdmin)
+		{
+			$data["user_name"] = $this->session->userdata("user_name");
+			$this->load->view('clearance_records',$data);
+		}
+		
+	}
+
+	public function student_clearance_record()
+	{
+		$isAdmin = $this->session->userdata("permissionAdmin");
+		if($isAdmin)
+		{
+			$data["user_name"] = $this->session->userdata("user_name");
+			$this->load->view('student_clearance_record',$data);
+		}
+		
 	}
 
 

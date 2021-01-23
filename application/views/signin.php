@@ -47,11 +47,11 @@
                             <p style="color:red; padding-top:20px" align="center"><?= $_GET['message']?></p>                    
                     <?php endif; ?>
 
-	      			<div class="checkbox mb-3">
+	      			<!--<div class="checkbox mb-3">
 	        			<label>
 	          				<input type="checkbox" name="rememberME"> Remember me
 	        			</label>
-	      			</div>
+	      			</div>-->
 	      			
 	      			<input class="btn btn-lg btn-primary btn-block" type="submit" name="signin" value="Sign In">
 	      			<label class="font-weight-normal mt-4"><a href="<?php echo base_url(); ?>index.php/main/forgot_password">Forgot Password</a></label>

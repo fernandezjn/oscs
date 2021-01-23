@@ -76,14 +76,13 @@
             </li>
 
             <li class=""> 
-              <a href="#" class="nav-link text-left"  role="button" >
-                <i class="fa fa-clipboard"></i> Clearance Records 
+              <a href="<?php echo base_url(); ?>index.php/admin_control/initiate_clearance" class="nav-link text-left"  role="button" >
+                <i class="fas fa-edit"></i> Initiate Clearance
               </a>
             </li>
-          
             <li class=""> 
-              <a href="#" class="nav-link text-left"  role="button" >
-                <i class="fas fa-file-signature"></i>   Clearance Form
+              <a href="<?php echo base_url(); ?>index.php/admin_control/clearance_records" class="nav-link text-left"  role="button" >
+                <i class="fa fa-clipboard"></i> Clearance Records 
               </a>
             </li>
           </ul>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Dashboard</title>
+    <title>Initiate Clearance</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -174,74 +174,49 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container-fluid px-lg-4">
+            <div class="container px-lg-4">
               <div class="row">
                 <div class="col-md-12 mt-lg-4 mt-4">
                   <!-- Page Heading -->
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-light shadow-sm">
-                      <i class="fa fa-download fa-sm text-white-50"></i>  Generate Report
-                    </a>
+                    <h1 class="h3 mb-0 text-gray-800">Initiate Clearance</h1>
                   </div>
                 </div>
 
                 <div class="col-md-12">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <div class="card text-center ">
-                        <div class="card-body">
-                          <h5 class="card-title mb-3">Cleared Students</h5>
-                          <h1 class="display-5">100</h1>
-                        </div>
-                        <div class="card-footer">
-                          <a href="#" class="mb-1 view-details">
-                            <span class="text-success view-details card-text">View Details <i class="fas fa-angle-double-right"></i></span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="card p-3">
+                    <div class="card-body">
+                      <form method="POST"> 
 
-                    <div class="col-sm-3">
-                      <div class="card text-center ">
-                        <div class="card-body">
-                          <h5 class="card-title mb-3">Uncleared Students</h5>
-                          <h1 class="display-5">400</h1>
+                        <div class="form-row">
+                          <div class="col-md-12">
+                            <label for="UserRole">School Year</label>
+                            <select class="custom-select my-1 mr-sm-2" id="UserRole" onchange="addUserForm()" name="userRole" required>
+                              <option value="" selected>Choose...</option>
+                            </select>
+                          </div>
                         </div>
-                        <div class="card-footer">
-                          <a href="#" class="mb-1">
-                            <span class="text-danger view-details card-text"> View Details <i class="fas fa-angle-double-right"></i></span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
 
-                    <div class="col-sm-3">
-                      <div class="card text-center">
-                        <div class="card-body">
-                          <h5 class="card-title mb-3">Clearance Request</h5>
-                          <h1 class="display-5">50</h1>
+                        <div class="form-row mt-2">
+                          <div class="col-md-12">
+                            <label for="UserRole">Semester</label>
+                            <select class="custom-select my-1 mr-sm-2" id="UserRole" onchange="addUserForm()" name="userRole" required>
+                              <option selected>Choose...</option>
+                              <option>1st Semester</option>
+                              <option>2nd Semester</option>
+                              
+                            </select>
+                          </div>
                         </div>
-                        <div class="card-footer">
-                          <a href="#" class="mb-1">
-                            <span class="text-info view-details card-text"> View Details <i class="fas fa-angle-double-right"></i></span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
 
-                    <div class="col-sm-3">
-                      <div class="card text-center">
-                        <div class="card-body">
-                          <h5 class="card-title mb-3">Total Students</h5>
-                          <h1 class="display-5">800</h1>
+                        <div class="form-row mt-2">
+                          <div class="col-md-6 mb-3">
+                            <label for="Username">To be accomplished until</label>
+                            <input type="date" class="form-control" id="dueDate" name="clearanceDueDate" required>
+                          </div>
                         </div>
-                        <div class="card-footer">
-                          <a href="#" class="mb-1">
-                            <span class="text-success view-details card-text"> View Details <i class="fas fa-angle-double-right"></i></span>
-                          </a>
-                        </div>
-                      </div>
+                        <input class="btn btn-success" type="submit" name="addUser" value="Initiate">
+                      </form>
                     </div>
                   </div>
                 </div> <!-- column -->

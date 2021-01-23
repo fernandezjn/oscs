@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Dashboard</title>
+    <title>Clearance Records</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -20,6 +20,7 @@
 
     <!-- CSS -->
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>assets/css/style.css"> 
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
   </head>
   <body>
     <div id="wrapper">
@@ -179,72 +180,98 @@
                 <div class="col-md-12 mt-lg-4 mt-4">
                   <!-- Page Heading -->
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-light shadow-sm">
-                      <i class="fa fa-download fa-sm text-white-50"></i>  Generate Report
-                    </a>
+                    <h1 class="h3 mb-0 text-gray-800">Clearance Records</h1>
                   </div>
                 </div>
 
-                <div class="col-md-12">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <div class="card text-center ">
-                        <div class="card-body">
-                          <h5 class="card-title mb-3">Cleared Students</h5>
-                          <h1 class="display-5">100</h1>
-                        </div>
-                        <div class="card-footer">
-                          <a href="#" class="mb-1 view-details">
-                            <span class="text-success view-details card-text">View Details <i class="fas fa-angle-double-right"></i></span>
-                          </a>
+                <div class="col-md-3">
+                  <div class="card">
+                    <div class="card-header"> 
+                      <div class="d-md-flex align-items-center">
+                        <div class="mr-auto">
+                          <div class="dl">
+                              <h6 class="mb-0"><i class="fas fa-filter fa-sm"></i> Filter by</h6>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div class="col-sm-3">
-                      <div class="card text-center ">
-                        <div class="card-body">
-                          <h5 class="card-title mb-3">Uncleared Students</h5>
-                          <h1 class="display-5">400</h1>
-                        </div>
-                        <div class="card-footer">
-                          <a href="#" class="mb-1">
-                            <span class="text-danger view-details card-text"> View Details <i class="fas fa-angle-double-right"></i></span>
-                          </a>
-                        </div>
-                      </div>
                     </div>
+                    <div class="card-body">
+                      <form method="POST"> 
 
-                    <div class="col-sm-3">
-                      <div class="card text-center">
-                        <div class="card-body">
-                          <h5 class="card-title mb-3">Clearance Request</h5>
-                          <h1 class="display-5">50</h1>
+                        <div class="form-row mb-3">
+                          <div class="col-md-12">
+                            <label for="courseFilter">Course</label>
+                            <select class="custom-select  mr-sm-2" id="courseFilter" name="Course" required>
+                              <option selected>All Course</option>
+                            </select>
+                          </div>
                         </div>
-                        <div class="card-footer">
-                          <a href="#" class="mb-1">
-                            <span class="text-info view-details card-text"> View Details <i class="fas fa-angle-double-right"></i></span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
 
-                    <div class="col-sm-3">
-                      <div class="card text-center">
-                        <div class="card-body">
-                          <h5 class="card-title mb-3">Total Students</h5>
-                          <h1 class="display-5">800</h1>
-                        </div>
-                        <div class="card-footer">
-                          <a href="#" class="mb-1">
-                            <span class="text-success view-details card-text"> View Details <i class="fas fa-angle-double-right"></i></span>
-                          </a>
-                        </div>
-                      </div>
+                        <div class="form-row">
+                          <div class="col-md-12">
+                            <label for="yearLevelFilter">Year Level</label>
+                            <select class="custom-select mr-sm-2" id="yearLevelFilter" name="Year" required>
+                              <option selected>All Year Level</option>
+                            </select>
+                          </div>
+                        </div>   
+
+                        <input class="btn btn-success mt-4" type="submit" name="" value="Apply">
+                      </form>
                     </div>
                   </div>
                 </div> <!-- column -->
+
+                <div class="col-md-9">
+                  <div class="card"> 
+                    <div class="card-header"> 
+                      <div class="d-md-flex align-items-center">
+                        <div class="mr-auto">
+                          <div class="dl">
+                              <h6 class="mb-0">List of Students</h6>
+                          </div>
+                        </div>                      
+                      </div>
+                    </div>
+                    
+                    <div class="card-body"> 
+                      <div class="table-responsive">
+                        <table class="table table-striped" id="tableStudents" cellspacing="0" width="100%">
+                          <thead>
+                            <tr>
+                              <th scope="col">Student Number</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Course</th>
+                              <th scope="col">Year & Section</th>
+                              <th scope="col">Student Type</th>
+                              <th scope="col">Email</th>
+                              <th scope="col">Contact Number</th>
+                              <th scope="col">Records</th>
+                            </tr>
+                          </thead>
+                            
+                          <tbody>
+                                <tr>
+                                  <th scope="row">2018-00161-TG-0</th>
+                                  <td>Picart, Angelia Rose Lim</td>
+                                  <td>BSIT</td>
+                                  <td>3-1</td>
+                                  <td>Regular</td>
+                                  <td>picartangelia1@gmail.com</td>
+                                  <td>09123456789</td>
+                                  <td> 
+                                    <button type="button" class="btn btn-success btn-sm" onclick="window.location='<?php echo base_url(); ?>index.php/admin_control/student_clearance_record'">View</button>
+                                  </td>
+                                </tr>
+
+                                
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div> <!-- /.container-fluid -->
           </div>
@@ -258,6 +285,16 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  
+
+    <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> 
+    <script src="http://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script> 
+
+    <script>
+      $(document).ready( function () {
+        $('#tableStudents').DataTable();
+      });
+    </script>
 
     <script>
       $('#bar').click(function(){
