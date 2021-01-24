@@ -71,9 +71,15 @@ class Student_control extends CI_Controller
 					$data["studCourse"] = $row->course_name;
 				}
 			}
+			$current_clearance_data = $this->oscs_model->getCurrentClearanceData();
+			foreach($current_clearance_data as $row)
+			{
+				$year = $row->sc_year_id;
+				$sem = $row->semester;
+			}
 			$studNum = $this->session->userdata("studNum");
-			$data["approved_list"] = $this->oscs_model->getAllApprovedClearance($studNum);
-			$data["pending_list"] = $this->oscs_model->getPendingClearance($studNum);
+			$data["approved_list"] = $this->oscs_model->getAllApprovedClearance($studNum,$year,$sem);
+			$data["pending_list"] = $this->oscs_model->getPendingClearance($studNum,$year,$sem);
 			$this->load->view('student_dashboard',$data);
 		}
 		else

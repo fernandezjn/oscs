@@ -43,7 +43,7 @@
             </li>
 
             <li class="sidebar-link"> 
-              <a href="mainPage" class="nav-link text-left active"  role="button" aria-haspopup="true" aria-expanded="false">
+              <a href="<?php echo site_url('admin_control/mainPage')?>" class="nav-link text-left active"  role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-chart-line"></i> Dashboard 
               </a>
             </li>
