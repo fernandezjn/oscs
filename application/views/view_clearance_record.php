@@ -293,28 +293,30 @@
                           <tbody>
                                 
                               <?php foreach($ClearanceEntries as $row) { ?>
-                                <tr class="cell-1" data-toggle="collapse" data-target="#deficiency">
-                                  <th scope="row"><?php echo $row->department_name ?></th>
-                                  <td><?php echo $row->name ?></td>
+                                <?php if ($row->department_name != "Registrar's Office") {  ?>
+                                  <tr class="cell-1" data-toggle="collapse" data-target="#deficiency">
+                                    <th scope="row"><?php echo $row->department_name ?></th>
+                                    <td><?php echo $row->name ?></td>
 
-                                <?php if($row->deficiencies == "Clear") {
-                                  
-                                ?>
+                                  <?php if($row->deficiencies == "Clear") {
+                                    
+                                  ?>
 
-                                  <td><span class="badge badge-success">Cleared</span></td>
-                                  
-                                <?php }elseif ($row->deficiencies == "") {
-                                 
-                                ?>  
-                                    <td><span class="badge badge-danger">Pending</span></td>
-                                    <td class="table-elipse" data-toggle="collapse" data-target="#deficiency"><i class="fa fa-ellipsis-h text-black-50"></i></td>
-                                  </tr>
+                                    <td><span class="badge badge-success">Cleared</span></td>
+                                    
+                                  <?php }else {
+                                   
+                                  ?>  
+                                      <td><span class="badge badge-danger">Pending</span></td>
+                                      <td class="table-elipse" data-toggle="collapse" data-target="#deficiency"><i class="fa fa-ellipsis-h text-black-50"></i></td>
+                                    </tr>
 
-                                  <tr id="deficiency" class="collapse row-child">
-                                    <td colspan="2"><?php $row->deficiencies ?></td>
-                                    <td colspan="1"><span class="badge badge-danger"><i class="fas fa-times-circle fa-fw text-center"></i></span></td>
-                                    <td></td>
-                                  </tr>
+                                    <tr id="deficiency" class="collapse row-child">
+                                      <td colspan="2"><?php echo $row->deficiencies ?></td>
+                                      <td colspan="1"><span class="badge badge-danger"><i class="fas fa-times-circle fa-fw text-center"></i></span></td>
+                                      <td></td>
+                                    </tr>
+                                  <?php } ?>
                                 <?php } ?>
                               <?php } ?>
                                 <tr class="mt-3 mb-3">
@@ -326,11 +328,12 @@
                                   <th scope="row">Registrar's Office</th>
                                   <td>Bernadette I. Canlas</td>
                                   <td>
-                                   
+                                    <form method=post>
                                       <div class="form-check">
                                        <input class="form-check-input" type="checkbox" value="Received" id="Received"/> 
                                       <label class="form-check-label" for="Received"> Received </label>
                                        </div>
+                                    </form>
                                   </td>
                                   <td></td>
                                 </tr>
