@@ -304,7 +304,7 @@
                                   ?>
 
                                     <td><span class="badge badge-success">Cleared</span></td>
-                                    
+                                    <td></td>
                                   <?php }else {
                                    
                                   ?>  
@@ -330,10 +330,10 @@
                                   <td>Bernadette I. Canlas</td>
                                   <td>
                                     <form method=post>
-                                      <div class="form-check">
-                                       <input class="form-check-input" type="checkbox" value="Received" id="Received"/> 
-                                      <label class="form-check-label" for="Received"> Received </label>
-                                       </div>
+                                       <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-success mr-1">Clear</button>
+                                        <button type="button" class="btn btn-danger ">Unclear</button>
+                                      </div>
                                     </form>
                                   </td>
                                   <td></td>
