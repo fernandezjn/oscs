@@ -43,7 +43,7 @@
             </li>
 
             <li class="sidebar-link"> 
-              <a href="mainPage" class="nav-link text-left active"  role="button" aria-haspopup="true" aria-expanded="false">
+              <a href="<?php echo site_url('official_control/mainPage')?>" class="nav-link text-left active"  role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-chart-line"></i> Dashboard 
               </a>
             </li>
@@ -259,14 +259,15 @@
                           </thead>
 
                           <tbody>
+                            <?php foreach($students_list as $row) { ?>
                                 <tr>
-                                  <td>2018-00163-TG-0</td>
-                                  <td>Picart, Angelia Rose</td>
-                                  <td>BSIT</td>
-                                  <td>3-1</td>
-                                  <td>Regular</td>
-                                  <td>picartangelia1@gmail.com</td>
-                                  <td>09123456789</td>
+                                  <td><?php echo $row->studNum ?></td>
+                                  <td><?php echo $row->name ?></td>
+                                  <td><?php echo $row->course ?></td>
+                                  <td><?php echo $row->year ?>-1</td>
+                                  <td><?php echo $row->studType ?></td>
+                                  <td><?php echo $row->email ?></td>
+                                  <td><?php echo $row->contact ?></td>
                                   <td> 
                                     <form>
                                     <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#addDeficiencyModal"><i class="fas fa-plus"></i> Add Deficiency</button>
@@ -299,6 +300,7 @@
                                     </div>
                                   </td>
                                 </tr>
+                              <?php } ?>
                             
                                 
                           </tbody>

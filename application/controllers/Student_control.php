@@ -32,7 +32,15 @@ class Student_control extends CI_Controller
 				foreach($result as $row)
 				{
 					$name = $row->first_name." ".$row->middle_name." ".$row->last_name." ".$row->suffix_name; 
+					$studentNum = $row->student_number;
+					$studentCourse = $row->course_id;
+					$studentYear = $row->year_id;
+
 					$this->session->set_userdata("user_name",$name);
+					$this->session->set_userdata("studCourse",$studentCourse);
+					$this->session->set_userdata("userID",$id);
+					$this->session->set_userdata("studYear",$studentYear);
+					$this->session->set_userdata("studNum",$studentNum);
 				}
 				redirect("student_control/mainPage");
 			}
@@ -53,6 +61,19 @@ class Student_control extends CI_Controller
 		if($isStudent)
 		{
 			$data["user_name"] = $this->session->userdata("user_name");
+			$data["studYear"] = $this->session->userdata("studYear");
+			$studCourse = $this->session->userdata("studCourse");
+			$course_list = $this->oscs_model->getCourses();
+			foreach($course_list as $row)
+			{
+				if($row->id == $studCourse)
+				{
+					$data["studCourse"] = $row->course_name;
+				}
+			}
+			$studNum = $this->session->userdata("studNum");
+			$data["approved_list"] = $this->oscs_model->getAllApprovedClearance($studNum);
+			$data["pending_list"] = $this->oscs_model->getPendingClearance($studNum);
 			$this->load->view('student_dashboard',$data);
 		}
 		else

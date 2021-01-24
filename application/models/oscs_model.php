@@ -274,29 +274,69 @@
             return $query->result();
         }
 
-        public function getClearanceEntries($studNum,$scYear,$sem)
+        public function getClearanceEntries($studNum,$scYear,$sem) //perStudent
         {
             $query = $this->db->query("SELECT * , CONCAT(c.first_name,' ',c.last_name) as 'name', a.student_number as 'studNum' from clearance_entries a INNER JOIN departments b on b.id = a.department_id INNER JOIN user_info c on c.department_id = b.id WHERE a.student_number = '".$studNum."' AND a.sc_year_id = '".$scYear."' AND a.semester = '".$sem."'");
             
             return $query->result();
         }
 
-        public function clearClearance($studNum, $dep)
+        public function getClearanceEntries2($dep,$scYear,$sem,$course=null,$yearLevel=null) //perDepartnment
         {
-            $query = "UPDATE clearance_entries SET deficiencies = 'Clear' WHERE student_number = '".$studNum."' AND department_id = '".$dep."'";
+            if($course == null && $yearLevel == null)
+            {
+                $query = $this->db->query("SELECT * , CONCAT(c.last_name,', ',c.first_name,' ',c.middle_name,' ',c.suffix_name) as 'name', a.student_number as 'studNum', d.course_name as 'course', e.type as 'studType', c.email as 'email', c.contact_number as 'contact', c.year_id as 'year' 
+                from clearance_entries a 
+                INNER JOIN departments b on b.id = a.department_id 
+                INNER JOIN user_info c on c.student_number = a.student_number
+                INNER JOIN courses d on d.id = c.course_id
+                INNER JOIN student_types e on e.id = c.student_type_id
+                WHERE a.department_id = '".$dep."' AND a.sc_year_id = '".$scYear."' AND a.semester = '".$sem."'");
+            }else
+            {
+            $query = $this->db->query("SELECT * , CONCAT(c.last_name,', ',c.first_name,' ',c.middle_name,' ',c.suffix_name) as 'name', a.student_number as 'studNum', d.course_name as 'course', e.type as 'studType', c.email as 'email', c.contact_number as 'contact', c.year_id as 'year' 
+                from clearance_entries a 
+                INNER JOIN departments b on b.id = a.department_id 
+                INNER JOIN user_info c on c.student_number = a.student_number
+                INNER JOIN courses d on d.id = c.course_id
+                INNER JOIN student_types e on e.id = c.student_type_id
+                WHERE a.department_id = '".$dep."' AND a.sc_year_id = '".$scYear."' AND a.semester = '".$sem."' AND c.course_id = '".$course."' AND c.year_id = '".$yearLevel."'");
+            }
+            return $query->result();
+        }
+
+        public function clearClearance($studNum, $dep, $id)
+        {
+            $query = "UPDATE clearance_entries SET deficiencies = 'Clear', user_id = '".$id."', review_status = '1' WHERE student_number = '".$studNum."' AND department_id = '".$dep."'";
             $this->db->query($query);
         }
 
-        public function unclearClearance($studNum, $dep, $def)
+        public function unclearClearance($studNum, $dep, $def, $id)
         {
-            $query = "UPDATE clearance_entries SET deficiencies = '".$def."' WHERE student_number = '".$studNum."' AND department_id = '".$dep."'";
+            $query = "UPDATE clearance_entries SET deficiencies = '".$def."' , user_id = '".$id."', review_status = '1' WHERE student_number = '".$studNum."' AND department_id = '".$dep."'";
             $this->db->query($query);
         }
 
-        public function unclearRegOffClearance($studNum, $dep)
+        public function unclearRegOffClearance($studNum, $dep, $id)
         {
-            $query = "UPDATE clearance_entries SET deficiencies = 'notClear' WHERE student_number = '".$studNum."' AND department_id = '".$dep."'";
+            $query = "UPDATE clearance_entries SET deficiencies = 'notClear', user_id = '".$id."', review_status = '1' WHERE student_number = '".$studNum."' AND department_id = '".$dep."'";
             $this->db->query($query);
+        }
+
+        public function getAllApprovedClearance($studNum)
+        {
+            $query = $this->db->query("SELECT * , CONCAT (c.last_name,', ',c.first_name,' ',c.middle_name,' ', c.suffix_name) as 'name'
+                From clearance_entries a INNER JOIN departments b on b.id = a.department_id INNER JOIN user_info c on c.department_id = a.department_id  WHERE a.deficiencies = 'Clear' AND a.student_number = '".$studNum."'");
+
+            return $query->result();
+        }
+
+        public function getPendingClearance($studNum)
+        {
+            $query = $this->db->query("SELECT * , CONCAT (c.last_name,', ',c.first_name,' ',c.middle_name,' ', c.suffix_name) as 'name'
+                From clearance_entries a INNER JOIN departments b on b.id = a.department_id INNER JOIN user_info c on c.department_id = a.department_id  WHERE a.deficiencies != 'Clear' AND a.student_number = '".$studNum."'");
+
+            return $query->result();
         }
 
 

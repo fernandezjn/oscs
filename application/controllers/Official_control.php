@@ -32,7 +32,9 @@ class Official_control extends CI_Controller
 				foreach($result as $row)
 				{
 					$name = $row->first_name." ".$row->middle_name." ".$row->last_name." ".$row->suffix_name; 
+					$dep_id = $row->department_id;
 					$this->session->set_userdata("user_name",$name);
+					$this->session->set_userdata("depID",$dep_id);
 				}
 				redirect("official_control/mainPage");
 			}
@@ -63,13 +65,45 @@ class Official_control extends CI_Controller
 
 	}
 
-	public function review_student_clearance()
+	public function review_student_clearance($year=null,$course=null)
 	{
 		$isOfficial = $this->session->userdata("permissionOfficial");
 		if($isOfficial)
 		{
+			$dep = $this->session->userdata("depID");
 			$data["user_name"] = $this->session->userdata("user_name");
+			$data["course_list"] = $this->oscs_model->getCourses();
+			$data["year_list"] = $this->oscs_model->getYear();
+
+			$current_clearance_info = $this->oscs_model->getCurrentClearanceData();
+			foreach($current_clearance_info as $row)
+			{
+				$scYear = $row->sc_year_id;
+				$sem = $row->semester;
+			}
+
+			$data["students_list"] = $this->oscs_model->getClearanceEntries2($dep,$scYear,$sem,$course,$year);
+
 			$this->load->view('review_student_clearance',$data);
+
+			if($this->input->post("filter"))
+			{
+				$data_form = $this->input->post(NULL,TRUE);
+				if($data_form)
+				{
+					$c = $data_form["Course"];
+					$y = $data_form["Year"];
+
+					if($c == "#" && $y == "#")
+					{
+						redirect("official_control/review_student_clearance");
+					}
+					else
+					{
+						redirect("official_control/review_student_clearance/".$c."/".$y);
+					}
+				}
+			}
 		}
 		else
 		{

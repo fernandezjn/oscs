@@ -695,16 +695,18 @@ class Admin_control extends CI_Controller {
 
 	public function clearRegOffice($studNum,$id)
 	{
+		$coID = $this->session->userdata("user_id");
 		$dep = '10';
-		$this->oscs_model->clearClearance($studNum, $dep);
+		$this->oscs_model->clearClearance($studNum, $dep,$coID);
 		redirect("admin_control/view_clearance_record/".$id);
 
 
 	}
 	public function unclearRegOffice($studNum,$id)
 	{
+		$coID = $this->session->userdata("user_id");
 		$dep = '10';
-		$this->oscs_model->unclearRegOffClearance($studNum, $dep);
+		$this->oscs_model->unclearRegOffClearance($studNum, $dep,$coID);
 		redirect("admin_control/view_clearance_record/".$id);
 	}
 

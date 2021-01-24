@@ -32,7 +32,7 @@
             <img src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="..." class="img-fluid rounded-circle sidebar-profile-img">
             <span class="align-middle mt-3 ml-3">
               <?php echo $user_name ?>
-              <h6 class="mt-2 font-weight-light small">Course 1-1</h6>
+              <h6 class="mt-2 font-weight-light small"><?php echo $studCourse ?> <?php echo $studYear ?>-1</h6>
             </span>
           </div>
 
@@ -61,7 +61,8 @@
 
             <li class="sidebar-header"> Clearance</li>
             <li class=""> 
-              <a class="nav-link text-left"  href="<?php echo base_url(); ?>index.php/student_control/view_clearance_record" role="button">
+              <!-- <a class="nav-link text-left"  href="<?php echo base_url(); ?>index.php/student_control/view_clearance_record" role="button"> -->
+                <a class="nav-link text-left"  href="#" role="button">
                 <i class="fa fa-clipboard"></i> Clearance Records
                 <!--<i class="fas fa-caret-down float-right"></i>--> 
               </a>
@@ -184,25 +185,17 @@
                               <tr>
                                 <th scope="col">Department</th>
                                 <th scope="col">Clearing Official</th>
-                                <th scope="col">Date Approved</th>
+                                <!-- <th scope="col">Date Approved</th> -->
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                              </tr>
+                              <?php foreach($approved_list as $row) { ?>
+                                <tr>
+                                  <td><?php echo $row->department_name ?></td>
+                                  <td><?php echo $row->name ?></td>
+                                  <!-- <td></td> -->
+                                </tr>
+                              <?php } ?>
                             </tbody>
                           </table>
                         </div>
@@ -224,21 +217,13 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                              </tr>
+                              <?php foreach($pending_list as $row) { ?>
+                                <tr>
+                                  <td><?php echo $row->department_name ?></td>
+                                  <td><?php echo $row->name ?></td>
+                                  <td><?php echo $row->deficiencies ?></td>
+                                </tr>
+                              <?php } ?>
                             </tbody>
                           </table>
                         </div>
