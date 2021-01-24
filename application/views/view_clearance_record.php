@@ -203,7 +203,10 @@
                           <div class="col-md-12">
                             <label for="courseFilter">School Year</label>
                             <select class="custom-select  mr-sm-2" id="sc_yearFilter" name="SchoolYear" required>
-                              <option selected>Choose...</option>
+                              <option value="<?php echo $scYear ?>" selected>Choose...</option>
+                              <?php foreach($scYear_list as $row) { ?>
+                                <option value="<?php echo $row->id?>"><?php echo $row->school_years ?></option>
+                              <?php } ?>
                             </select>
                           </div>
                         </div>
@@ -212,105 +215,108 @@
                           <div class="col-md-12">
                             <label for="yearLevelFilter">Semester</label>
                             <select class="custom-select mr-sm-2" id="semesterFilter" name="Semester" required>
-                              <option selected>Choose...</option>
+                              <option value="<?php echo $currentSem2 ?>" selected>Choose...</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
                             </select>
                           </div>
                         </div>   
 
-                        <input class="btn btn-success mt-4" type="submit" name="" value="Apply">
+                        <input class="btn btn-success mt-4" type="submit" name="filter" value="Apply">
                       </form>
                     </div>
                   </div>
                 </div> <!-- /col-->
-
+                
                 <div class="col-md-9">
                   <div class="card"> 
+                    <?php foreach($student_info as $data) {?>
                     <div class="card-body">
                       <div class="col-md-12">
                         <div class="row mb-2">
                           <div class="col-md-4"> 
                             <label for="studentName" class="col-form-label font-weight-bold">Name:</label>
-                            <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentName" placeholder="Picart, Angelia Rose Lim" readonly> 
+                            <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentName" placeholder="<?php echo $data->name?>" readonly> 
                           </div>  
 
                               <div class="col-md-4"> 
                                 <label for="studentNumber" class="col-form-label font-weight-bold">Student Number:</label>
-                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentNumber" placeholder="2018-00161-TG-0" readonly> 
+                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentNumber" placeholder="<?php echo $data->student_number?>" readonly> 
                               </div> 
 
                               <div class="col-md-4"> 
                                 <label for="studentType" class="col-form-label font-weight-bold">Student Type:</label>
-                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentType" placeholder="Regular" readonly> 
+                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentType" placeholder="<?php echo $data->studType ?>" readonly> 
                               </div> 
                           </div>
 
                           <div class="row mb-2">
                           <div class="col-md-4"> 
                             <label for="studentCourse" class="col-form-label font-weight-bold">Course:</label>
-                            <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentCourse" placeholder="BSIT" readonly> 
+                            <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentCourse" placeholder="<?php echo $data->studCourse ?>" readonly> 
                           </div>  
 
                               <div class="col-md-4"> 
                                 <label for="studentYearSec" class="col-form-label font-weight-bold">Year & Section:</label>
-                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentYearSec" placeholder="3-1" readonly> 
+                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentYearSec" placeholder="<?php echo $data->studLevel?>-1" readonly> 
                               </div> 
 
                               <div class="col-md-4"> 
                                 <label for="studentContactNo" class="col-form-label font-weight-bold">Contact Number:</label>
-                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentContactNo" placeholder="09123456789" readonly> 
+                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentContactNo" placeholder="<?php echo $data->contact_number ?>" readonly> 
                               </div> 
                           </div>
                       </div>
                           </div>
-                        </div>
+                    </div>
+                    <?php }?>
                       <div class="card"> 
                     <div class="card-header"> 
                       <h6 class="m-2 float-left font-weight-bold" id="clearanceSYLabel">School Year: </h6>
-                      <h6 class="m-2 float-left" id="clearanceSchoolYear">2020-2021</h6>
-                      <h6 class="m-2 float-right" id="clearanceSemester">2nd Semester</h6>
+                      <h6 class="m-2 float-left" id="clearanceSchoolYear"><?php echo $scYear2 ?></h6>
+                      <h6 class="m-2 float-right" id="clearanceSemester"><?php echo $currentSem ?> Semester</h6>
                        </div>
                       <div class="card-body">
                       <div class="table-responsive">
                         <table class="table mb-0" id="tableStudentClearanceRecord" cellspacing="0" width="100%">
                           <thead>
+                            
                             <tr>
                               <th scope="col">Department</th>
                               <th scope="col">Clearing Official</th>
                               <th scope="col">Status</th>
                               <th scope="col"></th>
                             </tr>
+                            
                           </thead>
                             
                           <tbody>
                                 
-
+                              <?php foreach($ClearanceEntries as $row) { ?>
                                 <tr class="cell-1" data-toggle="collapse" data-target="#deficiency">
-                                  <th scope="row">The Chronicler</th>
-                                  <td>Eren Jaeger</td>
-                                  <td><span class="badge badge-danger">Pending</span></td>
-                                  <td class="table-elipse" data-toggle="collapse" data-target="#deficiency"><i class="fa fa-ellipsis-h text-black-50"></i></td>
-                                </tr>
+                                  <th scope="row"><?php echo $row->department_name ?></th>
+                                  <td><?php echo $row->name ?></td>
 
-                                <tr id="deficiency" class="collapse row-child">
-                                  <td colspan="2">Deficiency #1</td>
-                                  <td colspan="1"><span class="badge badge-danger"><i class="fas fa-times-circle fa-fw text-center"></i></span></td>
-                                  <td></td>
-                                </tr>
+                                <?php if($row->deficiencies == "Clear") {
+                                  
+                                ?>
 
-                                <tr class="cell-1">
-                                  <th scope="row">Office of Student Affairs</th>
-                                  <td>Levi Ackerman</td>
                                   <td><span class="badge badge-success">Cleared</span></td>
-                                  <td></td>
-                                </tr>
+                                  
+                                <?php }elseif ($row->deficiencies == "") {
+                                 
+                                ?>  
+                                    <td><span class="badge badge-danger">Pending</span></td>
+                                    <td class="table-elipse" data-toggle="collapse" data-target="#deficiency"><i class="fa fa-ellipsis-h text-black-50"></i></td>
+                                  </tr>
 
-                                 <tr class="cell-1">
-                                  <th scope="row">Office of Academic Programs</th>
-                                  <td>Armin Arlert</td>
-                                  <td><span class="badge badge-success">Cleared</span></td>
-                                  <td></td>
-                                </tr>
-
+                                  <tr id="deficiency" class="collapse row-child">
+                                    <td colspan="2"><?php $row->deficiencies ?></td>
+                                    <td colspan="1"><span class="badge badge-danger"><i class="fas fa-times-circle fa-fw text-center"></i></span></td>
+                                    <td></td>
+                                  </tr>
+                                <?php } ?>
+                              <?php } ?>
                                 <tr class="mt-3 mb-3">
                                   <td colspan="4"></td>
                                   

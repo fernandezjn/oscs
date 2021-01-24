@@ -576,13 +576,116 @@ class Admin_control extends CI_Controller {
 		
 	}
 
-	public function view_clearance_record()
+	public function view_clearance_record($id)
 	{
 		$isAdmin = $this->session->userdata("permissionAdmin");
 		if($isAdmin)
 		{
 			$data["user_name"] = $this->session->userdata("user_name");
+			
+			$data["scYear_list"] = $this->oscs_model->getScYears();
+			$current_clearance_info = $this->oscs_model->getCurrentClearanceData();
+			foreach($current_clearance_info as $row)
+			{
+				$scYear = $row->sc_year_id;
+				$data["scYear"] = $row->sc_year_id;
+				$data["scYear2"] = $row->school_years;
+
+				$sem = $row->semester;
+
+				if($row->semester == '1')
+				{
+					$data["currentSem"] = "1st";
+					$data["currentSem2"] = "1";
+				}
+				else if($row->semester == '2')
+				{
+					$data["currentSem"] = "2nd";
+					$data["currentSem2"] = "2";
+				}
+			}
+			
+			$data["student_info"] = $this->oscs_model->getStudent_info($id);
+			$student_info = $this->oscs_model->getStudent_info($id);
+			foreach ($student_info as $row) {
+				$studNum = $row->student_number;
+			}
+
+			$data["ClearanceEntries"] = $this->oscs_model->getClearanceEntries($studNum,$scYear,$sem);
+
+
 			$this->load->view('view_clearance_record',$data);
+
+
+			if($this->input->post("filter"))
+			{
+				$data_form = $this->input->post(NULL,TRUE);
+				if($data_form)
+				{
+					$year = $data_form["SchoolYear"];
+					$semester = $data_form["Semester"];
+
+					redirect("admin_control/view_clearance_records/".$id."/".$year."/".$semester);
+				}
+			}
+		}
+		
+	}
+
+	public function view_clearance_records($id,$year,$semester)
+	{
+		$isAdmin = $this->session->userdata("permissionAdmin");
+		if($isAdmin)
+		{
+			$data["user_name"] = $this->session->userdata("user_name");
+			
+			$data["scYear_list"] = $this->oscs_model->getScYears();
+			$scYear_list = $this->oscs_model->getScYears();
+
+			foreach($scYear_list as $row)
+			{
+				
+				$data["scYear"] = $year;
+				if($row->id == $year)
+				{
+					$data["scYear2"] = $row->school_years;
+				}
+
+				if($semester == '1')
+				{
+					$data["currentSem"] = "1st";
+					$data["currentSem2"] = "1";
+				}
+				else if($semester == '2')
+				{
+					$data["currentSem"] = "2nd";
+					$data["currentSem2"] = "2";
+				}
+			}
+			
+			$data["student_info"] = $this->oscs_model->getStudent_info($id);
+			$student_info = $this->oscs_model->getStudent_info($id);
+			foreach ($student_info as $row) {
+				$studNum = $row->student_number;
+			}
+
+			$data["ClearanceEntries"] = $this->oscs_model->getClearanceEntries($studNum,$year,$semester);
+
+
+			$this->load->view('view_clearance_record',$data);
+
+
+			if($this->input->post("filter"))
+			{
+				$data_form = $this->input->post(NULL,TRUE);
+				if($data_form)
+				{
+					$year = $data_form["SchoolYear"];
+					$semester = $data_form["Semester"];
+
+					redirect("admin_control/view_clearance_records/".$id."/".$year."/".$semester);
+				}
+			}
 		}
 		
 	}

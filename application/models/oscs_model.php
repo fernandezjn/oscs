@@ -256,6 +256,31 @@
             return $query->result();
         }
 
+        public function getStudent_info($id)
+        {
+            $query = $this->db->query("SELECT * , CONCAT(last_name,', ',first_name,' ',middle_name,' ', suffix_name) as 'name', c.course_name as 'studCourse', d.type as 'studType', e.level as 'studLevel', a.id as 'userID' FROM user_info a INNER JOIN users b on b.id = a.id 
+                    INNER JOIN courses c on c.id = a.course_id
+                    INNER JOIN student_types d on d.id = a.student_type_id
+                    INNER JOIN year_levels e on e.id = a.year_id
+                     WHERE a.id ='".$id."' ");
+
+            return $query->result();
+        }
+
+        public function getCurrentClearanceData()
+        {
+            $query = $this->db->query("SELECT * from current_clearance_data a INNER JOIN sc_years b on b.id = a.sc_year_id");
+
+            return $query->result();
+        }
+
+        public function getClearanceEntries($studNum,$scYear,$sem)
+        {
+            $query = $this->db->query("SELECT * , CONCAT(c.first_name,' ',c.last_name) as 'name' from clearance_entries a INNER JOIN departments b on b.id = a.department_id INNER JOIN user_info c on c.department_id = b.id WHERE a.student_number = '".$studNum."' AND a.sc_year_id = '".$scYear."' AND a.semester = '".$sem."'");
+            
+            return $query->result();
+        }
+
 
         // For Remembering Username and Password Login
         // function rememberUserLogin($user,$password) 
