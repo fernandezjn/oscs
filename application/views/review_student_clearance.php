@@ -168,7 +168,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                     <li><a class="dropdown-item" href="#">View Profile</a></li>
-                    <li><a class="dropdown-item" href="logout">Logout</a></li>
+                    <li><a class="dropdown-item" href="<?php echo site_url('admin_control/logout')?>">Logout</a></li>
                   </ul>
                 </li>
               </ul>
