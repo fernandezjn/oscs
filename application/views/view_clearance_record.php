@@ -293,8 +293,7 @@
                           <tbody>
                                 
                               <?php foreach($ClearanceEntries as $row) { ?>
-                                <?php if ($row->department_name == "Registrar's Office") {  ?>
-                                <?php }else{ ?>
+                                <?php if ($row->department_name != "Registrar’s Office") {  ?>
                                   <tr class="cell-1" data-toggle="collapse" data-target="#deficiency">
                                     <th scope="row"><?php echo $row->department_name ?></th>
                                     <td><?php echo $row->name ?></td>
@@ -331,8 +330,17 @@
                                   <td>
                                     <form method=post>
                                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-success mr-1">Clear</button>
-                                        <button type="button" class="btn btn-danger ">Unclear</button>
+                                        <?php foreach($ClearanceEntries as $data) { ?>
+                                          <?php if ($data->department_name == "Registrar’s Office") {  ?>
+                                            
+                                            <?php if($data->deficiencies == "Clear") { ?>
+                                            <button type="button" class="btn btn-danger mr-1" onclick="window.location='<?php echo site_url("admin_control/unclearRegOffice/".$data->studNum."/".$studID)?>'">Unlear</button>
+
+                                            <?php }else{ ?>
+                                            <button type="button" class="btn btn-success "onclick="window.location='<?php echo site_url("admin_control/clearRegOffice/".$data->studNum."/".$studID)?>'">Clear</button>
+                                            <?php } ?>
+                                          <?php }?>
+                                        <?php } ?>
                                       </div>
                                     </form>
                                   </td>
