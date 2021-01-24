@@ -62,7 +62,7 @@ class Admin_control extends CI_Controller {
 
 	public function viewProfile()
 	{
-
+		
 	}
 
 	public function users()

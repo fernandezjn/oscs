@@ -63,6 +63,22 @@ class Official_control extends CI_Controller
 
 	}
 
+	public function review_student_clearance()
+	{
+		$isOfficial = $this->session->userdata("permissionOfficial");
+		if($isOfficial)
+		{
+			$data["user_name"] = $this->session->userdata("user_name");
+			$this->load->view('review_student_clearance',$data);
+		}
+		else
+		{
+			redirect("main/index");
+		}
+		
+
+	}
+
 	public function logout()
 	{
 		redirect("main/index");

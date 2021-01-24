@@ -161,7 +161,7 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container-fluid px-lg-4">
+            <div class="container px-lg-4">
               <div class="row">
                 <div class="col-md-12 mt-lg-4 mt-4">
                   <!-- Page Heading -->
@@ -169,6 +169,85 @@
                     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                   </div>
                 </div>
+
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="font-weight-bold text-center">Approved Clearance</h5>
+                          <div class="table-responsive">
+                          <table class="table table-sm mt-3" class="table table-sm mt-3" id="approved Clearance" cellspacing="0" width="100%">
+                            <thead>
+                              <tr>
+                                <th scope="col">Department</th>
+                                <th scope="col">Clearing Official</th>
+                                <th scope="col">Date Approved</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="font-weight-bold text-center">Pending Clearance</h5>
+                          <div class="table-responsive">
+                          <table class="table table-sm mt-3" id="pendingClearance" cellspacing="0" width="100%">
+                            <thead>
+                              <tr>
+                                <th scope="col">Department</th>
+                                <th scope="col">Clearing Official</th>
+                                <th scope="col">Deficiency</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+
+                   
+                  </div>
+                </div> <!-- column -->
+
               </div>
             </div> <!-- /.container-fluid -->
           </div>

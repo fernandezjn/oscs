@@ -61,10 +61,11 @@
 
             <li class="sidebar-header"> Clearance</li>
             <li class=""> 
-              <a class="nav-link collapsed text-left"  href="#collapseClearanceRecords" role="button" data-toggle="collapse">
-                <i class="fa fa-clipboard"></i> Clearance Records
-                <i class="fas fa-caret-down float-right"></i> 
+              <a class="nav-link text-left"  href="<?php echo base_url(); ?>index.php/official_control/review_student_clearance" role="button">
+                <i class="fa fa-clipboard"></i> Review Student Clearance  
+                <!--<i class="fas fa-caret-down float-right"></i> -->
               </a>
+              <!--
               <div class="collapse menu mega-dropdown" id="collapseClearanceRecords">
                 <div class="dropmenu" aria-labelledby="navbarDropdown">
                   <div class="container-fluid p-0">
@@ -80,12 +81,7 @@
                   </div>
                 </div>
               </div>
-            </li>
-        
-            <li class=""> 
-              <a href="#" class="nav-link text-left"  role="button" >
-                <i class="fas fa-file-signature"></i>   Requirements
-              </a>
+               -->
             </li>
           </ul>
         </div>
@@ -173,6 +169,65 @@
                   <!-- Page Heading -->
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="card text-center ">
+                        <div class="card-body">
+                          <h5 class="card-title mb-3">Cleared Students</h5>
+                          <h1 class="display-5">100</h1>
+                        </div>
+                        <div class="card-footer">
+                          <a href="#" class="mb-1 view-details">
+                            <span class="text-success view-details card-text">View Details <i class="fas fa-angle-double-right"></i></span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                      <div class="card text-center ">
+                        <div class="card-body">
+                          <h5 class="card-title mb-3">Uncleared Students</h5>
+                          <h1 class="display-5">400</h1>
+                        </div>
+                        <div class="card-footer">
+                          <a href="#" class="mb-1">
+                            <span class="text-danger view-details card-text"> View Details <i class="fas fa-angle-double-right"></i></span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                      <div class="card text-center">
+                        <div class="card-body">
+                          <h5 class="card-title mb-3">To Review</h5>
+                          <h1 class="display-5">50</h1>
+                        </div>
+                        <div class="card-footer">
+                          <a href="#" class="mb-1">
+                            <span class="text-info view-details card-text"> View Details <i class="fas fa-angle-double-right"></i></span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                      <div class="card text-center">
+                        <div class="card-body">
+                          <h5 class="card-title mb-3">Total Students</h5>
+                          <h1 class="display-5">800</h1>
+                        </div>
+                        <div class="card-footer">
+                          <a href="#" class="mb-1">
+                            <span class="text-success view-details card-text"> View Details <i class="fas fa-angle-double-right"></i></span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
