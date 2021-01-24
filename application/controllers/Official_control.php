@@ -104,6 +104,8 @@ class Official_control extends CI_Controller
 					}
 				}
 			}
+
+
 		}
 		else
 		{
@@ -111,6 +113,25 @@ class Official_control extends CI_Controller
 		}
 		
 
+	}
+
+	public function clearStudent($studNum)
+	{
+		$dep = $this->session->userdata("depID");
+		$id = $this->session->userdata("user_id");
+
+		$this->oscs_model->clearClearance($studNum, $dep, $id);
+		redirect("official_control/review_student_clearance");
+	}
+
+	public function unclearStudent($studNum)
+	{
+		$dep = $this->session->userdata("depID");
+		$id = $this->session->userdata("user_id");
+		$def = "Not Cleared";
+
+		$this->oscs_model->unclearClearance($studNum, $dep, $def, $id);
+		redirect("official_control/review_student_clearance");
 	}
 
 	public function logout()

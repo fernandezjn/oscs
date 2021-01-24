@@ -270,9 +270,15 @@
                                   <td><?php echo $row->contact ?></td>
                                   <td> 
                                     <form>
+                                    
                                     <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#addDeficiencyModal"><i class="fas fa-plus"></i> Add Deficiency</button>
-                                     <button type="button" class="btn btn-secondary btn-sm m-1" data-toggle="modal" data-target="#addDeficiencyModal"><i class="fas fa-backspace"></i> Clear</button>
+                                    <?php if($row->deficiencies == "Clear") { ?>
+                                     <button type="button" class="btn btn-warning btn-sm m-1" onclick="window.location='<?php echo site_url("official_control/unclearStudent/".$row->studNum)?>'" ><i class="fas fa-backspace" ></i> Unclear</button>
+                                     <?php }else { ?>
+                                      <button type="button" class="btn btn-success btn-sm m-1" onclick="window.location='<?php echo site_url("official_control/clearStudent/".$row->studNum)?>'"><i class="fas fa-backspace"></i> Clear</button>
+                                     <?php } ?>
                                     </form>
+
 
                                     <div class="modal fade" id="addDeficiencyModal" tabindex="-1" role="dialog" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
