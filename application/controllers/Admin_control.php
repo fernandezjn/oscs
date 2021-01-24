@@ -584,6 +584,7 @@ class Admin_control extends CI_Controller {
 		if($isAdmin)
 		{
 			$data["user_name"] = $this->session->userdata("user_name");
+			$data["studID"] = $id;
 			
 			$data["scYear_list"] = $this->oscs_model->getScYears();
 			$current_clearance_info = $this->oscs_model->getCurrentClearanceData();
@@ -690,6 +691,21 @@ class Admin_control extends CI_Controller {
 			}
 		}
 		
+	}
+
+	public function clearRegOffice($studNum,$id)
+	{
+		$dep = '10';
+		$this->oscs_model->clearClearance($studNum, $dep);
+		redirect("admin_control/view_clearance_record/".$id);
+
+
+	}
+	public function unclearRegOffice($studNum,$id)
+	{
+		$dep = '10';
+		$this->oscs_model->unclearRegOffClearance($studNum, $dep);
+		redirect("admin_control/view_clearance_record/".$id);
 	}
 
 	public function yeet()
