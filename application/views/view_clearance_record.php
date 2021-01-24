@@ -293,7 +293,8 @@
                           <tbody>
                                 
                               <?php foreach($ClearanceEntries as $row) { ?>
-                                <?php if ($row->department_name != "Registrar's Office") {  ?>
+                                <?php if ($row->department_name == "Registrar's Office") {  ?>
+                                <?php }else{ ?>
                                   <tr class="cell-1" data-toggle="collapse" data-target="#deficiency">
                                     <th scope="row"><?php echo $row->department_name ?></th>
                                     <td><?php echo $row->name ?></td>

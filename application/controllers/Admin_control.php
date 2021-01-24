@@ -578,6 +578,8 @@ class Admin_control extends CI_Controller {
 
 	public function view_clearance_record($id)
 	{
+		$scYear = null;
+		$sem = null;
 		$isAdmin = $this->session->userdata("permissionAdmin");
 		if($isAdmin)
 		{
