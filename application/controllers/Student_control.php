@@ -63,6 +63,22 @@ class Student_control extends CI_Controller
 
 	}
 
+	public function view_clearance_record()
+	{
+		$isStudent = $this->session->userdata("permissionStudent");
+		if($isStudent)
+		{
+			$data["user_name"] = $this->session->userdata("user_name");
+			$this->load->view('view_student_clearance_record',$data);
+		}
+		else
+		{
+			redirect("main/index");
+		}
+		
+
+	}
+
 	public function logout()
 	{
 		redirect("main/index");

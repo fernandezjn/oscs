@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dashboard</title>
+    <title>Clearance Record</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -61,7 +61,7 @@
 
             <li class="sidebar-header"> Clearance</li>
             <li class=""> 
-              <a class="nav-link text-left"  href="<?php echo base_url(); ?>index.php/student_control/view_clearance_record" role="button">
+              <a class="nav-link collapsed text-left"  href="#collapseClearanceRecords" role="button" data-toggle="collapse">
                 <i class="fa fa-clipboard"></i> Clearance Records
                 <!--<i class="fas fa-caret-down float-right"></i>--> 
               </a>
@@ -168,89 +168,119 @@
                 <div class="col-md-12 mt-lg-4 mt-4">
                   <!-- Page Heading -->
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Clearance Record</h1>
                   </div>
                 </div>
 
-                <div class="col-md-12">
-                  <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                      <div class="card">
-                        <div class="card-body">
-                          <h5 class="font-weight-bold text-center">Approved Clearance</h5>
-                          <div class="table-responsive">
-                          <table class="table table-sm mt-3" class="table table-sm mt-3" id="approved Clearance" cellspacing="0" width="100%">
-                            <thead>
-                              <tr>
-                                <th scope="col">Department</th>
-                                <th scope="col">Clearing Official</th>
-                                <th scope="col">Date Approved</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                            </tbody>
-                          </table>
+               <div class="col-md-12">
+                  <div class="card"> 
+                    <div class="card-body">
+                      <div class="col-md-12">
+                        <div class="row mb-2">
+                          <div class="col-md-4"> 
+                            <label for="studentName" class="col-form-label font-weight-bold">Name:</label>
+                            <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentName" placeholder="Picart, Angelia Rose Lim" readonly> 
+                          </div>  
+
+                              <div class="col-md-4"> 
+                                <label for="studentNumber" class="col-form-label font-weight-bold">Student Number:</label>
+                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentNumber" placeholder="2018-00161-TG-0" readonly> 
+                              </div> 
+
+                              <div class="col-md-4"> 
+                                <label for="studentType" class="col-form-label font-weight-bold">Student Type:</label>
+                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentType" placeholder="Regular" readonly> 
+                              </div> 
+                          </div>
+
+                          <div class="row mb-2">
+                          <div class="col-md-4"> 
+                            <label for="studentCourse" class="col-form-label font-weight-bold">Course:</label>
+                            <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentCourse" placeholder="BSIT" readonly> 
+                          </div>  
+
+                              <div class="col-md-4"> 
+                                <label for="studentYearSec" class="col-form-label font-weight-bold">Year & Section:</label>
+                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentYearSec" placeholder="3-1" readonly> 
+                              </div> 
+
+                              <div class="col-md-4"> 
+                                <label for="studentContactNo" class="col-form-label font-weight-bold">Contact Number:</label>
+                                <input class="form-control form-control-sm" style="background-color: #fff;" type="text" id="studentContactNo" placeholder="09123456789" readonly> 
+                              </div> 
+                          </div>
+                      </div>
+                          </div>
                         </div>
-                        </div>
+                      <div class="card"> 
+                    <div class="card-header"> 
+                      <h6 class="m-2 float-left font-weight-bold" id="clearanceSYLabel">School Year: </h6>
+                      <h6 class="m-2 float-left" id="clearanceSchoolYear">2020-2021</h6>
+                      <h6 class="m-2 float-right" id="clearanceSemester">2nd Semester</h6>
+                       </div>
+                      <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table mb-0" id="tableStudents" cellspacing="0" width="100%">
+                          <thead>
+                            <tr>
+                              <th scope="col">Department</th>
+                              <th scope="col">Clearing Official</th>
+                              <th scope="col">Status</th>
+                              <th scope="col"></th>
+                            </tr>
+                          </thead>
+                            
+                          <tbody>
+                                
+
+                                <tr class="cell-1" data-toggle="collapse" data-target="#deficiency">
+                                  <th scope="row">The Chronicler</th>
+                                  <td>Name</td>
+                                  <td><span class="badge badge-danger">Pending</span></td>
+                                  <td class="table-elipse" data-toggle="collapse" data-target="#deficiency"><i class="fa fa-ellipsis-h text-black-50"></i></td>
+                                </tr>
+
+                                <tr id="deficiency" class="collapse row-child">
+                                  <td colspan="2">Deficiency #1</td>
+                                  <td colspan="1"><span class="badge badge-danger"><i class="fas fa-times-circle fa-fw text-center"></i></span></td>
+                                  <td></td>
+                                </tr>
+
+                                <tr class="cell-1">
+                                  <th scope="row">Office of Student Affairs</th>
+                                  <td>Name</td>
+                                  <td><span class="badge badge-success">Cleared</span></td>
+                                  <td></td>
+                                </tr>
+
+                                 <tr class="cell-1">
+                                  <th scope="row">Office of Academic Programs</th>
+                                  <td>Name</td>
+                                  <td><span class="badge badge-success">Cleared</span></td>
+                                  <td></td>
+                                </tr>
+
+                                <tr class="mt-3 mb-3">
+                                  <td colspan="4"></td>
+                                  
+                                </tr>
+
+                                <tr class="cell-1">
+                                  <th scope="row">Registrar's Office</th>
+                                  <td>Bernadette I. Canlas</td>
+                                  <td>
+                                      <span class="badge badge-danger">Pending</span>
+                                  </td>
+                                  <td></td>
+                                </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </div>
+                </div>
+                </div>
+              </div> <!-- /row-->
 
-                    <div class="col-md-6 col-sm-6">
-                      <div class="card">
-                        <div class="card-body">
-                          <h5 class="font-weight-bold text-center">Pending Clearance</h5>
-                          <div class="table-responsive">
-                          <table class="table table-sm mt-3" id="pendingClearance" cellspacing="0" width="100%">
-                            <thead>
-                              <tr>
-                                <th scope="col">Department</th>
-                                <th scope="col">Clearing Official</th>
-                                <th scope="col">Deficiency</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-
-                   
-                  </div>
-                </div> <!-- column -->
-
-              </div>
             </div> <!-- /.container-fluid -->
           </div>
         </div>
