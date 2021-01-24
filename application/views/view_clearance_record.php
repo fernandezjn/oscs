@@ -334,7 +334,7 @@
                                           <?php if ($data->department_name == "Registrar’s Office") {  ?>
                                             
                                             <?php if($data->deficiencies == "Clear") { ?>
-                                            <button type="button" class="btn btn-danger mr-1" onclick="window.location='<?php echo site_url("admin_control/unclearRegOffice/".$data->studNum."/".$studID)?>'">Unlear</button>
+                                            <button type="button" class="btn btn-danger mr-1" onclick="window.location='<?php echo site_url("admin_control/unclearRegOffice/".$data->studNum."/".$studID)?>'">Unclear</button>
 
                                             <?php }else{ ?>
                                             <button type="button" class="btn btn-success "onclick="window.location='<?php echo site_url("admin_control/clearRegOffice/".$data->studNum."/".$studID)?>'">Clear</button>
