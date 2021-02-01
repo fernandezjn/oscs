@@ -390,6 +390,8 @@ class Admin_control extends CI_Controller {
 			$data["year"] = $this->oscs_model->getYear();
 			$data["courses"] = $this->oscs_model->getCourses();
 			$data["student_types"] = $this->oscs_model->getStudent_types();
+			$student_list = $this->oscs_model->getUsers("3");
+			$users_list = $this->oscs_model->getUsers();
 			$this->load->view('add_user',$data);
 
 			if($this->input->post("addUser"))
@@ -399,6 +401,13 @@ class Admin_control extends CI_Controller {
 	            {
 	                $role = $data_form["userRole"];
 	                $uName = $data_form["userName"];
+	                foreach($users_list as $row)
+	                {
+	                	if($uName == $row->username)
+	                	{
+	                		redirect("admin_control/add_user? message=Username Already Exist");
+	                	}
+	                }
 	                $pass = $data_form["pass"];
 	                $lName = $data_form["lastName"];
 	                $fName = $data_form["firstName"];
@@ -444,6 +453,13 @@ class Admin_control extends CI_Controller {
 	                if(!empty($data_form["studentNo"]))
 	                {
 	                	$studNo = $data_form["studentNo"];
+	                	foreach($student_list as $row)
+		                {
+		                	if($studNo == $row->studNo)
+		                	{
+		                		redirect("admin_control/add_user? message=Student Number Already Exist");
+		                	}
+		                }
 	                }
 	                else
 	                {

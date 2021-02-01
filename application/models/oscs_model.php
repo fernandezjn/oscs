@@ -99,7 +99,7 @@
         {
             if($role !=  "")
             {
-                $query = $this->db->query("SELECT u.id, u.username,CONCAT(i.last_name,', ', i.first_name,' ', i.middle_name,' ', i.suffix_name) as 'name', r.role as 'role'
+                $query = $this->db->query("SELECT u.id, u.username,CONCAT(i.last_name,', ', i.first_name,' ', i.middle_name,' ', i.suffix_name) as 'name', r.role as 'role', i.student_number as 'studNo'
                 FROM users u
                 INNER JOIN user_info i on i.id = u.id
                 INNER JOIN roles r on r.id = u.type
@@ -107,7 +107,7 @@
             }
             else
             {
-                $query = $this->db->query("SELECT u.id, u.username,CONCAT(i.last_name,', ', i.first_name,' ', i.middle_name,' ', i.suffix_name)  as 'name', r.role as 'role'
+                $query = $this->db->query("SELECT u.id, u.username,CONCAT(i.last_name,', ', i.first_name,' ', i.middle_name,' ', i.suffix_name)  as 'name', r.role as 'role', i.student_number as 'studNo'
                 FROM users u
                 INNER JOIN user_info i on i.id = u.id
                 INNER JOIN roles r on r.id = u.type");

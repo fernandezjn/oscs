@@ -200,6 +200,9 @@
                       <form method="POST"> 
                         <div class="form-row">
                           <div class="col-md-12">
+                            <?php if(isset($_GET['message'])): ?>                               
+                              <p style="color:red; padding-top:20px" align="center"><?= $_GET['message']?></p>                    
+                            <?php endif; ?>
                             <label for="UserRole">User Role</label>
                             <select class="custom-select my-1 mr-sm-2" id="UserRole" onchange="addUserForm()" name="userRole" required>
                               <option value="" selected>Choose...</option>
