@@ -523,7 +523,14 @@ class Admin_control extends CI_Controller {
 					$sc_year = $data_form["scYear"];
 					$sem = $data_form["sem"];
 					$dueDate = $data_form["clearanceDueDate"];
-
+					$existingClearance = $this->oscs_model->getCurrentClearanceData();
+					foreach($existingClearance as $row)
+					{
+						if($sc_year == $row->sc_year_id && $sem == $row->semester)
+						{
+							redirect("admin_control/initiate_clearance? message=Clearance For This year and Sem Already Initiated");
+						}
+					}
 					$this->oscs_model->newClearanceData($sc_year,$sem,$dueDate);
 
 					$students_list = $this->oscs_model->getStudents();
