@@ -222,7 +222,7 @@
 
         public function newClearanceData($year,$sem,$due)
         {
-            $query = "UPDATE current_clearance_data SET sc_year_id ='".$year."',semester='".$sem."', dueDate='".$due."' WHERE id=1";
+            $query = "INSERT INTO current_clearance_data (sc_year_id,semester, dueDate) VALUES ('".$year."','".$sem."', '".$due."') ";
 
             $this->db->query($query);
         }

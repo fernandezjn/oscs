@@ -664,6 +664,7 @@ class Admin_control extends CI_Controller {
 		if($isAdmin)
 		{
 			$data["user_name"] = $this->session->userdata("user_name");
+			$data["studID"] = $id;
 			
 			$data["scYear_list"] = $this->oscs_model->getScYears();
 			$scYear_list = $this->oscs_model->getScYears();
