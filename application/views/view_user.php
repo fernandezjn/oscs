@@ -276,10 +276,9 @@
                                 <select id="Year" class="form-control" disabled>
                                   <option selected>1</option>
                                 </select>
-                              </div>
+                                </div>
                               </div>
                             </div>
-
                             <div class="form-row">
                               <div class="col-md-9">
                                 <div class="form-group">
