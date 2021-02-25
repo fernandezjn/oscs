@@ -231,9 +231,14 @@
                                     <button type="button" class="btn btn-warning btn-sm" onclick="window.location='<?php echo site_url("admin_control/editUserInfo/".$row->id."")?>'">Edit</button>
                                     <!-- <button type="button" class="btn btn-danger btn-sm" onclick="window.location='<?php echo site_url("admin_control/deleteUser/".$row->id."")?>'">Delete</button> -->
 
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteUser" data-href="<?php echo site_url('admin_control/deleteUser/'.$row->id)?>" data-deleteName="<?php echo $row->name ?>">Delete</button>
-                   
-                                    <div class="modal fade" id="DeleteUser" tabindex="-1" role="dialog" aria-labelledby="ModalDelete" aria-hidden="true">
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteUser" data-href="<?php echo site_url('admin_control/deleteUser/'.$row->id)?>" data-deleteName="<?php echo $row->name ?>">Delete</button>              
+                                  </td>
+                                </tr>
+                            <?php 
+                                $row_num += 1; 
+                              } 
+                            ?>
+                            <div class="modal fade" id="DeleteUser" tabindex="-1" role="dialog" aria-labelledby="ModalDelete" aria-hidden="true">
                                       <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
@@ -253,13 +258,6 @@
                                         </div>
                                       </div>
                                     </div> 
-              
-                                  </td>
-                                </tr>
-                            <?php 
-                                $row_num += 1; 
-                              } 
-                            ?>
                           </tbody>
                         </table>
                       </div>
@@ -305,11 +303,11 @@
       $('#DeleteUser').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 
-        //  var name = $(this).data("deleteName");
+        //  var name = $(this).attr('deletName');
 
         // $('.message').html('Are you sure to delete <strong>' + name + '</strong>?');
 
-        $('.message').html('Are you sure to delete user ?');
+         $('.message').html('Are you sure to delete user ?');
       });
     </script>
 

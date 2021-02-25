@@ -252,8 +252,8 @@
                               <th scope="col">Course</th>
                               <th scope="col">Year & Section</th>
                               <th scope="col">Student Type</th>
-                              <th scope="col">Email</th>
-                              <th scope="col">Contact Number</th>
+                              <!-- <th scope="col">Email</th>
+                              <th scope="col">Contact Number</th> -->
                               <th scope="col">Action</th>
                             </tr>
                           </thead>
@@ -266,8 +266,8 @@
                                   <td><?php echo $row->course ?></td>
                                   <td><?php echo $row->year ?>-1</td>
                                   <td><?php echo $row->studType ?></td>
-                                  <td><?php echo $row->email ?></td>
-                                  <td><?php echo $row->contact ?></td>
+                                  <!-- <td><?php echo $row->email ?></td>
+                                  <td><?php echo $row->contact ?></td> -->
                                   <td> 
                                     <form>
                                     
@@ -279,8 +279,12 @@
                                      <?php } ?>
                                     </form>
 
-
-                                    <div class="modal fade" id="addDeficiencyModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                  </td>
+                                </tr>
+                              <?php } ?>                                                                
+                          </tbody>
+                        </table>
+                                  <div class="modal fade" id="addDeficiencyModal" tabindex="-1" role="dialog" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
@@ -304,13 +308,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                  </td>
-                                </tr>
-                              <?php } ?>
                             
-                                
-                          </tbody>
-                        </table>
                       </div>
                     </div>
                   </div>

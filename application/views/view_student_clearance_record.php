@@ -232,7 +232,6 @@
                             
                           <tbody>
                                 
-
                                 <tr class="cell-1" data-toggle="collapse" data-target="#deficiency">
                                   <th scope="row">The Chronicler</th>
                                   <td>Name</td>

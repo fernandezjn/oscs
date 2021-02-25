@@ -279,25 +279,27 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="form-row">
-                              <div class="col-md-9">
-                                <div class="form-group">
-                                  <label for="Course">Course</label>
-                                  <select id="Course" class="form-control" readonly="true" disabled>
-                                    <option selected><?php echo $course ?></option>
-                                  </select>
+                            <?php if($data->role == "Student") { ?>
+                              <div class="form-row">
+                                <div class="col-md-9">
+                                  <div class="form-group">
+                                    <label for="Course">Course</label>
+                                    <select id="Course" class="form-control" readonly="true" disabled>
+                                      <option selected><?php echo $course ?></option>
+                                    </select>
+                                  </div>
                                 </div>
-                              </div>
 
-                              <div class="col-md-3">
-                                <div class="form-group">
-                                  <label for="StudentType">Student Type</label>
-                                  <select id="StudentType" class="form-control" readonly="true" disabled>
-                                    <option selected><?php echo $studType ?></option>
-                                  </select>
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label for="StudentType">Student Type</label>
+                                    <select id="StudentType" class="form-control" readonly="true" disabled>
+                                      <option selected><?php echo $studType ?></option>
+                                    </select>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
+                            <?php } ?>
                           </fieldset>
                           <div class="text-center mt-5 mb-5">
                             <a class="btn btn-danger mr-1" href="<?php echo site_url("admin_control/users")?>">

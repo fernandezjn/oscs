@@ -55,15 +55,89 @@ class Official_control extends CI_Controller
 		if($isOfficial)
 		{
 			$data["user_name"] = $this->session->userdata("user_name");
-			$this->load->view('clearingofficial_dashboard',$data);
+			$dep = $this->session->userdata("depID");
+			$no_of_students = $this->oscs_model->totalNumberOfStudents();
+			foreach ($no_of_students as $row) {
+				$data["totalStudents"] = $row->number_of_students;
+				$totalStud = $row->number_of_students;
+			}
+
+			$current_clearance_info = $this->oscs_model->getCurrentClearanceData();
+			foreach($current_clearance_info as $row)
+			{
+				$scYear = $row->sc_year_id;
+				$data["scYear"] = $scYear;
+				$sem = $row->semester;
+				$data["sem"] = $sem;
+			}
+
+			$unreviewed = $this->oscs_model->checkForUnreviewedEntries($dep,$scYear,$sem);
+			if(!empty($unreviewed))
+            {
+            	$course_list = $this->oscs_model->getCourses();
+            	$year_list = $this->oscs_model->getYear();
+            	$stop = 0;
+            	foreach ($year_list as $row1) {
+
+            		$data["Year"] = $row1->level;
+            		$year_lvl = $row1->id;
+            		
+
+            		foreach ($course_list as $row2) {
+
+            			$data["Course"] = $row2->course_name;
+            			$course = $row2->id;
+            			
+            			$unreviewed = $this->oscs_model->getUnvreviewedEntries($dep,$scYear,$sem,$course,$year_lvl);
+
+            			if(!empty($unreviewed))
+            			{
+            				$data["unreviewed_list"] = $unreviewed;
+            				$this->load->view('clearingofficial_dashboard1',$data);
+            				$stop = 1;
+            				break;
+            			}      
+            		}
+
+            		if($stop == 1)
+            		{
+            			break;
+            		}
+            	}
+            }
+            else
+            {
+            	$this->load->view('clearingofficial_dashboard',$data);
+            }	
+
+            if($this->input->post("submit"))
+			{
+				$data_form = $this->input->post(NULL,TRUE);
+				if($data_form)
+				{
+					foreach ($unreviewed as $row) {
+						$id = $row->entry_id;
+
+						$deficiency = $data_form[$id];
+						if($deficiency == "")
+						{
+							$deficiency = "Clear";
+						}
+	
+						$this->oscs_model->updateDeficiency($id,$deficiency);
+					}
+				}
+
+				redirect("official_control/mainPage");
+			}
+
 		}
 		else
 		{
 			redirect("main/index");
 		}
-		
-
 	}
+
 
 	public function review_student_clearance($year=null,$course=null)
 	{
@@ -138,6 +212,5 @@ class Official_control extends CI_Controller
 	{
 		redirect("main/index");
 	}
-
 
 }

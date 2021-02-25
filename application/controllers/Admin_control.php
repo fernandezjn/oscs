@@ -52,6 +52,15 @@ class Admin_control extends CI_Controller {
 		if($isAdmin)
 		{
 			$data["user_name"] = $this->session->userdata("user_name");
+			$no_of_students = $this->oscs_model->totalNumberOfStudents();
+			foreach ($no_of_students as $row) {
+				$data["totalStudents"] = $row->number_of_students;
+				$totalStud = $row->number_of_students;
+			}
+			$clearedStud = $this->oscs_model->countAllClearedStudents();
+			$unclearedStud = $totalStud - $clearedStud;
+			$data["totalClearedStudents"] = $clearedStud;
+			$data["totalUnclearedStudents"] = $unclearedStud;
 			$this->load->view('admin_dashboard',$data);
 		}
 		else

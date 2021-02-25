@@ -70,8 +70,8 @@
 
         public function countAllClearedStudents()
         {
-            $query = $this->db->query("SELECT u.id, COUNT(c.id) as 'number_of_cleared_departments', CONCAT(i.firstname,' ',i.middlename,' ',i.lastname)
-                        FROM clerance_entries c
+            $query = $this->db->query("SELECT u.id, COUNT(c.id) as 'number_of_cleared_departments', CONCAT(i.first_name,' ',i.middle_name,' ',i.last_name)
+                        FROM clearance_entries c
                         INNER JOIN tbl_students i on i.student_number = c.student_number
                         INNER JOIN users u on u.id = i.id
                         WHERE c.deficiencies = 'Clear' AND u.type = '3'
@@ -88,6 +88,13 @@
             }
 
             return $count;
+        }
+
+        public function totalNumberOfStudents()
+        {
+            $query = $this->db->query("SELECT COUNT(*) as 'number_of_students' FROM tbl_students WHERE year_id != '6' ");
+
+            return $query->result();
         }
 
         public function addUserLogin($username,$password,$type)
@@ -406,6 +413,44 @@
                 From clearance_entries a INNER JOIN departments b on b.id = a.department_id INNER JOIN tbl_clearing_officials c on c.department_id = a.department_id  WHERE a.deficiencies != 'Clear' AND a.student_number = '".$studNum."' AND a.sc_year_id = '".$year."' AND a.semester = '".$sem."'");
 
             return $query->result();
+        }
+
+        public function checkForUnreviewedEntries($dep,$scyear,$sem)
+        {
+            $this->db->where('department_id',$dep);
+            $this->db->where('sc_year_id',$scyear);
+            $this->db->where('semester',$sem);
+            $this->db->where('review_status','0');
+            $query = $this->db->get('clearance_entries');
+            if ($query->row())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public function getUnvreviewedEntries($dep,$scyear,$sem,$course,$yearLvl)
+        {
+            $query = $this->db->query("SELECT * , CONCAT(c.last_name,', ',c.first_name,' ',c.middle_name,' ',c.suffix_name) as 'name', a.student_number as 'studNum', d.course_name as 'course', e.type as 'studType', c.email as 'email', c.contact_number as 'contact', c.year_id as 'year', a.id as 'entry_id' 
+                from clearance_entries a 
+                INNER JOIN departments b on b.id = a.department_id 
+                INNER JOIN tbl_students c on c.student_number = a.student_number
+                INNER JOIN courses d on d.id = c.course_id
+                INNER JOIN student_types e on e.id = c.student_type_id
+                WHERE a.department_id = '".$dep."' AND a.sc_year_id = '".$scyear."' AND a.semester = '".$sem."' AND c.course_id = '".$course."' AND c.year_id = '".$yearLvl."' AND a.review_status = '0' ");
+
+            if($query->row())
+            {
+                return $query->result();
+            }
+            return false;
+            
+        }
+
+        public function updateDeficiency($id,$def)
+        {
+            $query = "UPDATE `clearance_entries` SET `deficiencies`='".$def."', review_status = '1' WHERE `id`='".$id."'";
+            $this->db->query($query);
         }
 
 
