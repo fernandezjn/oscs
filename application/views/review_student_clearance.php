@@ -168,7 +168,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                     <li><a class="dropdown-item" href="#">View Profile</a></li>
-                    <li><a class="dropdown-item" href="logout">Logout</a></li>
+                    <li><a class="dropdown-item" href="<?php echo site_url('admin_control/logout')?>">Logout</a></li>
                   </ul>
                 </li>
               </ul>
@@ -252,8 +252,8 @@
                               <th scope="col">Course</th>
                               <th scope="col">Year & Section</th>
                               <th scope="col">Student Type</th>
-                              <th scope="col">Email</th>
-                              <th scope="col">Contact Number</th>
+                              <!-- <th scope="col">Email</th>
+                              <th scope="col">Contact Number</th> -->
                               <th scope="col">Action</th>
                             </tr>
                           </thead>
@@ -266,15 +266,25 @@
                                   <td><?php echo $row->course ?></td>
                                   <td><?php echo $row->year ?>-1</td>
                                   <td><?php echo $row->studType ?></td>
-                                  <td><?php echo $row->email ?></td>
-                                  <td><?php echo $row->contact ?></td>
+                                  <!-- <td><?php echo $row->email ?></td>
+                                  <td><?php echo $row->contact ?></td> -->
                                   <td> 
                                     <form>
+                                    
                                     <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#addDeficiencyModal"><i class="fas fa-plus"></i> Add Deficiency</button>
-                                     <button type="button" class="btn btn-secondary btn-sm m-1" data-toggle="modal" data-target="#addDeficiencyModal"><i class="fas fa-backspace"></i> Clear</button>
+                                    <?php if($row->deficiencies == "Clear") { ?>
+                                     <button type="button" class="btn btn-warning btn-sm m-1" onclick="window.location='<?php echo site_url("official_control/unclearStudent/".$row->studNum)?>'" ><i class="fas fa-backspace" ></i> Unclear</button>
+                                     <?php }else { ?>
+                                      <button type="button" class="btn btn-success btn-sm m-1" onclick="window.location='<?php echo site_url("official_control/clearStudent/".$row->studNum)?>'"><i class="fas fa-backspace"></i> Clear</button>
+                                     <?php } ?>
                                     </form>
 
-                                    <div class="modal fade" id="addDeficiencyModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                  </td>
+                                </tr>
+                              <?php } ?>                                                                
+                          </tbody>
+                        </table>
+                                  <div class="modal fade" id="addDeficiencyModal" tabindex="-1" role="dialog" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
@@ -298,13 +308,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                  </td>
-                                </tr>
-                              <?php } ?>
                             
-                                
-                          </tbody>
-                        </table>
                       </div>
                     </div>
                   </div>

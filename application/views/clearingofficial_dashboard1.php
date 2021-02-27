@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Initiate Clearance</title>
+    <title>Students Clearance | 2020-2021 | 1st Semester</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -32,7 +32,7 @@
             <img src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="..." class="img-fluid rounded-circle sidebar-profile-img">
             <span class="align-middle mt-3 ml-3">
               <?php echo $user_name ?>
-              <h6 class="mt-2 font-weight-light small">Registrar's Office</h6>
+              <h6 class="mt-2 font-weight-light small">Office of Student Services</h6>
             </span>
           </div>
 
@@ -42,7 +42,7 @@
             </li>
 
             <li class="sidebar-link"> 
-              <a href="mainPage" class="nav-link text-left"  role="button" aria-haspopup="true" aria-expanded="false">
+              <a href="mainPage" class="nav-link text-left active"  role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-chart-line"></i> Dashboard 
               </a>
             </li>
@@ -59,29 +59,30 @@
               </a>
             </li>
 
-            <li class="sidebar-header">
-              User Management
-            </li>
-            
-            <li class=""> 
-              <a href="<?php echo base_url(); ?>index.php/admin_control/users" class="nav-link text-left"  role="button" >
-                <i class="fas fa-users"></i> Users
-              </a>
-            </li>
-
             <li class="sidebar-header"> Clearance</li>
             <li class=""> 
-              <a href="<?php echo base_url(); ?>index.php/admin_control/initiate_clearance" class="nav-link text-left active"  role="button" >
-                <i class="fas fa-edit"></i> Initiate Clearance
+              <a class="nav-link text-left"  href="<?php echo base_url(); ?>index.php/official_control/review_student_clearance" role="button">
+                <i class="fa fa-clipboard"></i> Review Student Clearance  
+                <!--<i class="fas fa-caret-down float-right"></i> -->
               </a>
+              <!--
+              <div class="collapse menu mega-dropdown" id="collapseClearanceRecords">
+                <div class="dropmenu" aria-labelledby="navbarDropdown">
+                  <div class="container-fluid p-0">
+                    <div class="row">
+                      <div class="col-lg-12 px-2">
+                        <div class="submenu-box"> 
+                          <ul class="list-unstyled m-0">
+                            <li><a href="">2nd Sem S.Y. 2019-2020</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+               -->
             </li>
-            <li class=""> 
-              <a href="<?php echo base_url(); ?>index.php/admin_control/clearance_records" class="nav-link text-left"  role="button" >
-                <i class="fa fa-clipboard"></i> Clearance Records 
-              </a>
-            </li>
-        
-            
           </ul>
         </div>
       </nav> 
@@ -133,18 +134,6 @@
                           </div>
                           <div class="col-10">
                             <div class="text-dark">Clearance Request</div>
-                            <div class="text-muted small mt-1">Jillian Noreen Fernandez</div>
-                            <div class="text-muted small mt-1">BSIT 3-1</div>
-                          </div>
-                        </div>
-                      </a>
-                      <a href="#" class="list-group-item list-group-item-action">
-                        <div class="row no-gutters align-items-center">
-                          <div class="col-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle text-danger"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                          </div>
-                          <div class="col-10">
-                            <div class="text-dark">Clearance Request</div>
                             <div class="text-muted small mt-1">Rafael Senados</div>
                             <div class="text-muted small mt-1">BSIT 3-1</div>
                           </div>
@@ -174,57 +163,52 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container px-lg-4">
+            <div class="container-fluid px-lg-4">
               <div class="row">
                 <div class="col-md-12 mt-lg-4 mt-4">
                   <!-- Page Heading -->
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Initiate Clearance</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Student Clearance</h1>
+                    <h2 class="h3 mb-0 text-gray-800"><?php echo $scYear; ?> | <?php echo $sem; ?></h2>
                   </div>
                 </div>
-
                 <div class="col-md-12">
-                  <div class="card p-3">
-                    <div class="card-body">
-                      <form method="POST"> 
-                        <div class="form-row">
-                          <div class="col-md-12">
-                            <?php if(isset($_GET['message'])): ?>                               
-                              <p style="color:red; padding-top:20px" align="center"><?= $_GET['message']?></p>
-                            <?php endif; ?>
-                            <label for="UserRole">School Year</label>
-                            <select class="custom-select my-1 mr-sm-2" id="schoolYear" name="scYear" required>
-                              <option value="#" selected>Choose...</option>
-                              <?php foreach($sc_year_list as $row) { ?>
-                                <option value="<?php echo $row->id ?>"><?php echo $row->school_years ?></option>
-                              <?php } ?>
-                            </select>
-                          </div>
-                        </div>
+                  <form method="post">
+                    <table class="table table-striped" id="tableUsers" cellspacing="0" width="100%">
+                      <thead>
+                        <tr>
+                        <th colspan="4"><h3 align="center"><?php echo $Course; ?> | <?php echo $Year; ?> Year</h3></th>
+                      </tr>
+                        <tr>
+                          <th scope="col">No.</th>
+                          <th scope="col">Student No.</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Deficiency</th>
+                        </tr>
+                      </thead>
 
-                        <div class="form-row mt-2">
-                          <div class="col-md-12">
-                            <label for="UserRole">Semester</label>
-                            <select class="custom-select my-1 mr-sm-2" id="semester" name="sem" required>
-                              <option value="#" selected>Choose...</option>
-                              <option value="1" >1st Semester</option>
-                              <option value="2" >2nd Semester</option>
-                              
-                            </select>
-                          </div>
-                        </div>
-
-                        <div class="form-row mt-2">
-                          <div class="col-md-6 mb-3">
-                            <label for="Username">To be accomplished until</label>
-                            <input type="date" class="form-control" id="dueDate" name="clearanceDueDate" required>
-                          </div>
-                        </div>
-                        <input class="btn btn-primary" type="submit" name="initiateClearance" value="Initiate">
-                      </form>
-                    </div>
-                  </div>
-                </div> <!-- column -->
+                      <tbody>
+                        <?php
+                        $row_num = 1;
+                        foreach($unreviewed_list as $row) 
+                          { 
+                        ?>
+                        <tr>
+                          <th scope="row"><?php echo $row_num; ?></th>
+                          <td><?php echo $row->studNum; ?></td>
+                          <td><?php echo $row->name; ?></td>
+                          <td><input type="text" class="form-control" name="<?php echo $row->entry_id; ?>"></td>
+                        </tr>
+                        <?php 
+                          $row_num += 1;
+                          }
+                        ?>
+                        </tbody>
+                    </table>                  
+                  <p align="center"><input class="btn btn-success" type="submit" name="submit" value="Submit" align="center"></p>
+                  </form>
+                </div>
+                </div>
               </div>
             </div> <!-- /.container-fluid -->
           </div>
@@ -246,8 +230,6 @@
 
       });
     </script>
-
-    
     
   </body>
 </html>

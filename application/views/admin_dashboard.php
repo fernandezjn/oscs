@@ -192,7 +192,7 @@
                       <div class="card text-center ">
                         <div class="card-body">
                           <h5 class="card-title mb-3">Cleared Students</h5>
-                          <h1 class="display-5">100</h1>
+                          <h1 class="display-5"><?php echo $totalClearedStudents ?></h1>
                         </div>
                         <div class="card-footer">
                           <a href="#" class="mb-1 view-details">
@@ -206,7 +206,7 @@
                       <div class="card text-center ">
                         <div class="card-body">
                           <h5 class="card-title mb-3">Uncleared Students</h5>
-                          <h1 class="display-5">400</h1>
+                          <h1 class="display-5"><?php echo $totalUnclearedStudents ?></h1>
                         </div>
                         <div class="card-footer">
                           <a href="#" class="mb-1">
@@ -220,7 +220,7 @@
                       <div class="card text-center">
                         <div class="card-body">
                           <h5 class="card-title mb-3">Clearance Request</h5>
-                          <h1 class="display-5">50</h1>
+                          <h1 class="display-5">#</h1>
                         </div>
                         <div class="card-footer">
                           <a href="#" class="mb-1">
@@ -234,7 +234,7 @@
                       <div class="card text-center">
                         <div class="card-body">
                           <h5 class="card-title mb-3">Total Students</h5>
-                          <h1 class="display-5">800</h1>
+                          <h1 class="display-5"><?php echo $totalStudents ?></h1>
                         </div>
                         <div class="card-footer">
                           <a href="#" class="mb-1">

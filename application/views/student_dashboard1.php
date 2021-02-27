@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Initiate Clearance</title>
+    <title>Dashboard</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -32,7 +32,7 @@
             <img src="<?php echo base_url(); ?>assets/img/PUPLogo.png" alt="..." class="img-fluid rounded-circle sidebar-profile-img">
             <span class="align-middle mt-3 ml-3">
               <?php echo $user_name ?>
-              <h6 class="mt-2 font-weight-light small">Registrar's Office</h6>
+              <h6 class="mt-2 font-weight-light small"><?php echo $studCourse ?> <?php echo $studYear ?>-1</h6>
             </span>
           </div>
 
@@ -42,7 +42,7 @@
             </li>
 
             <li class="sidebar-link"> 
-              <a href="mainPage" class="nav-link text-left"  role="button" aria-haspopup="true" aria-expanded="false">
+              <a href="mainPage" class="nav-link text-left active"  role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-chart-line"></i> Dashboard 
               </a>
             </li>
@@ -59,29 +59,31 @@
               </a>
             </li>
 
-            <li class="sidebar-header">
-              User Management
-            </li>
-            
-            <li class=""> 
-              <a href="<?php echo base_url(); ?>index.php/admin_control/users" class="nav-link text-left"  role="button" >
-                <i class="fas fa-users"></i> Users
-              </a>
-            </li>
-
             <li class="sidebar-header"> Clearance</li>
             <li class=""> 
-              <a href="<?php echo base_url(); ?>index.php/admin_control/initiate_clearance" class="nav-link text-left active"  role="button" >
-                <i class="fas fa-edit"></i> Initiate Clearance
+              <!-- <a class="nav-link text-left"  href="<?php echo base_url(); ?>index.php/student_control/view_clearance_record" role="button"> -->
+                <a class="nav-link text-left"  href="#" role="button">
+                <i class="fa fa-clipboard"></i> Clearance Records
+                <!--<i class="fas fa-caret-down float-right"></i>--> 
               </a>
+              <!--
+              <div class="collapse menu mega-dropdown" id="collapseClearanceRecords">
+                <div class="dropmenu" aria-labelledby="navbarDropdown">
+                  <div class="container-fluid p-0">
+                    <div class="row">
+                      <div class="col-lg-12 px-2">
+                        <div class="submenu-box"> 
+                          <ul class="list-unstyled m-0">
+                            <li><a href="">2nd Sem S.Y. 2019-2020</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                -->
             </li>
-            <li class=""> 
-              <a href="<?php echo base_url(); ?>index.php/admin_control/clearance_records" class="nav-link text-left"  role="button" >
-                <i class="fa fa-clipboard"></i> Clearance Records 
-              </a>
-            </li>
-        
-            
           </ul>
         </div>
       </nav> 
@@ -120,9 +122,9 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle text-danger"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                           </div>
                           <div class="col-10">
-                            <div class="text-dark">Clearance Request</div>
-                            <div class="text-muted small mt-1">Angelia Rose Picart</div>
-                            <div class="text-muted small mt-1">BSIT 3-1</div>
+                            <div class="text-dark">Clearance Requirement</div>
+                            <div class="text-muted small mt-1">Clearing Official 1</div>
+                            <div class="text-muted small mt-1">PUPTFEA</div>
                           </div>
                         </div>
                       </a>
@@ -132,21 +134,9 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle text-danger"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                           </div>
                           <div class="col-10">
-                            <div class="text-dark">Clearance Request</div>
-                            <div class="text-muted small mt-1">Jillian Noreen Fernandez</div>
-                            <div class="text-muted small mt-1">BSIT 3-1</div>
-                          </div>
-                        </div>
-                      </a>
-                      <a href="#" class="list-group-item list-group-item-action">
-                        <div class="row no-gutters align-items-center">
-                          <div class="col-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle text-danger"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                          </div>
-                          <div class="col-10">
-                            <div class="text-dark">Clearance Request</div>
-                            <div class="text-muted small mt-1">Rafael Senados</div>
-                            <div class="text-muted small mt-1">BSIT 3-1</div>
+                            <div class="text-dark">Schedule of Clearance 1st Semester S.Y. 2020-2021</div>
+                            <div class="text-muted small mt-1">Clearing Official 2</div>
+                            <div class="text-muted small mt-1">Registrar's Office</div>
                           </div>
                         </div>
                       </a>
@@ -179,52 +169,72 @@
                 <div class="col-md-12 mt-lg-4 mt-4">
                   <!-- Page Heading -->
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Initiate Clearance</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                   </div>
                 </div>
 
                 <div class="col-md-12">
-                  <div class="card p-3">
-                    <div class="card-body">
-                      <form method="POST"> 
-                        <div class="form-row">
-                          <div class="col-md-12">
-                            <?php if(isset($_GET['message'])): ?>                               
-                              <p style="color:red; padding-top:20px" align="center"><?= $_GET['message']?></p>
-                            <?php endif; ?>
-                            <label for="UserRole">School Year</label>
-                            <select class="custom-select my-1 mr-sm-2" id="schoolYear" name="scYear" required>
-                              <option value="#" selected>Choose...</option>
-                              <?php foreach($sc_year_list as $row) { ?>
-                                <option value="<?php echo $row->id ?>"><?php echo $row->school_years ?></option>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="font-weight-bold text-center">Approved Clearance</h5>
+                          <div class="table-responsive">
+                          <table class="table table-sm mt-3" class="table table-sm mt-3" id="approved Clearance" cellspacing="0" width="100%">
+                            <thead>
+                              <tr>
+                                <th scope="col">Department</th>
+                                <th scope="col">Clearing Official</th>
+                                <!-- <th scope="col">Date Approved</th> -->
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <?php foreach($approved_list as $row) { ?>
+                                <tr>
+                                  <td><?php echo $row->department_name ?></td>
+                                  <td><?php echo $row->name ?></td>
+                                  <!-- <td></td> -->
+                                </tr>
                               <?php } ?>
-                            </select>
-                          </div>
+                            </tbody>
+                          </table>
                         </div>
-
-                        <div class="form-row mt-2">
-                          <div class="col-md-12">
-                            <label for="UserRole">Semester</label>
-                            <select class="custom-select my-1 mr-sm-2" id="semester" name="sem" required>
-                              <option value="#" selected>Choose...</option>
-                              <option value="1" >1st Semester</option>
-                              <option value="2" >2nd Semester</option>
-                              
-                            </select>
-                          </div>
                         </div>
-
-                        <div class="form-row mt-2">
-                          <div class="col-md-6 mb-3">
-                            <label for="Username">To be accomplished until</label>
-                            <input type="date" class="form-control" id="dueDate" name="clearanceDueDate" required>
-                          </div>
-                        </div>
-                        <input class="btn btn-primary" type="submit" name="initiateClearance" value="Initiate">
-                      </form>
+                      </div>
                     </div>
+
+                    <div class="col-md-6 col-sm-6">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="font-weight-bold text-center">Pending Clearance</h5>
+                          <div class="table-responsive">
+                          <table class="table table-sm mt-3" id="pendingClearance" cellspacing="0" width="100%">
+                            <thead>
+                              <tr>
+                                <th scope="col">Department</th>
+                                <th scope="col">Clearing Official</th>
+                                <th scope="col">Deficiency</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <?php foreach($pending_list as $row) { ?>
+                                <tr>
+                                  <td><?php echo $row->department_name ?></td>
+                                  <td><?php echo $row->name ?></td>
+                                  <td><?php echo $row->deficiencies ?></td>
+                                </tr>
+                              <?php } ?>
+                            </tbody>
+                          </table>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+
+                   
                   </div>
                 </div> <!-- column -->
+
               </div>
             </div> <!-- /.container-fluid -->
           </div>
@@ -246,8 +256,6 @@
 
       });
     </script>
-
-    
     
   </body>
 </html>

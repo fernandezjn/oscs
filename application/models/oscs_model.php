@@ -46,11 +46,19 @@
         public function forgotPass($email)
         {
             $this->db->where('email',$email);
-            $query = $this->db->get('user_info');
+            $query = $this->db->get('tbl_students');
             if ($query->row())
             {
                 return true;
             }
+
+            $this->db->where('email',$email);
+            $query = $this->db->get('tbl_clearing_officials');
+            if ($query->row())
+            {
+                return true;
+            }
+
             return false;
         }
 
@@ -62,9 +70,9 @@
 
         public function countAllClearedStudents()
         {
-            $query = $this->db->query("SELECT u.id, COUNT(c.id) as 'number_of_cleared_departments', CONCAT(i.firstname,' ',i.middlename,' ',i.lastname)
-                        FROM clerance_entries c
-                        INNER JOIN user_info i on i.student_number = c.student_number
+            $query = $this->db->query("SELECT u.id, COUNT(c.id) as 'number_of_cleared_departments', CONCAT(i.first_name,' ',i.middle_name,' ',i.last_name)
+                        FROM clearance_entries c
+                        INNER JOIN tbl_students i on i.student_number = c.student_number
                         INNER JOIN users u on u.id = i.id
                         WHERE c.deficiencies = 'Clear' AND u.type = '3'
                         GROUP BY u.id
@@ -82,49 +90,101 @@
             return $count;
         }
 
-        public function addUser($username,$password,$type,$lastname="",$firstname="",$middlename="",$suffixname="",$email="",$contactnumber="",$studentno="",$yearid="",$courseid="",$studenttypeid="",$orgid="",$departmentid="", $positionid="")
+        public function totalNumberOfStudents()
+        {
+            $query = $this->db->query("SELECT COUNT(*) as 'number_of_students' FROM tbl_students WHERE year_id != '6' ");
+
+            return $query->result();
+        }
+
+        public function addUserLogin($username,$password,$type)
         {
             $query = "INSERT INTO `users`(`username`, `password`, `type`) VALUES ('".$username."','".$password."','".$type."')";
 
-            $this->db->query($query);
+            $this->db->query($query);            
+        }
+        public function getAllUserLogin()
+        {
+            $query = $this->db->query("SELECT * FROM users ORDER BY id ASC");
 
+            return $query->result();
+        }
+        public function addUserInfo($id,$type,$lastname="",$firstname="",$middlename="",$suffixname="",$email="",$contactnumber="",$studentno="",$yearid="",$courseid="",$studenttypeid="",$orgid="",$departmentid="", $positionid="")
+        {
+            if($type == 3)
+            {
+                $query = "INSERT INTO `tbl_students`(`user_id`,`last_name`, `first_name`, `middle_name`, `suffix_name`, `email`, `contact_number`, `student_number`, `year_id`, `course_id`, `student_type_id`) 
+                    VALUES ('".$id."','".$lastname."','".$firstname."','".$middlename."','".$suffixname."','".$email."','".$contactnumber."','".$studentno."','".$yearid."','".$courseid."','".$studenttypeid."')";
+            } 
+            else 
+            {
+                $query = "INSERT INTO `tbl_clearing_officials`(`user_id`,`last_name`, `first_name`, `middle_name`, `suffix_name`, `email`, `contact_number`, `org_id`, `department_id`, `position_id`) 
+                    VALUES ('".$id."','".$lastname."','".$firstname."','".$middlename."','".$suffixname."','".$email."','".$contactnumber."','".$orgid."','".$departmentid."','".$positionid."')";
+            }
 
-            $query = "INSERT INTO `user_info`(`last_name`, `first_name`, `middle_name`, `suffix_name`, `email`, `contact_number`, `student_number`, `year_id`, `course_id`, `student_type_id`, `org_id`, `department_id`, `position_id`) 
-                VALUES ('".$lastname."','".$firstname."','".$middlename."','".$suffixname."','".$email."','".$contactnumber."','".$studentno."','".$yearid."','".$courseid."','".$studenttypeid."','".$orgid."','".$departmentid."','".$positionid."')";
-
-            $this->db->query($query);
+            $this->db->query($query);            
         }
 
         public function getUsers($role="")
         {
-            if($role !=  "")
+            if($role ==  "3")
+            {
+                $query = $this->db->query("SELECT u.id, u.username,CONCAT(i.last_name,', ', i.first_name,' ', i.middle_name,' ', i.suffix_name) as 'name', r.role as 'role', i.student_number as 'studNo'
+                FROM users u
+                INNER JOIN tbl_students i on i.user_id = u.id
+                INNER JOIN roles r on r.id = u.type");
+            }
+            else if($role ==  "4" || $role == "1")
             {
                 $query = $this->db->query("SELECT u.id, u.username,CONCAT(i.last_name,', ', i.first_name,' ', i.middle_name,' ', i.suffix_name) as 'name', r.role as 'role'
                 FROM users u
-                INNER JOIN user_info i on i.id = u.id
-                INNER JOIN roles r on r.id = u.type
-                WHERE u.type = '".$role."%'");
+                INNER JOIN tbl_clearing_officials i on i.user_id = u.id
+                INNER JOIN roles r on r.id = u.type");
             }
             else
             {
-                $query = $this->db->query("SELECT u.id, u.username,CONCAT(i.last_name,', ', i.first_name,' ', i.middle_name,' ', i.suffix_name)  as 'name', r.role as 'role'
-                FROM users u
-                INNER JOIN user_info i on i.id = u.id
-                INNER JOIN roles r on r.id = u.type");
+                $query = $this->db->query("Select u.id, u.username, i.name, r.role from users u inner join (SELECT CONCAT(last_name,', ',first_name,' ',middle_name,' ',suffix_name) as 'name', user_id FROM tbl_students UNION SELECT CONCAT(last_name,', ',first_name,' ',middle_name,' ',suffix_name) as 'name', user_id FROM tbl_clearing_officials) i on i.user_id = u.id inner JOIN roles r on r.id = u.type");
             }
             
 
             return $query->result();
         }
 
+        public function getUserType($id)
+        {
+            $this->db->where('user_id',$id);
+            $query = $this->db->get('tbl_students');
+            if ($query->row())
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public function getUserInfo($id)
         {
-            $query = $this->db->query("SELECT * , u.id as userID
-                FROM users u
-                INNER JOIN user_info i on i.id = u.id
-                INNER JOIN roles r on r.id = u.type
-                WHERE u.id = '".$id."'");
+            $query1 = "";
+            $this->db->where('user_id',$id);
+            $query = $this->db->get('tbl_students');
+            if ($query->row())
+            {
+                $query = $this->db->query("SELECT * , u.id as userID
+                    FROM users u
+                    INNER JOIN tbl_students s on s.user_id = u.id
+                    INNER JOIN roles r on r.id = u.type
+                    WHERE u.id = '".$id."'");
+            } else {
 
+                 $query = $this->db->query("SELECT * , u.id as userID
+                    FROM users u
+                    INNER JOIN tbl_clearing_officials s on s.user_id = u.id
+                    INNER JOIN roles r on r.id = u.type
+                    WHERE u.id = '".$id."'");
+            }
+            
             return $query->result();
         }
 
@@ -137,21 +197,36 @@
 
             $this->db->query($query);
 
-            $query = "UPDATE `user_info` 
+            if($type == 3)
+            {
+                $query = "UPDATE `tbl_students` 
                     SET `last_name`='".$lastname."',
                     `first_name`='".$firstname."',
-                    `middle_name`='".$middlename=""."',
+                    `middle_name`='".$middlename."',
                     `suffix_name`='".$suffixname."',
                     `email`='".$email."',
                     `contact_number`='".$contactnumber."',
                     `student_number`='".$studentno."',
                     `year_id`='".$yearid."',
                     `course_id`='".$courseid."',
-                    `student_type_id`='".$studenttypeid."',
+                    `student_type_id`='".$studenttypeid."'
+                    WHERE user_id = '".$id."'";
+            }
+            else
+            {
+                $query = "UPDATE `tbl_clearing_officials` 
+                    SET `last_name`='".$lastname."',
+                    `first_name`='".$firstname."',
+                    `middle_name`='".$middlename."',
+                    `suffix_name`='".$suffixname."',
+                    `email`='".$email."',
+                    `contact_number`='".$contactnumber."',
                     `org_id`='".$orgid."',
                     `department_id`='".$departmentid."',
                     `position_id`='".$positionid."' 
-                    WHERE id = '".$id."'";
+                    WHERE user_id = '".$id."'";
+            }
+            
 
             $this->db->query($query);
         }
@@ -160,7 +235,9 @@
         {
             $query = "DELETE FROM users WHERE id = '".$id."'";
             $this->db->query($query);
-            $query = "DELETE FROM user_info WHERE id = '".$id."'";
+            $query = "DELETE FROM tbl_students WHERE user_id = '".$id."'";
+            $this->db->query($query);
+            $query = "DELETE FROM tbl_clearing_officials WHERE user_id = '".$id."'";
             $this->db->query($query);
         }
 
@@ -222,7 +299,7 @@
 
         public function newClearanceData($year,$sem,$due)
         {
-            $query = "UPDATE current_clearance_data SET sc_year_id ='".$year."',semester='".$sem."', dueDate='".$due."' WHERE id=1";
+            $query = "INSERT INTO current_clearance_data (sc_year_id,semester, dueDate) VALUES ('".$year."','".$sem."', '".$due."') ";
 
             $this->db->query($query);
         }
@@ -238,19 +315,18 @@
         public function getStudents($year=null,$course=null)
         {
             if($year == null && $course == null)
-            {    $query = $this->db->query("SELECT * , CONCAT(last_name,', ',first_name,' ',middle_name,' ', suffix_name) as 'name', c.course_name as 'studCourse', d.type as 'studType', e.level as 'studLevel', a.id as 'userID' FROM user_info a INNER JOIN users b on b.id = a.id 
+            {    $query = $this->db->query("SELECT * , CONCAT(last_name,', ',first_name,' ',middle_name,' ', suffix_name) as 'name', c.course_name as 'studCourse', d.type as 'studType', e.level as 'studLevel', a.user_id as 'userID' FROM tbl_students a INNER JOIN users b on b.id = a.user_id 
                     INNER JOIN courses c on c.id = a.course_id
                     INNER JOIN student_types d on d.id = a.student_type_id
-                    INNER JOIN year_levels e on e.id = a.year_id
-                     WHERE b.type='3' ");
+                    INNER JOIN year_levels e on e.id = a.year_id");
             }
             else
             {
-                $query = $this->db->query("SELECT * , CONCAT(last_name,', ',first_name,' ',middle_name,' ', suffix_name) as 'name', c.course_name as 'studCourse', d.type as 'studType', e.level as 'studLevel', a.id as 'userID' FROM user_info a INNER JOIN users b on b.id = a.id 
+                $query = $this->db->query("SELECT * , CONCAT(last_name,', ',first_name,' ',middle_name,' ', suffix_name) as 'name', c.course_name as 'studCourse', d.type as 'studType', e.level as 'studLevel', a.user_id as 'userID' FROM tbl_students a INNER JOIN users b on b.id = a.user_id 
                     INNER JOIN courses c on c.id = a.course_id
                     INNER JOIN student_types d on d.id = a.student_type_id
                     INNER JOIN year_levels e on e.id = a.year_id
-                    WHERE b.type='3' AND a.course_id='".$course."' AND a.year_id='".$year."'");
+                    WHERE a.course_id='".$course."' AND a.year_id='".$year."'");
             }
 
             return $query->result();
@@ -258,11 +334,11 @@
 
         public function getStudent_info($id)
         {
-            $query = $this->db->query("SELECT * , CONCAT(last_name,', ',first_name,' ',middle_name,' ', suffix_name) as 'name', c.course_name as 'studCourse', d.type as 'studType', e.level as 'studLevel', a.id as 'userID' FROM user_info a INNER JOIN users b on b.id = a.id 
+            $query = $this->db->query("SELECT * , CONCAT(last_name,', ',first_name,' ',middle_name,' ', suffix_name) as 'name', c.course_name as 'studCourse', d.type as 'studType', e.level as 'studLevel', a.user_id as 'userID' FROM tbl_students a INNER JOIN users b on b.id = a.user_id 
                     INNER JOIN courses c on c.id = a.course_id
                     INNER JOIN student_types d on d.id = a.student_type_id
                     INNER JOIN year_levels e on e.id = a.year_id
-                     WHERE a.id ='".$id."' ");
+                     WHERE a.user_id ='".$id."' ");
 
             return $query->result();
         }
@@ -276,7 +352,7 @@
 
         public function getClearanceEntries($studNum,$scYear,$sem) //perStudent
         {
-            $query = $this->db->query("SELECT * , CONCAT(c.first_name,' ',c.last_name) as 'name', a.student_number as 'studNum' from clearance_entries a INNER JOIN departments b on b.id = a.department_id INNER JOIN user_info c on c.department_id = b.id WHERE a.student_number = '".$studNum."' AND a.sc_year_id = '".$scYear."' AND a.semester = '".$sem."'");
+            $query = $this->db->query("SELECT * , CONCAT(c.first_name,' ',c.last_name) as 'name', a.student_number as 'studNum' from clearance_entries a INNER JOIN departments b on b.id = a.department_id INNER JOIN tbl_clearing_officials c on c.department_id = b.id WHERE a.student_number = '".$studNum."' AND a.sc_year_id = '".$scYear."' AND a.semester = '".$sem."'");
             
             return $query->result();
         }
@@ -288,7 +364,7 @@
                 $query = $this->db->query("SELECT * , CONCAT(c.last_name,', ',c.first_name,' ',c.middle_name,' ',c.suffix_name) as 'name', a.student_number as 'studNum', d.course_name as 'course', e.type as 'studType', c.email as 'email', c.contact_number as 'contact', c.year_id as 'year' 
                 from clearance_entries a 
                 INNER JOIN departments b on b.id = a.department_id 
-                INNER JOIN user_info c on c.student_number = a.student_number
+                INNER JOIN tbl_students c on c.student_number = a.student_number
                 INNER JOIN courses d on d.id = c.course_id
                 INNER JOIN student_types e on e.id = c.student_type_id
                 WHERE a.department_id = '".$dep."' AND a.sc_year_id = '".$scYear."' AND a.semester = '".$sem."'");
@@ -297,7 +373,7 @@
             $query = $this->db->query("SELECT * , CONCAT(c.last_name,', ',c.first_name,' ',c.middle_name,' ',c.suffix_name) as 'name', a.student_number as 'studNum', d.course_name as 'course', e.type as 'studType', c.email as 'email', c.contact_number as 'contact', c.year_id as 'year' 
                 from clearance_entries a 
                 INNER JOIN departments b on b.id = a.department_id 
-                INNER JOIN user_info c on c.student_number = a.student_number
+                INNER JOIN tbl_students c on c.student_number = a.student_number
                 INNER JOIN courses d on d.id = c.course_id
                 INNER JOIN student_types e on e.id = c.student_type_id
                 WHERE a.department_id = '".$dep."' AND a.sc_year_id = '".$scYear."' AND a.semester = '".$sem."' AND c.course_id = '".$course."' AND c.year_id = '".$yearLevel."'");
@@ -323,20 +399,58 @@
             $this->db->query($query);
         }
 
-        public function getAllApprovedClearance($studNum)
+        public function getAllApprovedClearance($studNum,$year,$sem)
         {
             $query = $this->db->query("SELECT * , CONCAT (c.last_name,', ',c.first_name,' ',c.middle_name,' ', c.suffix_name) as 'name'
-                From clearance_entries a INNER JOIN departments b on b.id = a.department_id INNER JOIN user_info c on c.department_id = a.department_id  WHERE a.deficiencies = 'Clear' AND a.student_number = '".$studNum."'");
+                From clearance_entries a INNER JOIN departments b on b.id = a.department_id INNER JOIN tbl_clearing_officials c on c.department_id = a.department_id  WHERE a.deficiencies = 'Clear' AND a.student_number = '".$studNum."' AND a.sc_year_id = '".$year."' AND a.semester = '".$sem."'" );
 
             return $query->result();
         }
 
-        public function getPendingClearance($studNum)
+        public function getPendingClearance($studNum,$year,$sem)
         {
             $query = $this->db->query("SELECT * , CONCAT (c.last_name,', ',c.first_name,' ',c.middle_name,' ', c.suffix_name) as 'name'
-                From clearance_entries a INNER JOIN departments b on b.id = a.department_id INNER JOIN user_info c on c.department_id = a.department_id  WHERE a.deficiencies != 'Clear' AND a.student_number = '".$studNum."'");
+                From clearance_entries a INNER JOIN departments b on b.id = a.department_id INNER JOIN tbl_clearing_officials c on c.department_id = a.department_id  WHERE a.deficiencies != 'Clear' AND a.student_number = '".$studNum."' AND a.sc_year_id = '".$year."' AND a.semester = '".$sem."'");
 
             return $query->result();
+        }
+
+        public function checkForUnreviewedEntries($dep,$scyear,$sem)
+        {
+            $this->db->where('department_id',$dep);
+            $this->db->where('sc_year_id',$scyear);
+            $this->db->where('semester',$sem);
+            $this->db->where('review_status','0');
+            $query = $this->db->get('clearance_entries');
+            if ($query->row())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public function getUnvreviewedEntries($dep,$scyear,$sem,$course,$yearLvl)
+        {
+            $query = $this->db->query("SELECT * , CONCAT(c.last_name,', ',c.first_name,' ',c.middle_name,' ',c.suffix_name) as 'name', a.student_number as 'studNum', d.course_name as 'course', e.type as 'studType', c.email as 'email', c.contact_number as 'contact', c.year_id as 'year', a.id as 'entry_id' 
+                from clearance_entries a 
+                INNER JOIN departments b on b.id = a.department_id 
+                INNER JOIN tbl_students c on c.student_number = a.student_number
+                INNER JOIN courses d on d.id = c.course_id
+                INNER JOIN student_types e on e.id = c.student_type_id
+                WHERE a.department_id = '".$dep."' AND a.sc_year_id = '".$scyear."' AND a.semester = '".$sem."' AND c.course_id = '".$course."' AND c.year_id = '".$yearLvl."' AND a.review_status = '0' ");
+
+            if($query->row())
+            {
+                return $query->result();
+            }
+            return false;
+            
+        }
+
+        public function updateDeficiency($id,$def)
+        {
+            $query = "UPDATE `clearance_entries` SET `deficiencies`='".$def."', review_status = '1' WHERE `id`='".$id."'";
+            $this->db->query($query);
         }
 
 

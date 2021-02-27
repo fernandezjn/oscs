@@ -52,6 +52,15 @@ class Admin_control extends CI_Controller {
 		if($isAdmin)
 		{
 			$data["user_name"] = $this->session->userdata("user_name");
+			$no_of_students = $this->oscs_model->totalNumberOfStudents();
+			foreach ($no_of_students as $row) {
+				$data["totalStudents"] = $row->number_of_students;
+				$totalStud = $row->number_of_students;
+			}
+			$clearedStud = $this->oscs_model->countAllClearedStudents();
+			$unclearedStud = $totalStud - $clearedStud;
+			$data["totalClearedStudents"] = $clearedStud;
+			$data["totalUnclearedStudents"] = $unclearedStud;
 			$this->load->view('admin_dashboard',$data);
 		}
 		else
@@ -83,89 +92,95 @@ class Admin_control extends CI_Controller {
 			$data["user_name"] = $this->session->userdata("user_name");
 			$data["user_info"] = $this->oscs_model->getUserInfo($id);
 			$userInfo = $this->oscs_model->getUserInfo($id);
+			$user_type = $this->oscs_model->getUserType($id);
 			foreach($userInfo as $row)
 			{
-				$offices = $this->oscs_model->getOffices();
-				foreach($offices as $row1)
+				if($user_type == 0)
 				{
-					if($row->department_id == $row1->id)
+					$offices = $this->oscs_model->getOffices();
+					foreach($offices as $row1)
 					{
-						$data["office"] = $row1->department_name;
-						break;
+						if($row->department_id == $row1->id)
+						{
+							$data["office"] = $row1->department_name;
+							break;
+						}
+						else
+						{
+							$data["office"] = "";
+						}
 					}
-					else
-					{
-						$data["office"] = "";
-					}
-				}
 
-				$organization = $this->oscs_model->getOrganizations();
-				foreach($organization as $row2)
+					$organization = $this->oscs_model->getOrganizations();
+					foreach($organization as $row2)
+					{
+						if($row->org_id == $row2->id)
+						{
+							$data["org"] = $row2->org_name;
+							break;
+						}
+						else
+						{
+							$data["org"] = "";
+						}
+					}
+		
+					$position = $this->oscs_model->getPositions();
+					foreach($position as $row3)
+					{
+						if($row->position_id == $row3->id)
+						{
+							$data["position"] = $row3->position_name;
+							break;
+						}
+						else
+						{
+							$data["position"] = "";
+						}
+					}
+				} 
+				else if($user_type == 1) 
 				{
-					if($row->org_id == $row2->id)
+					$year = $this->oscs_model->getYear();
+					foreach($year as $row4)
 					{
-						$data["org"] = $row2->org_name;
-						break;
+						if($row->year_id == $row4->id)
+						{
+							$data["year"] = $row4->level;
+							break;
+						}
+						else
+						{
+							$data["year"] = "";
+						}
 					}
-					else
-					{
-						$data["org"] = "";
-					}
-				}
-	
-				$position = $this->oscs_model->getPositions();
-				foreach($position as $row3)
-				{
-					if($row->position_id == $row3->id)
-					{
-						$data["position"] = $row3->position_name;
-						break;
-					}
-					else
-					{
-						$data["position"] = "";
-					}
-				}
 
-				$year = $this->oscs_model->getYear();
-				foreach($year as $row4)
-				{
-					if($row->year_id == $row4->id)
+					$course = $this->oscs_model->getCourses();
+					foreach($course as $row5)
 					{
-						$data["year"] = $row4->level;
-						break;
+						if($row->course_id == $row5->id)
+						{
+							$data["course"] = $row5->course_name;
+							break;
+						}
+						else
+						{
+							$data["course"] = "";
+						}
 					}
-					else
-					{
-						$data["year"] = "";
-					}
-				}
 
-				$course = $this->oscs_model->getCourses();
-				foreach($course as $row5)
-				{
-					if($row->course_id == $row5->id)
+					$studType = $this->oscs_model->getStudent_types();
+					foreach($studType as $row6)
 					{
-						$data["course"] = $row5->course_name;
-						break;
-					}
-					else
-					{
-						$data["course"] = "";
-					}
-				}
-
-				$studType = $this->oscs_model->getStudent_types();
-				foreach($studType as $row6)
-				{
-					if($row->student_type_id == $row6->id)
-					{
-						$data["studType"] = $row6->type;
-						break;
-					}
-					else
-					{
-						$data["studType"] = "";
+						if($row->student_type_id == $row6->id)
+						{
+							$data["studType"] = $row6->type;
+							break;
+						}
+						else
+						{
+							$data["studType"] = "";
+						}
 					}
 				}
 			}
@@ -180,89 +195,95 @@ class Admin_control extends CI_Controller {
 			$data["user_name"] = $this->session->userdata("user_name");	
 			$data["user_info"] = $this->oscs_model->getUserInfo($id);
 			$userInfo = $this->oscs_model->getUserInfo($id);
+			$user_type = $this->oscs_model->getUserType($id);
 			foreach($userInfo as $row)
 			{
-				$offices = $this->oscs_model->getOffices();
-				foreach($offices as $row1)
+				if($user_type == 0)
 				{
-					if($row->department_id == $row1->id)
+					$offices = $this->oscs_model->getOffices();
+					foreach($offices as $row1)
 					{
-						$data["office"] = $row1->department_name;
-						break;
+						if($row->department_id == $row1->id)
+						{
+							$data["office"] = $row1->department_name;
+							break;
+						}
+						else
+						{
+							$data["office"] = "";
+						}
 					}
-					else
-					{
-						$data["office"] = "";
-					}
-				}
 
-				$organization = $this->oscs_model->getOrganizations();
-				foreach($organization as $row2)
-				{
-					if($row->org_id == $row2->id)
+					$organization = $this->oscs_model->getOrganizations();
+					foreach($organization as $row2)
 					{
-						$data["org"] = $row2->org_name;
-						break;
+						if($row->org_id == $row2->id)
+						{
+							$data["org"] = $row2->org_name;
+							break;
+						}
+						else
+						{
+							$data["org"] = "";
+						}
 					}
-					else
+		
+					$position = $this->oscs_model->getPositions();
+					foreach($position as $row3)
 					{
-						$data["org"] = "";
+						if($row->position_id == $row3->id)
+						{
+							$data["position"] = $row3->position_name;
+							break;
+						}
+						else
+						{
+							$data["position"] = "";
+						}
 					}
 				}
-	
-				$position = $this->oscs_model->getPositions();
-				foreach($position as $row3)
+				else if($user_type == 1) 
 				{
-					if($row->position_id == $row3->id)
+					$year = $this->oscs_model->getYear();
+					foreach($year as $row4)
 					{
-						$data["position"] = $row3->position_name;
-						break;
+						if($row->year_id == $row4->id)
+						{
+							$data["year"] = $row4->level;
+							break;
+						}
+						else
+						{
+							$data["year"] = "";
+						}
 					}
-					else
-					{
-						$data["position"] = "";
-					}
-				}
 
-				$year = $this->oscs_model->getYear();
-				foreach($year as $row4)
-				{
-					if($row->year_id == $row4->id)
+					$course = $this->oscs_model->getCourses();
+					foreach($course as $row5)
 					{
-						$data["year"] = $row4->level;
-						break;
+						if($row->course_id == $row5->id)
+						{
+							$data["course"] = $row5->course_name;
+							break;
+						}
+						else
+						{
+							$data["course"] = "";
+						}
 					}
-					else
-					{
-						$data["year"] = "";
-					}
-				}
 
-				$course = $this->oscs_model->getCourses();
-				foreach($course as $row5)
-				{
-					if($row->course_id == $row5->id)
+					$studType = $this->oscs_model->getStudent_types();
+					foreach($studType as $row6)
 					{
-						$data["course"] = $row5->course_name;
-						break;
-					}
-					else
-					{
-						$data["course"] = "";
-					}
-				}
-
-				$studType = $this->oscs_model->getStudent_types();
-				foreach($studType as $row6)
-				{
-					if($row->student_type_id == $row6->id)
-					{
-						$data["studType"] = $row6->type;
-						break;
-					}
-					else
-					{
-						$data["studType"] = "";
+						if($row->student_type_id == $row6->id)
+						{
+							$data["studType"] = $row6->type;
+							break;
+						}
+						else
+						{
+							$data["studType"] = "";
+						}
 					}
 				}
 			}
@@ -390,6 +411,8 @@ class Admin_control extends CI_Controller {
 			$data["year"] = $this->oscs_model->getYear();
 			$data["courses"] = $this->oscs_model->getCourses();
 			$data["student_types"] = $this->oscs_model->getStudent_types();
+			$student_list = $this->oscs_model->getUsers("3");
+			$users_list = $this->oscs_model->getUsers();
 			$this->load->view('add_user',$data);
 
 			if($this->input->post("addUser"))
@@ -399,6 +422,13 @@ class Admin_control extends CI_Controller {
 	            {
 	                $role = $data_form["userRole"];
 	                $uName = $data_form["userName"];
+	                foreach($users_list as $row)
+	                {
+	                	if($uName == $row->username)
+	                	{
+	                		redirect("admin_control/add_user? message=Username Already Exist");
+	                	}
+	                }
 	                $pass = $data_form["pass"];
 	                $lName = $data_form["lastName"];
 	                $fName = $data_form["firstName"];
@@ -444,6 +474,13 @@ class Admin_control extends CI_Controller {
 	                if(!empty($data_form["studentNo"]))
 	                {
 	                	$studNo = $data_form["studentNo"];
+	                	foreach($student_list as $row)
+		                {
+		                	if($studNo == $row->studNo)
+		                	{
+		                		redirect("admin_control/add_user? message=Student Number Already Exist");
+		                	}
+		                }
 	                }
 	                else
 	                {
@@ -477,7 +514,13 @@ class Admin_control extends CI_Controller {
 	                	$studType = "";  
 	                }
 	                
-	                $this->oscs_model->addUser($uName,$pass,$role,$lName,$fName,$mName,$sName,$email,$contact, $studNo, $year, $course, $studType, $org, $office, $pos);
+	                $this->oscs_model->addUserLogin($uName,$pass,$role);
+	                $allUser = $this->oscs_model->getAllUserLogin();
+	                foreach($allUser as $row)
+	                {
+	                	$newID = $row->id;
+	                }
+	                $this->oscs_model->addUserInfo($newID,$role,$lName,$fName,$mName,$sName,$email,$contact, $studNo, $year, $course, $studType, $org, $office, $pos);
 	                redirect("admin_control/users");
 	                
 				}
@@ -507,7 +550,14 @@ class Admin_control extends CI_Controller {
 					$sc_year = $data_form["scYear"];
 					$sem = $data_form["sem"];
 					$dueDate = $data_form["clearanceDueDate"];
-
+					$existingClearance = $this->oscs_model->getCurrentClearanceData();
+					foreach($existingClearance as $row)
+					{
+						if($sc_year == $row->sc_year_id && $sem == $row->semester)
+						{
+							redirect("admin_control/initiate_clearance? message=Clearance For This year and Sem Already Initiated");
+						}
+					}
 					$this->oscs_model->newClearanceData($sc_year,$sem,$dueDate);
 
 					$students_list = $this->oscs_model->getStudents();
@@ -641,6 +691,7 @@ class Admin_control extends CI_Controller {
 		if($isAdmin)
 		{
 			$data["user_name"] = $this->session->userdata("user_name");
+			$data["studID"] = $id;
 			
 			$data["scYear_list"] = $this->oscs_model->getScYears();
 			$scYear_list = $this->oscs_model->getScYears();
