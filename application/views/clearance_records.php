@@ -223,7 +223,7 @@
                           </div>
                         </div>   
 
-                        <input class="btn btn-success mt-4" type="submit" name="filter" value="Apply">
+                        <input class="btn btn-primary mt-4" type="submit" name="filter" value="Apply">
                       </form>
                     </div>
                   </div>
@@ -268,7 +268,7 @@
                                   <td><?php echo $row->email ?></td>
                                   <td><?php echo $row->contact_number ?></td>
                                   <td> 
-                                    <button type="button" class="btn btn-success btn-sm" onclick="window.location='<?php echo site_url("admin_control/view_clearance_record/".$row->userID ) ?>'">View</button>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="window.location='<?php echo site_url("admin_control/view_clearance_record/".$row->userID ) ?>'">View</button>
                                   </td>
                                 </tr>
                             <?php } ?>

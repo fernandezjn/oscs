@@ -325,10 +325,10 @@
                             </fieldset>
                             
                             <div class="text-center mt-5 mb-5">
-                              <a class="btn btn-danger mr-1 buttonColor" href="<?php echo site_url("admin_control/users")?>">
-                                <i class="far fa-window-close mr-1"></i> Cancel
+                              <a class="btn btn-secondary mr-1 buttonColor" href="<?php echo site_url("admin_control/users")?>">
+                               Back
                               </a>
-                              <input type="submit" class="btn btn-success ml-1 buttonColor" name="save" value="Save">
+                              <input type="submit" class="btn btn-primary ml-1 buttonColor" name="save" value="Save">
                             </div>
                           </form>
                         <?php } ?>

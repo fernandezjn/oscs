@@ -222,7 +222,7 @@
                           </div>
                         </div>   
 
-                        <input class="btn btn-success mt-4" type="submit" name="filter" value="Apply">
+                        <input class="btn btn-primary mt-4" type="submit" name="filter" value="Apply">
                       </form>
                     </div>
                   </div>

@@ -302,10 +302,10 @@
                           </fieldset>
                           <div class="text-center mt-5 mb-5">
                             <a class="btn btn-danger mr-1" href="<?php echo site_url("admin_control/users")?>">
-                              <i class="far fa-caret-square-left mr-1"></i>  Go Back
+                              <i class="far fa-caret-square-left mr-1"></i>  Back
                             </a>
-                            <a class="btn btn-success ml-1" href="<?php echo site_url("admin_control/editUserInfo/".$data->userID)?>">
-                              <i class="far fa-edit mr-1"></i> Edit User
+                            <a class="btn btn-secondary ml-1" href="<?php echo site_url("admin_control/editUserInfo/".$data->userID)?>">
+                              <i class="far fa-edit mr-1"></i> Edit
                             </a>
                           </div>
                         </form>

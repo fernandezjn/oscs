@@ -221,7 +221,7 @@
                           </div>
                         </div>
 
-                        <button class="btn btn-success">Generate Username & Password</button>
+                        <button class="btn btn-primary">Generate Username & Password</button>
 
                         <div class="form-row mt-5">
                           <div class="col-md-3 mb-3">
@@ -348,8 +348,8 @@
                             </div>
                           </div>
                         </fieldset>
-                        <button class="btn btn-danger" onclick="window.location='<?php echo site_url("admin_control/users")?>'">Cancel</button>
-                        <input class="btn btn-success" type="submit" name="addUser" value="Add User">
+                        <button class="btn btn-secondary" onclick="window.location='<?php echo site_url("admin_control/users")?>'">Back</button>
+                        <input class="btn btn-primary" type="submit" name="addUser" value="Add User">
                       </form>
                     </div>
                   </div>

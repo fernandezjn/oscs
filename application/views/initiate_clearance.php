@@ -218,7 +218,7 @@
                             <input type="date" class="form-control" id="dueDate" name="clearanceDueDate" required>
                           </div>
                         </div>
-                        <input class="btn btn-success" type="submit" name="initiateClearance" value="Initiate">
+                        <input class="btn btn-primary" type="submit" name="initiateClearance" value="Initiate">
                       </form>
                     </div>
                   </div>

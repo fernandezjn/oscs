@@ -196,7 +196,7 @@
                         </div>
                         <div class="ml-auto">
                           <div class="dl">
-                            <button type="button" class="btn btn-light" onclick="window.location.href='<?php echo base_url(); ?>index.php/admin_control/add_user'";><i class="far fa-plus-square mr-2"></i>Add User</button>
+                            <button type="button" class="btn btn-primary" onclick="window.location.href='<?php echo base_url(); ?>index.php/admin_control/add_user'";><i class="far fa-plus-square mr-2"></i>Add User</button>
                           </div>
                         </div>
                       </div>
@@ -227,8 +227,8 @@
                                   <td><?php echo $row->name ?></td>
                                   <td><?php echo $row->role ?></td>
                                   <td> 
-                                    <button type="button" class="btn btn-success btn-sm" onclick="window.location='<?php echo site_url("admin_control/viewUserInfo/".$row->id."")?>'">View</button>
-                                    <button type="button" class="btn btn-warning btn-sm" onclick="window.location='<?php echo site_url("admin_control/editUserInfo/".$row->id."")?>'">Edit</button>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="window.location='<?php echo site_url("admin_control/viewUserInfo/".$row->id."")?>'">View</button>
+                                    <button type="button" class="btn btn-secondary btn-sm" onclick="window.location='<?php echo site_url("admin_control/editUserInfo/".$row->id."")?>'">Edit</button>
                                     <!-- <button type="button" class="btn btn-danger btn-sm" onclick="window.location='<?php echo site_url("admin_control/deleteUser/".$row->id."")?>'">Delete</button> -->
 
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteUser" data-href="<?php echo site_url('admin_control/deleteUser/'.$row->id)?>" data-deleteName="<?php echo $row->name ?>">Delete</button>
