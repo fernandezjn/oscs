@@ -1,6 +1,6 @@
 # OSCS
  Online Student Clearance System
-	Developed for Polytechnic University of the Phillipines - Taguig Branch
+	is Developed for Polytechnic University of the Phillipines - Taguig Branch
 	
 	Crewmates:
 	Fernandez, Jillian Noreen
