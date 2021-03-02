@@ -382,6 +382,7 @@ class Admin_control extends CI_Controller {
 	                }
 	                
 	                $this->oscs_model->editUserInfo($id,$uName,$role,$lName,$fName,$mName,$sName,$email,$contact, $studNo, $year, $course, $studType, $org, $office, $pos);
+	                // redirect("admin_control/viewUserInfo/".$id."/? message = User Successfully Updated");
 	                redirect("admin_control/viewUserInfo/".$id);
 
 	            }
@@ -394,7 +395,7 @@ class Admin_control extends CI_Controller {
 		if($isAdmin)
 		{
 			$this->oscs_model->deleteUser($id);
-			redirect("admin_control/users");
+			redirect("admin_control/users? message=User Successfully Deleted");
 		}
 	}
 
@@ -521,7 +522,7 @@ class Admin_control extends CI_Controller {
 	                	$newID = $row->id;
 	                }
 	                $this->oscs_model->addUserInfo($newID,$role,$lName,$fName,$mName,$sName,$email,$contact, $studNo, $year, $course, $studType, $org, $office, $pos);
-	                redirect("admin_control/users");
+	                redirect("admin_control/users? message=".$fName." ".$mName." ".$lName." Successfully Added");
 	                
 				}
 			}
@@ -586,7 +587,7 @@ class Admin_control extends CI_Controller {
 						}
 					}
 
-					redirect("admin_control/clearance_records");
+					redirect("admin_control/clearance_records?message=New Clearance Successfully	 Initiated");
 				}
 			}
 		}

@@ -57,6 +57,8 @@ class Official_control extends CI_Controller
 			$data["user_name"] = $this->session->userdata("user_name");
 			$dep = $this->session->userdata("depID");
 			$no_of_students = $this->oscs_model->totalNumberOfStudents();
+			$scYear_list= $this->oscs_model->getScYears();
+
 			foreach ($no_of_students as $row) {
 				$data["totalStudents"] = $row->number_of_students;
 				$totalStud = $row->number_of_students;
@@ -66,11 +68,29 @@ class Official_control extends CI_Controller
 			foreach($current_clearance_info as $row)
 			{
 				$scYear = $row->sc_year_id;
-				$data["scYear"] = $scYear;
+				
 				$sem = $row->semester;
-				$data["sem"] = $sem;
+				
 			}
 
+			foreach($scYear_list as $row)
+			{
+				if($row->id == $scYear)
+				{
+					$data["scYear"] = $row->school_years;
+				}
+			}
+			
+			if($sem == 1)
+			{
+				$data["sem"] = "1st";
+			}
+			else
+			{
+				$data["sem"] = "2nd";
+			}
+			
+			
 			$unreviewed = $this->oscs_model->checkForUnreviewedEntries($dep,$scYear,$sem);
 			if(!empty($unreviewed))
             {

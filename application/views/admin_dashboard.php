@@ -220,7 +220,7 @@
                       <div class="card text-center">
                         <div class="card-body">
                           <h5 class="card-title mb-3">Clearance Request</h5>
-                          <h1 class="display-5">#</h1>
+                          <h1 class="display-5">0</h1>
                         </div>
                         <div class="card-footer">
                           <a href="#" class="mb-1">

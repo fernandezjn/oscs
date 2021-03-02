@@ -44,7 +44,7 @@
 	      				<input type="password" id="inputPassword" class="form-control" placeholder="Password" name="passwordInput" required>
 	  				</div>
 	  				<?php if(isset($_GET['message'])): ?>	  				                    
-                            <p style="color:red; padding-top:20px" align="center"><?= $_GET['message']?></p>                    
+                            <p style="color:blue; padding-top:20px" align="center"><?= $_GET['message']?></p>                    
                     <?php endif; ?>
 
 	      			<!--<div class="checkbox mb-3">

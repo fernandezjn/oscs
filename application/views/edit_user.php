@@ -296,32 +296,33 @@
                                   </div>
                                 </div>
                               </div>
+                              <?php if($data->role == "Student") { ?>
+                                <div class="form-row">
+                                  <div class="col-md-9">
+                                    <div class="form-group">
+                                      <label for="Course">Course</label>
+                                      <select id="Course" class="form-control" name="course">
+                                        <option value="<?php echo $data->course_id?>" selected><?php echo $course ?></option>
+                                        <?php foreach($course_list as $row) { ?>
+                                          <option value="<?php echo $row->id ?>"><?php echo $row->course_name ?></option>
+                                        <?php } ?>
+                                      </select>
+                                    </div>
+                                  </div>
 
-                              <div class="form-row">
-                                <div class="col-md-9">
-                                  <div class="form-group">
-                                    <label for="Course">Course</label>
-                                    <select id="Course" class="form-control" name="course">
-                                      <option value="<?php echo $data->course_id?>" selected><?php echo $course ?></option>
-                                      <?php foreach($course_list as $row) { ?>
-                                        <option value="<?php echo $row->id ?>"><?php echo $row->course_name ?></option>
-                                      <?php } ?>
-                                    </select>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label for="StudentType">Student Type</label>
+                                      <select id="StudentType" class="form-control" name="studentType">
+                                        <option value="<?php echo $data->student_type_id ?>" selected><?php echo $studType ?></option>
+                                        <?php foreach($student_type_list as $row) { ?>
+                                          <option value="<?php echo $row->id ?>"><?php echo $row->type ?></option>
+                                        <?php } ?>
+                                      </select>
+                                    </div>
                                   </div>
                                 </div>
-
-                                <div class="col-md-3">
-                                  <div class="form-group">
-                                    <label for="StudentType">Student Type</label>
-                                    <select id="StudentType" class="form-control" name="studentType">
-                                      <option value="<?php echo $data->student_type_id ?>" selected><?php echo $studType ?></option>
-                                      <?php foreach($student_type_list as $row) { ?>
-                                        <option value="<?php echo $row->id ?>"><?php echo $row->type ?></option>
-                                      <?php } ?>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
+                              <?php } ?>
                             </fieldset>
                             
                             <div class="text-center mt-5 mb-5">

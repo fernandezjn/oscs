@@ -221,7 +221,15 @@
                                 <tr>
                                   <td><?php echo $row->department_name ?></td>
                                   <td><?php echo $row->name ?></td>
-                                  <td><?php echo $row->deficiencies ?></td>
+                                  <td><?php if($row->review_status==0)
+                                            {
+                                              echo "Not yet Reviewed";
+                                            }
+                                            {
+                                              echo $row->deficiencies;
+                                            } 
+                                      ?>
+                                  </td>
                                 </tr>
                               <?php } ?>
                             </tbody>

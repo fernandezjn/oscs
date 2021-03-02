@@ -169,7 +169,7 @@
                   <!-- Page Heading -->
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Student Clearance</h1>
-                    <h2 class="h3 mb-0 text-gray-800"><?php echo $scYear; ?> | <?php echo $sem; ?></h2>
+                    <h2 class="h3 mb-0 text-gray-800"><?php echo $scYear; ?> | <?php echo $sem; ?> Semester</h2>
                   </div>
                 </div>
                 <div class="col-md-12">

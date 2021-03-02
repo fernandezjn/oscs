@@ -26,12 +26,15 @@
 	      			<h1 class="h3 mb-5 font-weight-normal">Online Student Clearance System</h1>
 	      			<h4 class="h5 mb-3 font-weight-normal">Forgot your Password?</h4>
 	      			<p class="h6 mb-4 font-weight-normal">Enter your email address and we'll send you a link to reset your password.</p>
-	
+	      				
 	      			<div class="input-group mb-5">
 	      				<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
 	   		 			</div>
 	     			 	<input type="email" id="inputEmail" class="form-control" placeholder="Email" name="emailInput" required autofocus>
+	     			 	<?php if(isset($_GET['message'])): ?>                               
+                              <p style="color:red; padding-top:20px" align="center"><?= $_GET['message']?></p>                    
+                            <?php endif; ?>
 					</div>
 
 	      			<button type="button" class="btn btn-outline-danger mr-3" onclick="window.location='<?php echo site_url("main/mainPage")?>'">Cancel</button>

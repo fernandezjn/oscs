@@ -224,8 +224,8 @@
                           </div>
                         </div>
 
-                        <button class="btn btn-primary">Generate Username & Password</button>
-
+                        <!-- <button class="btn btn-primary">Generate Username & Password</button> -->
+                        
                         <div class="form-row mt-5">
                           <div class="col-md-3 mb-3">
                             <label for="LastName">Last Name</label>

@@ -182,6 +182,9 @@
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Clearance Records</h1>
                   </div>
+                  <?php if(isset($_GET['message'])): ?>                               
+                              <h4 style="color:blue; padding-top:20px" align="center"><?= $_GET['message']?></h4>                    
+                            <?php endif; ?>
                 </div>
 
                 <div class="col-md-3">
@@ -251,8 +254,8 @@
                               <th scope="col">Course</th>
                               <th scope="col">Year & Section</th>
                               <th scope="col">Student Type</th>
-                              <th scope="col">Email</th>
-                              <th scope="col">Contact Number</th>
+                              <!-- <th scope="col">Email</th>
+                              <th scope="col">Contact Number</th> -->
                               <th scope="col">Records</th>
                             </tr>
                           </thead>
@@ -265,8 +268,8 @@
                                   <td><?php echo $row->studCourse ?></td>
                                   <td><?php echo $row->studLevel ?>-1</td>
                                   <td><?php echo $row->studType ?></td>
-                                  <td><?php echo $row->email ?></td>
-                                  <td><?php echo $row->contact_number ?></td>
+                                  <!-- <td><?php echo $row->email ?></td>
+                                  <td><?php echo $row->contact_number ?></td> -->
                                   <td> 
                                     <button type="button" class="btn btn-primary btn-sm" onclick="window.location='<?php echo site_url("admin_control/view_clearance_record/".$row->userID ) ?>'">View</button>
                                   </td>

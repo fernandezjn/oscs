@@ -184,6 +184,9 @@
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">User Management</h1>
                   </div>
+                  <?php if(isset($_GET['message'])): ?>                               
+                              <h4 style="color:blue; padding-top:20px" align="center"><?= $_GET['message']?></h4>                    
+                            <?php endif; ?>
                 </div>
                 <div class="col-md-12">
                   <div class="card"> 
